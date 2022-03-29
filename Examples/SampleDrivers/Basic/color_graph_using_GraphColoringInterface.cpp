@@ -92,9 +92,9 @@ int main(int argc, char ** argv)
 	//The input format will be determined based on the file extension and a correct reading routine will be used to read the file.
 	//Note: the input matrix MUST be SYMMETRIC in order for a graph to be generated correctly
 	//		If you are new to COLPACK, pick either a .graph file (MeTiS format) or a symmetric .mtx (Matrix Market format)
-	if ( g->ReadAdjacencyGraph(s_InputFile) == _FALSE) {
+	if ( g->ReadAdjacencyGraph(s_InputFile) == false) {
 		cout<<"ReadAdjacencyGraph() Failed!!!"<<endl;
-		return _FALSE;
+		return false;
 	}
 	cout<<"Done with ReadAdjacencyGraph()"<<endl;
 
@@ -107,6 +107,6 @@ int main(int argc, char ** argv)
 	cout<<"Done with PrintVertexColoringMetrics()"<<endl;
 	delete g;
 
-	return _TRUE;
+	return true;
 }
 //*/

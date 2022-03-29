@@ -72,7 +72,7 @@ namespace ColPack
 			cerr<<endl;
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int GraphOrdering::CheckVertexOrdering() {
@@ -84,7 +84,7 @@ namespace ColPack
 	{
 		if(m_s_VertexOrderingVariant.compare(s_VertexOrderingVariant) == 0)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		if(m_s_VertexOrderingVariant.compare("ALL") != 0)
@@ -92,7 +92,7 @@ namespace ColPack
 			m_s_VertexOrderingVariant = s_VertexOrderingVariant;
 		}
 
-		return(_FALSE);
+		return(false);
 	}
 
 	//Public Constructor 1351
@@ -136,9 +136,9 @@ namespace ColPack
 	//Public Function 1354
 	int GraphOrdering::NaturalOrdering()
 	{
-		if(CheckVertexOrdering("NATURAL") == _TRUE)
+		if(CheckVertexOrdering("NATURAL") == true)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i;
@@ -156,14 +156,14 @@ namespace ColPack
 			m_vi_OrderedVertices[i] = i;
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int GraphOrdering::RandomOrdering()
 	{
-		if(CheckVertexOrdering("RANDOM") == _TRUE)
+		if(CheckVertexOrdering("RANDOM") == true)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		m_s_VertexOrderingVariant = "RANDOM";
@@ -204,7 +204,7 @@ namespace ColPack
 		delete listOfPairs;
 		//*/
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int GraphOrdering::ColoringBasedOrdering(vector<int> &vi_VertexColors)
@@ -227,7 +227,7 @@ namespace ColPack
                 vvi_ColorGroups.clear();
                 vvi_ColorGroups.resize((unsigned) i_VertexCount); // reserve memory
 
-		int i_HighestColor = _FALSE;
+		int i_HighestColor = false;
 
 		//Populate ColorGroups
 		for(int i=0; i <(int)vi_VertexColors.size(); i++)
@@ -262,16 +262,16 @@ namespace ColPack
 		}
 
 		vvi_ColorGroups.clear();
-		return(_TRUE);
+		return(true);
 	}
 
 
 	//Public Function 1355
 	int GraphOrdering::LargestFirstOrdering()
 	{
-		if(CheckVertexOrdering("LARGEST_FIRST") == _TRUE)
+		if(CheckVertexOrdering("LARGEST_FIRST") == true)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j;
@@ -282,7 +282,7 @@ namespace ColPack
 
 		vector< vector<int> > vvi_GroupedVertexDegree;
 
-		m_i_MaximumVertexDegree = _FALSE;
+		m_i_MaximumVertexDegree = false;
 
 		i_VertexCount = STEP_DOWN((signed) m_vi_Vertices.size());
 
@@ -317,7 +317,7 @@ namespace ColPack
 		// clear the buffer
 		vvi_GroupedVertexDegree.clear();
 		
-                return(_TRUE);
+                return(true);
 	}
 
 	int GraphOrdering::printVertexEdgeMap(vector< vector< pair< int, int> > > &vvpii_VertexEdgeMap) {
@@ -339,7 +339,7 @@ namespace ColPack
 
 		cout<<"*****************"<<endl;
 
-		return _TRUE;
+		return true;
 	}
 
 	struct less_degree_than {
@@ -355,9 +355,9 @@ namespace ColPack
 
 	//Public Function 1356
         int GraphOrdering::DynamicLargestFirstOrdering() {
-                if(CheckVertexOrdering("DYNAMIC_LARGEST_FIRST") == _TRUE)
+                if(CheckVertexOrdering("DYNAMIC_LARGEST_FIRST") == true)
                 {
-                        return(_TRUE);
+                        return(true);
                 }
 
                 int i, u, l;
@@ -389,7 +389,7 @@ namespace ColPack
 
                 i_SelectedVertex = _UNKNOWN;
 
-                i_HighestInducedVertexDegree = _FALSE;
+                i_HighestInducedVertexDegree = false;
 
                 for(i=0; i<i_VertexCount; i++)
                 {
@@ -416,7 +416,7 @@ namespace ColPack
 		m_vi_OrderedVertices.clear();
 		m_vi_OrderedVertices.reserve((unsigned) i_VertexCount);
 
-                i_SelectedVertexCount = _FALSE;
+                i_SelectedVertexCount = false;
 
 		// just counting the number of vertices that we have worked with,
 		// stop when i_SelectedVertexCount == i_VertexCount, i.e. we have looked through all the vertices
@@ -427,7 +427,7 @@ namespace ColPack
                         {
                                 i_InducedVertexDegreeCount = (signed) vvi_GroupedInducedVertexDegree[i].size();
 
-                                if(i_InducedVertexDegreeCount != _FALSE)
+                                if(i_InducedVertexDegreeCount != false)
                                 {
                                         i_SelectedVertex = vvi_GroupedInducedVertexDegree[i].back();
 					//remove the i_SelectedVertex from vvi_GroupedInducedVertexDegree
@@ -488,14 +488,14 @@ namespace ColPack
 		vi_VertexLocation.clear();
 		vvi_GroupedInducedVertexDegree.clear();
 
-		return(_TRUE);
+		return(true);
 	}
 		/*
 	int GraphOrdering::DynamicLargestFirstOrdering()
 	{
-		if(CheckVertexOrdering("LARGEST FIRST") == _TRUE)
+		if(CheckVertexOrdering("LARGEST FIRST") == true)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		m_vi_OrderedVertices.clear();
@@ -566,16 +566,16 @@ namespace ColPack
 		}
 		//NEED TO CREATE A HEAP STRUCTURE JUST FOR THIS PROBLEM
 
-		return(_TRUE);
+		return(true);
 	}
 	//*/
 
 	//Public Function 1357
 	int GraphOrdering::DistanceTwoLargestFirstOrdering()
 	{
-		if(CheckVertexOrdering("DISTANCE_TWO_LARGEST_FIRST") == _TRUE)
+		if(CheckVertexOrdering("DISTANCE_TWO_LARGEST_FIRST") == true)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k;
@@ -590,7 +590,7 @@ namespace ColPack
 
 		vector< vector<int> > v2i_GroupedDistanceTwoVertexDegree;
 
-		i_HighestDistanceTwoVertexDegree = _FALSE;
+		i_HighestDistanceTwoVertexDegree = false;
 
 		i_VertexCount = STEP_DOWN((signed) m_vi_Vertices.size());
 
@@ -604,7 +604,7 @@ namespace ColPack
 		{
 			vi_IncludedVertices[i] = i;
 
-			i_DistanceTwoVertexDegree = _FALSE;
+			i_DistanceTwoVertexDegree = false;
 
 			for(j=m_vi_Vertices[i]; j<m_vi_Vertices[STEP_UP(i)]; j++)
 			{
@@ -650,7 +650,7 @@ namespace ColPack
 		vi_IncludedVertices.clear();
 		v2i_GroupedDistanceTwoVertexDegree.clear();
 
-		return(_TRUE);
+		return(true);
 	}
 
         int GraphOrdering::SmallestLastOrdering() {
@@ -661,9 +661,9 @@ namespace ColPack
 	//Public Function 1358
         int GraphOrdering::SmallestLastOrdering_serial()
         {
-                if(CheckVertexOrdering("SMALLEST_LAST_SERIAL") == _TRUE)
+                if(CheckVertexOrdering("SMALLEST_LAST_SERIAL") == true)
                 {
-                        return(_TRUE);
+                        return(true);
                 }
 
                 int i, u, l;
@@ -699,7 +699,7 @@ namespace ColPack
 
                 i_SelectedVertex = _UNKNOWN;
 
-                i_HighestInducedVertexDegree = _FALSE;
+                i_HighestInducedVertexDegree = false;
 
 
                 for(i=0; i<i_VertexCount; i++)
@@ -727,14 +727,14 @@ namespace ColPack
 		m_vi_OrderedVertices.clear();
                 m_vi_OrderedVertices.resize((unsigned) i_VertexCount, _UNKNOWN);
 
-                i_SelectedVertexCount = _FALSE;
+                i_SelectedVertexCount = false;
 		int iMin = 1;
 
 		// just counting the number of vertices that we have worked with,
 		// stop when i_SelectedVertexCount == i_VertexCount, i.e. we have looked through all the vertices
 		while(i_SelectedVertexCount < i_VertexCount)
                 {
-			if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin - 1].size() != _FALSE)
+			if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin - 1].size() != false)
 				iMin--;
 
 			//pick the vertex with smallest degree
@@ -742,7 +742,7 @@ namespace ColPack
                         {
                                 i_InducedVertexDegreeCount = (signed) vvi_GroupedInducedVertexDegree[i].size();
 
-                                if(i_InducedVertexDegreeCount != _FALSE)
+                                if(i_InducedVertexDegreeCount != false)
                                 {
                                         i_SelectedVertex = vvi_GroupedInducedVertexDegree[i].back();
 					//remove the i_SelectedVertex from vvi_GroupedInducedVertexDegree
@@ -798,14 +798,14 @@ namespace ColPack
                 vi_VertexLocation.clear();
                 vvi_GroupedInducedVertexDegree.clear();
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int GraphOrdering::DistanceTwoDynamicLargestFirstOrdering()
 	{
-		if(CheckVertexOrdering("DISTANCE TWO DYNAMIC LARGEST FIRST") == _TRUE)
+		if(CheckVertexOrdering("DISTANCE TWO DYNAMIC LARGEST FIRST") == true)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k, l, u, v;
@@ -843,13 +843,13 @@ namespace ColPack
 
 		i_SelectedVertex = _UNKNOWN;
 
-		i_HighestInducedVertexDegree = _FALSE;
+		i_HighestInducedVertexDegree = false;
 
 		for(i=0; i<i_VertexCount; i++)
 		{
 			vi_IncludedVertices[i] = i;
 
-			i_InducedVertexDegree = _FALSE;
+			i_InducedVertexDegree = false;
 
 			for(j=m_vi_Vertices[i]; j<m_vi_Vertices[STEP_UP(i)]; j++)
 			{
@@ -888,7 +888,7 @@ namespace ColPack
 
 		vi_IncludedVertices.assign((unsigned) i_VertexCount, _UNKNOWN);
 
-		i_SelectedVertexCount = _FALSE;
+		i_SelectedVertexCount = false;
 
 		while(i_SelectedVertexCount < i_VertexCount)
 		{
@@ -896,7 +896,7 @@ namespace ColPack
 			{
 				i_InducedVertexDegreeCount = (signed) vvi_GroupedInducedVertexDegree[i].size();
 
-				if(i_InducedVertexDegreeCount != _FALSE)
+				if(i_InducedVertexDegreeCount != false)
 				{
 					i_SelectedVertex = vvi_GroupedInducedVertexDegree[i].back();
 					vvi_GroupedInducedVertexDegree[i].pop_back();
@@ -991,16 +991,16 @@ namespace ColPack
                 vvi_GroupedInducedVertexDegree.clear();
                 vi_VertexLocations.clear();
 
-		return(_TRUE);
+		return(true);
 	}
 
 
 	//Public Function 1359
 	int GraphOrdering::DistanceTwoSmallestLastOrdering()
 	{
-		if(CheckVertexOrdering("DISTANCE_TWO_SMALLEST_LAST") == _TRUE)
+		if(CheckVertexOrdering("DISTANCE_TWO_SMALLEST_LAST") == true)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k, l, u, v;
@@ -1041,13 +1041,13 @@ namespace ColPack
 
 		i_SelectedVertex = _UNKNOWN;
 
-		i_HighestInducedVertexDegree = _FALSE;
+		i_HighestInducedVertexDegree = false;
 
 		for(i=0; i<i_VertexCount; i++)
 		{
 			vi_IncludedVertices[i] = i;
 
-			i_InducedVertexDegree = _FALSE;
+			i_InducedVertexDegree = false;
 
 			for(j=m_vi_Vertices[i]; j<m_vi_Vertices[STEP_UP(i)]; j++)
 			{
@@ -1086,20 +1086,20 @@ namespace ColPack
 
 		vi_IncludedVertices.assign((unsigned) i_VertexCount, _UNKNOWN);
 
-		i_SelectedVertexCount = _FALSE;
+		i_SelectedVertexCount = false;
 
 		int iMin = 1;
 
 		while(i_SelectedVertexCount < i_VertexCount)
 		{
-			if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin -1].size() != _FALSE)
+			if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin -1].size() != false)
 				iMin--;
 
 			for(i= iMin; i < STEP_UP(i_HighestInducedVertexDegree); i++)
 			{
 				i_InducedVertexDegreeCount = (signed) vvi_GroupedInducedVertexDegree[i].size();
 
-				if(i_InducedVertexDegreeCount != _FALSE)
+				if(i_InducedVertexDegreeCount != false)
 				{
 					i_SelectedVertex = vvi_GroupedInducedVertexDegree[i].back();
 					vvi_GroupedInducedVertexDegree[i].pop_back();
@@ -1194,16 +1194,16 @@ namespace ColPack
                 vvi_GroupedInducedVertexDegree.clear();
                 vi_VertexLocations.clear();
 
-		return(_TRUE);
+		return(true);
 	}
 
 
 	//Public Function 1360
         int GraphOrdering::IncidenceDegreeOrdering()
         {
-                if(CheckVertexOrdering("INCIDENCE_DEGREE") == _TRUE)
+                if(CheckVertexOrdering("INCIDENCE_DEGREE") == true)
                 {
-                        return(_TRUE);
+                        return(true);
                 }
 
                 int i, u, v, l;
@@ -1237,7 +1237,7 @@ namespace ColPack
 
                 i_SelectedVertex = _UNKNOWN;
 
-                i_IncidenceVertexDegree = _FALSE;
+                i_IncidenceVertexDegree = false;
 
 
 		// initilly push all the vertices into the first bucket assuming that IncidenceVertexDegree is all 0
@@ -1271,7 +1271,7 @@ namespace ColPack
 		m_vi_OrderedVertices.clear();
 		m_vi_OrderedVertices.reserve((unsigned) i_VertexCount);
 
-		i_SelectedVertexCount = _FALSE;
+		i_SelectedVertexCount = false;
 
 		// NOW SWAP THE MAX DEGREE VERTEX WITH THE LAST VERTEX IN THE FIRST BUCKET
 		l = vvi_GroupedIncidenceVertexDegree[i_IncidenceVertexDegree].size() - 1;
@@ -1288,7 +1288,7 @@ namespace ColPack
 		while(i_SelectedVertexCount < i_VertexCount)
                 {
 
-                        if(iMax != i_MaximumVertexDegree && vvi_GroupedIncidenceVertexDegree[iMax + 1].size() != _FALSE)
+                        if(iMax != i_MaximumVertexDegree && vvi_GroupedIncidenceVertexDegree[iMax + 1].size() != false)
                                 iMax++;
 
 			//pick the vertex with maximum incidence degree
@@ -1296,7 +1296,7 @@ namespace ColPack
                         {
                         	i_IncidenceVertexDegreeCount = (signed) vvi_GroupedIncidenceVertexDegree[i].size();
 
-                                if(i_IncidenceVertexDegreeCount != _FALSE)
+                                if(i_IncidenceVertexDegreeCount != false)
                                 {
                                 	i_SelectedVertex = vvi_GroupedIncidenceVertexDegree[i].back();
 					// remove i_SelectedVertex from  vvi_GroupedIncidenceVertexDegree[i]
@@ -1354,16 +1354,16 @@ namespace ColPack
                 vi_VertexLocation.clear();
                 vvi_GroupedIncidenceVertexDegree.clear();
 
-		return(_TRUE);
+		return(true);
 	}
 
 
 	//Public Function 1361
 	int GraphOrdering::DistanceTwoIncidenceDegreeOrdering()
 	{
-		if(CheckVertexOrdering("DISTANCE_TWO_INCIDENCE_DEGREE") == _TRUE)
+		if(CheckVertexOrdering("DISTANCE_TWO_INCIDENCE_DEGREE") == true)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k, l, u, v;
@@ -1404,7 +1404,7 @@ namespace ColPack
 		i_SelectedVertex = _UNKNOWN;
 
 		i_HighestDistanceTwoDegreeVertex = i_HighestDistanceTwoVertexDegree = _UNKNOWN;
-		i_InducedVertexDegree = _FALSE;
+		i_InducedVertexDegree = false;
 
 		// initilly push all the vertices into the first bucket assuming that IncidenceVertexDegree is all 0
  		vvi_GroupedInducedVertexDegree[i_InducedVertexDegree].reserve((unsigned) i_VertexCount); // ONLY FOR THE FIRST BUCKET SINCE WE KNOW in THIS case
@@ -1419,7 +1419,7 @@ namespace ColPack
 
 			vi_IncludedVertices[i] = i;
 
-			i_DistanceTwoVertexDegree = _FALSE;
+			i_DistanceTwoVertexDegree = false;
 
 			for(j=m_vi_Vertices[i]; j<m_vi_Vertices[STEP_UP(i)]; j++)
 			{
@@ -1461,20 +1461,20 @@ namespace ColPack
 		swap(vvi_GroupedInducedVertexDegree[i_InducedVertexDegree][vi_VertexLocations[i_HighestDistanceTwoDegreeVertex]], vvi_GroupedInducedVertexDegree[i_InducedVertexDegree][l]);
 		swap(vi_VertexLocations[v], vi_VertexLocations[u]);
 
-		i_SelectedVertexCount = _FALSE;
+		i_SelectedVertexCount = false;
 
 		int iMax = i_HighestDistanceTwoVertexDegree - 1;
 
 		while(i_SelectedVertexCount < i_VertexCount)
 		{
-                        if(iMax != i_HighestDistanceTwoVertexDegree && vvi_GroupedInducedVertexDegree[iMax + 1].size() != _FALSE)
+                        if(iMax != i_HighestDistanceTwoVertexDegree && vvi_GroupedInducedVertexDegree[iMax + 1].size() != false)
                                 iMax++;
 
 			for(i= iMax; i>= 0; i--)
 			{
 				i_InducedVertexDegreeCount = (signed) vvi_GroupedInducedVertexDegree[i].size();
 
-				if(i_InducedVertexDegreeCount != _FALSE)
+				if(i_InducedVertexDegreeCount != false)
 				{
 					i_SelectedVertex = vvi_GroupedInducedVertexDegree[i].back();
 					vvi_GroupedInducedVertexDegree[i].pop_back();
@@ -1568,7 +1568,7 @@ namespace ColPack
                 vvi_GroupedInducedVertexDegree.clear();
                 vi_VertexLocations.clear();
 
-		return(_TRUE);
+		return(true);
 	}
 
 	//Public Function 1362

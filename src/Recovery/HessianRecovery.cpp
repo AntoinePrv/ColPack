@@ -14,7 +14,7 @@ namespace ColPack
 	int HessianRecovery::DirectRecover_RowCompressedFormat_usermem(GraphColoringInterface* g, double** dp2_CompressedMatrix, unsigned int ** uip2_HessianSparsityPattern, double*** dp3_HessianValue) {
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		int rowCount = g->GetVertexCount();
@@ -72,7 +72,7 @@ namespace ColPack
 	int HessianRecovery::DirectRecover_RowCompressedFormat_unmanaged(GraphColoringInterface* g, double** dp2_CompressedMatrix, unsigned int ** uip2_HessianSparsityPattern, double*** dp3_HessianValue) {
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		int rowCount = g->GetVertexCount();
@@ -107,7 +107,7 @@ namespace ColPack
 
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		int rowCount = g->GetVertexCount();
@@ -192,7 +192,7 @@ namespace ColPack
 
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		int rowCount = g->GetVertexCount();
@@ -399,7 +399,7 @@ namespace ColPack
 	int HessianRecovery::DirectRecover_CoordinateFormat_usermem(GraphColoringInterface* g, double** dp2_CompressedMatrix, unsigned int ** uip2_HessianSparsityPattern, unsigned int** ip2_RowIndex, unsigned int** ip2_ColumnIndex, double** dp2_HessianValue) {
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		vector<unsigned int> RowIndex;
@@ -425,7 +425,7 @@ namespace ColPack
 	int HessianRecovery::DirectRecover_CoordinateFormat_usermem_serial(GraphColoringInterface* g, double** dp2_CompressedMatrix, unsigned int ** uip2_HessianSparsityPattern, unsigned int** ip2_RowIndex, unsigned int** ip2_ColumnIndex, double** dp2_HessianValue) {
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		vector<unsigned int> RowIndex;
@@ -449,7 +449,7 @@ namespace ColPack
 	int HessianRecovery::DirectRecover_CoordinateFormat_unmanaged_OMP(GraphColoringInterface* g, double** dp2_CompressedMatrix, unsigned int ** uip2_HessianSparsityPattern, unsigned int** ip2_RowIndex, unsigned int** ip2_ColumnIndex, double** dp2_HessianValue) {
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		vector<unsigned int> RowIndex;
@@ -488,7 +488,7 @@ namespace ColPack
 	int HessianRecovery::DirectRecover_CoordinateFormat_unmanaged(GraphColoringInterface* g, double** dp2_CompressedMatrix, unsigned int ** uip2_HessianSparsityPattern, unsigned int** ip2_RowIndex, unsigned int** ip2_ColumnIndex, double** dp2_HessianValue) {
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		vector<unsigned int> RowIndex;
@@ -546,7 +546,7 @@ namespace ColPack
 
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		int i=0,j=0;
@@ -671,10 +671,10 @@ namespace ColPack
 		v2d_NonzeroAdjacency.resize((unsigned) i_VertexCount);
 
 		vi_EvaluatedDiagonals.clear();
-		vi_EvaluatedDiagonals.resize((unsigned) i_VertexCount, _FALSE);
+		vi_EvaluatedDiagonals.resize((unsigned) i_VertexCount, false);
 
 		vi_InducedVertexDegrees.clear();
-		vi_InducedVertexDegrees.resize((unsigned) i_VertexCount, _FALSE);
+		vi_InducedVertexDegrees.resize((unsigned) i_VertexCount, false);
 
 		vd_IncludedVertices.clear();
 		vd_IncludedVertices.resize((unsigned) i_VertexCount, _UNKNOWN);
@@ -699,9 +699,9 @@ namespace ColPack
 			{
 				i_PresentVertex = mivi_VertexSets[vi_Sets[i]][j];
 
-				vd_IncludedVertices[i_PresentVertex] = _FALSE;
+				vd_IncludedVertices[i_PresentVertex] = false;
 
-				if(vi_InducedVertexDegrees[i_PresentVertex] != _FALSE)
+				if(vi_InducedVertexDegrees[i_PresentVertex] != false)
 				{
 					vli_GroupedInducedVertexDegrees[vi_InducedVertexDegrees[i_PresentVertex]].erase(vlit_VertexLocations[i_PresentVertex]);
 				}
@@ -732,12 +732,12 @@ namespace ColPack
 			{
 				i_SetSize = (signed) vli_GroupedInducedVertexDegrees[j].size();
 
-				if(i_SetSize == _FALSE)
+				if(i_SetSize == false)
 				{
 					continue;
 				}
 
-				k = _FALSE;
+				k = false;
 
 				cout<<"Degree "<<j<<"\t"<<" : ";
 
@@ -768,7 +768,7 @@ namespace ColPack
 //#define DEBUG 5103
 			//get the diagonal values
 			for (int index = 0; index < i_VertexCount; index++) {
-				if(vi_EvaluatedDiagonals[index] == _FALSE)
+				if(vi_EvaluatedDiagonals[index] == false)
 				{
 					d_Value = dp2_CompressedMatrix[index][vi_VertexColors[index]];
 
@@ -780,27 +780,27 @@ namespace ColPack
 					v2i_VertexAdjacency[index].push_back(index);
 					v2d_NonzeroAdjacency[index].push_back(d_Value);
 
-					vi_EvaluatedDiagonals[index] = _TRUE;
+					vi_EvaluatedDiagonals[index] = true;
 
 				}
 			}
 
 			for ( ; ; )
 			{
-				if(vli_GroupedInducedVertexDegrees[_TRUE].empty()) // If there is no leaf left on the color tree
+				if(vli_GroupedInducedVertexDegrees[true].empty()) // If there is no leaf left on the color tree
 				{
-					i_LeafVertex = vli_GroupedInducedVertexDegrees[_FALSE].front();
+					i_LeafVertex = vli_GroupedInducedVertexDegrees[false].front();
 
-					vi_InducedVertexDegrees[i_LeafVertex] = _FALSE;
+					vi_InducedVertexDegrees[i_LeafVertex] = false;
 
 					vd_IncludedVertices[i_LeafVertex] = _UNKNOWN;
 
 					break;
 				}
 
-				i_LeafVertex = vli_GroupedInducedVertexDegrees[_TRUE].front();
+				i_LeafVertex = vli_GroupedInducedVertexDegrees[true].front();
 
-				vli_GroupedInducedVertexDegrees[_TRUE].pop_front();
+				vli_GroupedInducedVertexDegrees[true].pop_front();
 
 
 				//Find i_ParentVertex
@@ -818,7 +818,7 @@ namespace ColPack
 
 				vd_IncludedVertices[i_ParentVertex] += d_Value;
 
-				vi_InducedVertexDegrees[i_LeafVertex] = _FALSE;
+				vi_InducedVertexDegrees[i_LeafVertex] = false;
 				vd_IncludedVertices[i_LeafVertex] = _UNKNOWN;
 				if(vli_GroupedInducedVertexDegrees[vi_InducedVertexDegrees[i_ParentVertex]].size()>1) {
 					vli_GroupedInducedVertexDegrees[vi_InducedVertexDegrees[i_ParentVertex]].erase(vlit_VertexLocations[i_ParentVertex]);
@@ -881,7 +881,7 @@ namespace ColPack
 	int HessianRecovery::IndirectRecover_RowCompressedFormat_unmanaged(GraphColoringInterface* g, double** dp2_CompressedMatrix, unsigned int ** uip2_HessianSparsityPattern, double*** dp3_HessianValue) {
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		int rowCount = g->GetVertexCount();
@@ -918,7 +918,7 @@ namespace ColPack
 
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		//unsigned int numOfNonZerosInHessianValue = ConvertRowCompressedFormat2SparseSolversFormat_StructureOnly(uip2_HessianSparsityPattern, g->GetVertexCount(), ip2_RowIndex, ip2_ColumnIndex);
@@ -1051,10 +1051,10 @@ namespace ColPack
 		v2d_NonzeroAdjacency.resize((unsigned) i_VertexCount);
 
 		vi_EvaluatedDiagonals.clear();
-		vi_EvaluatedDiagonals.resize((unsigned) i_VertexCount, _FALSE);
+		vi_EvaluatedDiagonals.resize((unsigned) i_VertexCount, false);
 
 		vi_InducedVertexDegrees.clear();
-		vi_InducedVertexDegrees.resize((unsigned) i_VertexCount, _FALSE);
+		vi_InducedVertexDegrees.resize((unsigned) i_VertexCount, false);
 
 		vd_IncludedVertices.clear();
 		vd_IncludedVertices.resize((unsigned) i_VertexCount, _UNKNOWN);
@@ -1079,9 +1079,9 @@ namespace ColPack
 			{
 				i_PresentVertex = mivi_VertexSets[vi_Sets[i]][j];
 
-				vd_IncludedVertices[i_PresentVertex] = _FALSE;
+				vd_IncludedVertices[i_PresentVertex] = false;
 
-				if(vi_InducedVertexDegrees[i_PresentVertex] != _FALSE)
+				if(vi_InducedVertexDegrees[i_PresentVertex] != false)
 				{
 					vli_GroupedInducedVertexDegrees[vi_InducedVertexDegrees[i_PresentVertex]].erase(vlit_VertexLocations[i_PresentVertex]);
 				}
@@ -1112,12 +1112,12 @@ namespace ColPack
 			{
 				i_SetSize = (signed) vli_GroupedInducedVertexDegrees[j].size();
 
-				if(i_SetSize == _FALSE)
+				if(i_SetSize == false)
 				{
 					continue;
 				}
 
-				k = _FALSE;
+				k = false;
 
 				cout<<"Degree "<<j<<"\t"<<" : ";
 
@@ -1148,7 +1148,7 @@ namespace ColPack
 //#define DEBUG 5103
 			//get the diagonal values
 			for (int index = 0; index < i_VertexCount; index++) {
-				if(vi_EvaluatedDiagonals[index] == _FALSE)
+				if(vi_EvaluatedDiagonals[index] == false)
 				{
 					d_Value = dp2_CompressedMatrix[index][vi_VertexColors[index]];
 
@@ -1160,27 +1160,27 @@ namespace ColPack
 					v2i_VertexAdjacency[index].push_back(index);
 					v2d_NonzeroAdjacency[index].push_back(d_Value);
 
-					vi_EvaluatedDiagonals[index] = _TRUE;
+					vi_EvaluatedDiagonals[index] = true;
 
 				}
 			}
 
 			for ( ; ; )
 			{
-				if(vli_GroupedInducedVertexDegrees[_TRUE].empty()) // If there is no leaf left on the color tree
+				if(vli_GroupedInducedVertexDegrees[true].empty()) // If there is no leaf left on the color tree
 				{
-					i_LeafVertex = vli_GroupedInducedVertexDegrees[_FALSE].front();
+					i_LeafVertex = vli_GroupedInducedVertexDegrees[false].front();
 
-					vi_InducedVertexDegrees[i_LeafVertex] = _FALSE;
+					vi_InducedVertexDegrees[i_LeafVertex] = false;
 
 					vd_IncludedVertices[i_LeafVertex] = _UNKNOWN;
 
 					break;
 				}
 
-				i_LeafVertex = vli_GroupedInducedVertexDegrees[_TRUE].front();
+				i_LeafVertex = vli_GroupedInducedVertexDegrees[true].front();
 
-				vli_GroupedInducedVertexDegrees[_TRUE].pop_front();
+				vli_GroupedInducedVertexDegrees[true].pop_front();
 
 				//Find i_ParentVertex
 				for(j=vi_Vertices[i_LeafVertex]; j<vi_Vertices[STEP_UP(i_LeafVertex)]; j++)
@@ -1197,7 +1197,7 @@ namespace ColPack
 
 				vd_IncludedVertices[i_ParentVertex] += d_Value;
 
-				vi_InducedVertexDegrees[i_LeafVertex] = _FALSE;
+				vi_InducedVertexDegrees[i_LeafVertex] = false;
 				vd_IncludedVertices[i_LeafVertex] = _UNKNOWN;
 				if(vli_GroupedInducedVertexDegrees[vi_InducedVertexDegrees[i_ParentVertex]].size()>1) {
 					vli_GroupedInducedVertexDegrees[vi_InducedVertexDegrees[i_ParentVertex]].erase(vlit_VertexLocations[i_ParentVertex]);
@@ -1271,7 +1271,7 @@ namespace ColPack
 
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		int rowCount = g->GetVertexCount();
@@ -1328,7 +1328,7 @@ cout<<"*WriteMatrixMarket_ADOLCInput("<<s_postfix<<", 1, uip2_HessianSparsityPat
 		}
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		vector<unsigned int> RowIndex;
@@ -1481,10 +1481,10 @@ cout<<"*WriteMatrixMarket_ADOLCInput("<<s_postfix<<", 2, uip2_HessianSparsityPat
 		v2d_NonzeroAdjacency.resize((unsigned) i_VertexCount);
 
 		vi_EvaluatedDiagonals.clear();
-		vi_EvaluatedDiagonals.resize((unsigned) i_VertexCount, _FALSE);
+		vi_EvaluatedDiagonals.resize((unsigned) i_VertexCount, false);
 
 		vi_InducedVertexDegrees.clear();
-		vi_InducedVertexDegrees.resize((unsigned) i_VertexCount, _FALSE);
+		vi_InducedVertexDegrees.resize((unsigned) i_VertexCount, false);
 
 		vd_IncludedVertices.clear();
 		vd_IncludedVertices.resize((unsigned) i_VertexCount, 0.);
@@ -1514,7 +1514,7 @@ cout<<"*WriteMatrixMarket_ADOLCInput("<<s_postfix<<", 2, uip2_HessianSparsityPat
 				vb_IncludedVertices[i_PresentVertex] = true;
 				vd_IncludedVertices[i_PresentVertex] = 0;
 
-				if(vi_InducedVertexDegrees[i_PresentVertex] != _FALSE)
+				if(vi_InducedVertexDegrees[i_PresentVertex] != false)
 				{
 					vli_GroupedInducedVertexDegrees[vi_InducedVertexDegrees[i_PresentVertex]].erase(vlit_VertexLocations[i_PresentVertex]);
 				}
@@ -1544,12 +1544,12 @@ cout<<"*WriteMatrixMarket_ADOLCInput("<<s_postfix<<", 2, uip2_HessianSparsityPat
 			{
 				i_SetSize = (signed) vli_GroupedInducedVertexDegrees[j].size();
 
-				if(i_SetSize == _FALSE)
+				if(i_SetSize == false)
 				{
 					continue;
 				}
 
-				k = _FALSE;
+				k = false;
 
 				cout<<"Degree "<<j<<"\t"<<" : ";
 
@@ -1579,7 +1579,7 @@ cout<<"*WriteMatrixMarket_ADOLCInput("<<s_postfix<<", 2, uip2_HessianSparsityPat
 	#endif
 			//get the diagonal values
 			for (int index = 0; index < i_VertexCount; index++) {
-				if(vi_EvaluatedDiagonals[index] == _FALSE)
+				if(vi_EvaluatedDiagonals[index] == false)
 				{
 					d_Value = dp2_CompressedMatrix[index][vi_VertexColors[index]];
 
@@ -1591,27 +1591,27 @@ cout<<"*WriteMatrixMarket_ADOLCInput("<<s_postfix<<", 2, uip2_HessianSparsityPat
 					v2i_VertexAdjacency[index].push_back(index);
 					v2d_NonzeroAdjacency[index].push_back(d_Value);
 
-					vi_EvaluatedDiagonals[index] = _TRUE;
+					vi_EvaluatedDiagonals[index] = true;
 
 				}
 			}
 
 			for ( ; ; )
 			{
-				if(vli_GroupedInducedVertexDegrees[_TRUE].empty()) // If there is no leaf left on the color tree
+				if(vli_GroupedInducedVertexDegrees[true].empty()) // If there is no leaf left on the color tree
 				{
-					i_LeafVertex = vli_GroupedInducedVertexDegrees[_FALSE].front();
+					i_LeafVertex = vli_GroupedInducedVertexDegrees[false].front();
 
-					vi_InducedVertexDegrees[i_LeafVertex] = _FALSE;
+					vi_InducedVertexDegrees[i_LeafVertex] = false;
 
 					vb_IncludedVertices[i_LeafVertex] = false;
 
 					break;
 				}
 
-				i_LeafVertex = vli_GroupedInducedVertexDegrees[_TRUE].front();
+				i_LeafVertex = vli_GroupedInducedVertexDegrees[true].front();
 
-				vli_GroupedInducedVertexDegrees[_TRUE].pop_front();
+				vli_GroupedInducedVertexDegrees[true].pop_front();
 
 				//Find i_ParentVertex
 				for(j=vi_Vertices[i_LeafVertex]; j<vi_Vertices[STEP_UP(i_LeafVertex)]; j++)
@@ -1628,7 +1628,7 @@ cout<<"*WriteMatrixMarket_ADOLCInput("<<s_postfix<<", 2, uip2_HessianSparsityPat
 
 				vd_IncludedVertices[i_ParentVertex] += d_Value;
 
-				vi_InducedVertexDegrees[i_LeafVertex] = _FALSE;
+				vi_InducedVertexDegrees[i_LeafVertex] = false;
 				vb_IncludedVertices[i_LeafVertex] = false;
 				if(vli_GroupedInducedVertexDegrees[vi_InducedVertexDegrees[i_ParentVertex]].size()>1) {
 					vli_GroupedInducedVertexDegrees[vi_InducedVertexDegrees[i_ParentVertex]].erase(vlit_VertexLocations[i_ParentVertex]);
@@ -1687,7 +1687,7 @@ cout<<"*WriteMatrixMarket_ADOLCInput("<<s_postfix<<", 2, uip2_HessianSparsityPat
 
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		vector<unsigned int> RowIndex;

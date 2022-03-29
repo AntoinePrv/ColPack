@@ -21,11 +21,11 @@ namespace ColPack
 
 		string FieldWidth;
 
-		boolean FOUND;
+		bool FOUND = true;
 
 		FieldWidth.clear();
 
-		FOUND = FALSE;
+		FOUND = false;
 
 		LetterCount = (signed) FortranFormat.size();
 
@@ -33,19 +33,19 @@ namespace ColPack
 		{
 			PresentLetter = FortranFormat[i];
 
-			if(FOUND == TRUE)
+			if(FOUND == true)
 			{
 			  FieldWidth += PresentLetter;
 			}
 
 			if(PresentLetter == 'I' || PresentLetter == 'Z' || PresentLetter == 'F' || PresentLetter == 'E' || PresentLetter == 'G' || PresentLetter == 'D' || PresentLetter == 'L' || PresentLetter == 'A')
 			{
-				FOUND = TRUE;
+				FOUND = true;
 			}
 			else
 			if(PresentLetter == '.' || PresentLetter == ')')
 			{
-				FOUND = FALSE;
+				FOUND = false;
 
 				 break;
 			}
@@ -221,7 +221,7 @@ namespace ColPack
 		//if(row!=col) {
 		//	cout<<"* WARNING: GraphInputOutput::ReadMatrixMarketAdjacencyGraph()"<<endl;
 		//	cout<<"*\t row!=col. This is not a square matrix. Can't process."<<endl;
-		//	return _FALSE;
+		//	return false;
 		//}
 
 		// DONE - FIND OUT THE SIZE OF THE MATRIX
@@ -294,7 +294,7 @@ namespace ColPack
 		}
 		
                 CalculateVertexDegrees();
-                return(_TRUE);
+                return(true);
 	}
 
 
@@ -307,7 +307,7 @@ namespace ColPack
 		if(!in)
 		{
 			cout<<"File "<<m_s_InputFile<<" Not Found"<<endl;
-			return _FALSE;
+			return false;
 		}
 		else
 		{
@@ -376,7 +376,7 @@ namespace ColPack
 		if(NROW != NCOL) {
 			cout<<"* WARNING: GraphInputOutput::ReadHarwellBoeingAdjacencyGraph()"<<endl;
 			cout<<"*\t row!=col. This is not a square matrix. Can't process."<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		// Ignore line 4 for now
@@ -512,7 +512,7 @@ namespace ColPack
 		InputStream.open(m_s_InputFile.c_str());
 		if(!InputStream) {
 			cout<<m_s_InputFile<<" not Found!"<<endl;
-			return (_FALSE);
+			return (false);
 		}
 		else cout<<"Found file "<<m_s_InputFile<<endl;
 
@@ -520,9 +520,9 @@ namespace ColPack
 
 		v2i_VertexWeights.clear();
 
-		i_VertexWeights = i_EdgeWeights = _FALSE;
+		i_VertexWeights = i_EdgeWeights = false;
 
-		i_LineCount = _FALSE;
+		i_LineCount = false;
 
 		do
 		{
@@ -538,14 +538,14 @@ namespace ColPack
 				continue;
 			}
 
-			if(i_LineCount == _FALSE)
+			if(i_LineCount == false)
 			{
 				in2.clear();
 				in2.str(s_InputLine);
 				in2>>i_VertexCount>>i_EdgeCount;
 
-				i_VertexWeights = _FALSE;
-				i_EdgeWeights = _FALSE;
+				i_VertexWeights = false;
+				i_EdgeWeights = false;
 
 				if(!in2.eof())
 				{
@@ -553,18 +553,18 @@ namespace ColPack
 				  in2>>Weights;
 					if(Weights == 1)
 					{
-						i_EdgeWeights = _TRUE;
+						i_EdgeWeights = true;
 					}
 					else
 					if(Weights == 10)
 					{
-						i_VertexWeights = _TRUE;
+						i_VertexWeights = true;
 					}
 					else
 					if(Weights == 11)
 					{
-						i_EdgeWeights = _TRUE;
-						i_VertexWeights = _TRUE;
+						i_EdgeWeights = true;
+						i_VertexWeights = true;
 					}
 			   }
 
@@ -610,12 +610,12 @@ namespace ColPack
 					vi_VertexWeights.push_back(atoi(vs_InputTokens[i].c_str()));
 				}
 
-				if(i_VertexWeights != _FALSE)
+				if(i_VertexWeights != false)
 				{
 					v2i_VertexWeights.push_back(vi_VertexWeights);
 				}
 
-				if(i_EdgeWeights == _FALSE)
+				if(i_EdgeWeights == false)
 				{
 					for(i=i_VertexWeights; i<i_TokenCount; i++)
 					{
@@ -681,7 +681,7 @@ namespace ColPack
 		cout<<"DEBUG 1259 | Graph Coloring | Vertex Adjacency | "<<m_s_InputFile<<endl;
 		cout<<endl;
 
-		i_EdgeCount = _FALSE;
+		i_EdgeCount = false;
 
 		for(i=0; i<i_VertexCount; i++)
 		{
@@ -714,7 +714,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 
 	}
 
@@ -756,7 +756,7 @@ namespace ColPack
 		InputStream.open(m_s_InputFile.c_str());
 		if(!InputStream) {
 			cout<<m_s_InputFile<<" not Found!"<<endl;
-			return (_FALSE);
+			return (false);
 		}
 		else cout<<"Found file "<<m_s_InputFile<<endl;
 
@@ -764,9 +764,9 @@ namespace ColPack
 
 		v2i_VertexWeights.clear();
 
-		i_VertexWeights = i_EdgeWeights = _FALSE;
+		i_VertexWeights = i_EdgeWeights = false;
 
-		i_LineCount = _FALSE;
+		i_LineCount = false;
 
 		do
 		{
@@ -782,7 +782,7 @@ namespace ColPack
 				continue;
 			}
 
-			if(i_LineCount == _FALSE)
+			if(i_LineCount == false)
 			{
 				StringTokenizer GapTokenizer(s_InputLine, _GAP);
 
@@ -796,25 +796,25 @@ namespace ColPack
 				i_VertexCount = atoi(vs_InputTokens[0].c_str());
 				//i_EdgeCount = atoi(vs_InputTokens[1].c_str()); //unused variable
 
-				i_VertexWeights = _FALSE;
-				i_EdgeWeights = _FALSE;
+				i_VertexWeights = false;
+				i_EdgeWeights = false;
 
 				if(vs_InputTokens.size() > 2)
 				{
 					if(atoi(vs_InputTokens[2].c_str()) == 1)
 					{
-						i_EdgeWeights = _TRUE;
+						i_EdgeWeights = true;
 					}
 					else
 					if(atoi(vs_InputTokens[2].c_str()) == 10)
 					{
-						i_VertexWeights = _TRUE;
+						i_VertexWeights = true;
 					}
 					else
 					if(atoi(vs_InputTokens[2].c_str()) == 11)
 					{
-						i_EdgeWeights = _TRUE;
-						i_VertexWeights = _TRUE;
+						i_EdgeWeights = true;
+						i_VertexWeights = true;
 					}
 			   }
 
@@ -849,12 +849,12 @@ namespace ColPack
 					vi_VertexWeights.push_back(atoi(vs_InputTokens[i].c_str()));
 				}
 
-				if(i_VertexWeights != _FALSE)
+				if(i_VertexWeights != false)
 				{
 					v2i_VertexWeights.push_back(vi_VertexWeights);
 				}
 
-				if(i_EdgeWeights == _FALSE)
+				if(i_EdgeWeights == false)
 				{
 					for(i=i_VertexWeights; i<i_TokenCount; i++)
 					{
@@ -913,7 +913,7 @@ namespace ColPack
 		cout<<"DEBUG 1259 | Graph Coloring | Vertex Adjacency | "<<m_s_InputFile<<endl;
 		cout<<endl;
 
-		i_EdgeCount = _FALSE;
+		i_EdgeCount = false;
 
 		for(i=0; i<i_VertexCount; i++)
 		{
@@ -946,7 +946,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 
 	}
 
@@ -994,7 +994,7 @@ namespace ColPack
 			}
 		}
 
-		if(m_vd_Values.size() > _FALSE)
+		if(m_vd_Values.size() > false)
 		{
 
 			cout<<endl;
@@ -1025,7 +1025,7 @@ namespace ColPack
 
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -1076,7 +1076,7 @@ namespace ColPack
 		cout<<"[Vertices = "<<STEP_DOWN(i_VertexCount)<<"; Edges = "<<i_EdgeCount/2<<"]"<<endl;
 		cout<<endl;
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int GraphInputOutput::PrintGraphStructure2()
@@ -1107,7 +1107,7 @@ namespace ColPack
 
 		cout<<endl;
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -1134,7 +1134,7 @@ namespace ColPack
 
 		cout<<endl;
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -1160,7 +1160,7 @@ namespace ColPack
 
 		cout<<endl;
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -1216,7 +1216,7 @@ namespace ColPack
 #endif
 
 	  m_vi_Vertices.clear();
-	  m_vi_Vertices.push_back(_FALSE);
+	  m_vi_Vertices.push_back(false);
 
 	  m_vi_Edges.clear();
 
@@ -1224,7 +1224,7 @@ namespace ColPack
 
 	  for(i=0; i<i_RowCount; i++)
 	    {
-	      i_ElementCount = _FALSE;
+	      i_ElementCount = false;
 
 	      i_PositionCount = uip2_HessianSparsityPattern[i][0];
 
@@ -1337,7 +1337,7 @@ namespace ColPack
 			exit(1);
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 }

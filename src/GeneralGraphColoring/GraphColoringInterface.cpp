@@ -82,7 +82,7 @@ namespace ColPack
 		//PrintVertexOrdering();
 		//Pause();
 
-		if(i_OrderingStatus != _TRUE)
+		if(i_OrderingStatus != true)
 		{
 			cerr<<endl<<"*ERROR: "<<s_OrderingVariant<<" Ordering Failed"<<endl;
 			return;
@@ -157,7 +157,7 @@ namespace ColPack
 
 		m_d_OrderingTime = m_T_Timer.GetWallTime();
 
-		if(i_OrderingStatus != _TRUE)
+		if(i_OrderingStatus != true)
 		{
 			cerr<<endl;
 			cerr<<s_OrderingVariant<<" Ordering Failed";
@@ -188,7 +188,7 @@ namespace ColPack
 
 		m_d_OrderingTime = m_T_Timer.GetWallTime();
 
-		if(i_OrderingStatus != _TRUE)
+		if(i_OrderingStatus != true)
 		{
 			cerr<<endl;
 			cerr<<s_OrderingVariant<<" Ordering Failed";
@@ -219,7 +219,7 @@ namespace ColPack
 
 		m_d_OrderingTime = m_T_Timer.GetWallTime();
 
-		if(i_OrderingStatus != _TRUE)
+		if(i_OrderingStatus != true)
 		{
 			cerr<<endl;
 			cerr<<s_OrderingVariant<<" Ordering Failed";
@@ -250,7 +250,7 @@ namespace ColPack
 
 		m_d_OrderingTime = m_T_Timer.GetWallTime();
 
-		if(i_OrderingStatus != _TRUE)
+		if(i_OrderingStatus != true)
 		{
 			cerr<<endl;
 			cerr<<s_OrderingVariant<<" Ordering Failed";
@@ -281,13 +281,13 @@ namespace ColPack
 
 		m_d_OrderingTime = m_T_Timer.GetWallTime();
 
-		if(i_OrderingVariant != _TRUE)
+		if(i_OrderingVariant != true)
 		{
 			cerr<<endl;
 			cerr<<s_OrderingVariant<<" Ordering Failed";
 			cerr<<endl;
 
-			return(_TRUE);
+			return(true);
 		}
 
 		m_T_Timer.Start();
@@ -312,7 +312,7 @@ namespace ColPack
 
 		m_d_OrderingTime = m_T_Timer.GetWallTime();
 
-		if(i_OrderingStatus != _TRUE)
+		if(i_OrderingStatus != true)
 		{
 			cerr<<endl;
 			cerr<<s_OrderingVariant<<" Ordering Failed";
@@ -343,7 +343,7 @@ namespace ColPack
 
 		m_d_OrderingTime = m_T_Timer.GetWallTime();
 
-		if(i_OrderingStatus != _TRUE)
+		if(i_OrderingStatus != true)
 		{
 			cerr<<endl;
 			cerr<<s_OrderingVariant<<" Ordering Failed";
@@ -374,7 +374,7 @@ namespace ColPack
 
 		m_d_OrderingTime = m_T_Timer.GetWallTime();
 
-		if(i_OrderingStatus != _TRUE)
+		if(i_OrderingStatus != true)
 		{
 			cerr<<endl;
 			cerr<<s_OrderingVariant<<" Ordering Failed";
@@ -405,7 +405,7 @@ namespace ColPack
 
 		m_d_OrderingTime = m_T_Timer.GetWallTime();
 
-		if(i_OrderingStatus != _TRUE)
+		if(i_OrderingStatus != true)
 		{
 			cerr<<endl;
 			cerr<<s_OrderingVariant<<" Ordering Failed";
@@ -523,12 +523,12 @@ namespace ColPack
 		{
 			int i_SetSize = (signed) vli_GroupedInducedVertexDegrees[j].size();
 
-			if(i_SetSize == _FALSE)
+			if(i_SetSize == false)
 			{
 				continue;
 			}
 
-			k = _FALSE;
+			k = false;
 
 			cout<<"Degree "<<j<<"\t"<<" : ";
 
@@ -566,10 +566,10 @@ namespace ColPack
 			return DistanceOneColoring_OMP(s_OrderingVariant);
 		} else {
 			cout<<" Unknown Coloring Method "<<s_ColoringVariant<<". Please use a legal Coloring Method."<<endl;
-			return (_FALSE);
+			return (false);
 		}
 
-		return (_TRUE);
+		return (true);
 	}
 	int GraphColoringInterface::GetVertexColorCount(){
 		return GraphColoring::GetVertexColorCount();

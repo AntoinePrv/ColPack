@@ -37,7 +37,7 @@ namespace ColPack
 			}
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -86,7 +86,7 @@ namespace ColPack
 
 		int i_ViolationCount;
 
-		i_ViolationCount = _FALSE;
+		i_ViolationCount = false;
 
 		//i_VertexCount = STEP_DOWN((signed) m_vi_Vertices.size());
 
@@ -101,7 +101,7 @@ namespace ColPack
 			{
 				i_ViolationCount++;
 
-				if(i_ViolationCount == _TRUE)
+				if(i_ViolationCount == true)
 				{
 					cout<<endl;
 					cout<<"Acyclic Coloring | Violation Check | "<<m_s_InputFile<<endl;
@@ -115,7 +115,7 @@ namespace ColPack
 			{
 				i_ViolationCount++;
 
-				if(i_ViolationCount == _TRUE)
+				if(i_ViolationCount == true)
 				{
 					cout<<endl;
 					cout<<"Acyclic Coloring | Violation Check | "<<m_s_InputFile<<endl;
@@ -126,7 +126,7 @@ namespace ColPack
 
 			}
 
-			if(vi_TouchedVertices[m_vi_Edges[i]] == _TRUE)
+			if(vi_TouchedVertices[m_vi_Edges[i]] == true)
 			{
 				continue;
 			}
@@ -136,7 +136,7 @@ namespace ColPack
 				continue;;
 			}
 
-			vi_TouchedVertices[m_vi_Edges[i]] = _TRUE;
+			vi_TouchedVertices[m_vi_Edges[i]] = true;
 
 			i_ViolationCount = SearchDepthFirst(i_RootVertex, i_Vertex, m_vi_Edges[i], vi_TouchedVertices);
 
@@ -152,7 +152,7 @@ namespace ColPack
 	{
 		if(m_s_VertexColoringVariant.compare(s_GraphColoringVariant) == 0)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		if(m_s_VertexColoringVariant.compare("ALL") != 0)
@@ -165,7 +165,7 @@ namespace ColPack
 			NaturalOrdering();
 		}
 
-		return(_FALSE);
+		return(false);
 	}
 
 
@@ -174,13 +174,13 @@ namespace ColPack
 	{
 		if(m_s_VertexColoringVariant.empty())
 		{
-			return(_FALSE);
+			return(false);
 		}
 
 		int i_TotalVertexColors = STEP_UP(m_i_VertexColorCount);
 
 		m_vi_VertexColorFrequency.clear();
-		m_vi_VertexColorFrequency.resize((unsigned) i_TotalVertexColors, _FALSE);
+		m_vi_VertexColorFrequency.resize((unsigned) i_TotalVertexColors, false);
 
 		int i_VertexCount = STEP_DOWN((signed) m_vi_Vertices.size());
 
@@ -216,7 +216,7 @@ namespace ColPack
 
 		m_d_AverageColorClassSize = i_TotalVertexColors / i_VertexCount;
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -299,7 +299,7 @@ namespace ColPack
 		/*
                 if(CheckVertexColoring("DISTANCE ONE"))
 		{
-			return(_TRUE);
+			return(true);
 		}
                 */
 
@@ -325,7 +325,7 @@ namespace ColPack
 		{
 			i_PresentVertex = m_vi_OrderedVertices[i];
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 			cout<<"DEBUG 1454 | Distance One Coloring | Coloring Vertex "<<STEP_UP(i_PresentVertex)<<"/"<<i_VertexCount<<endl;
 
@@ -358,7 +358,7 @@ namespace ColPack
 			}
 		}
 
-		return(_TRUE);
+		return(true);
 
 	}
 
@@ -369,7 +369,7 @@ namespace ColPack
 		/*
                  if(CheckVertexColoring("DISTANCE TWO"))
 		{
-			return(_TRUE);
+			return(true);
 		}
                 */
 
@@ -395,7 +395,7 @@ namespace ColPack
 		{
 			i_PresentVertex = m_vi_OrderedVertices[i];
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 			cout<<"DEBUG 1455 | Distance Two Coloring | Coloring Vertex "<<STEP_UP(i_PresentVertex)<<"/"<<i_VertexCount<<endl;
 
@@ -445,7 +445,7 @@ namespace ColPack
 			}
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -454,7 +454,7 @@ namespace ColPack
 	{
 		//if(CheckVertexColoring("NAIVE STAR"))
 		//{
-		//	return(_TRUE);
+		//	return(true);
 		//}
 
 		int i, j, k, l;
@@ -479,7 +479,7 @@ namespace ColPack
 		{
 			i_PresentVertex = m_vi_OrderedVertices[i];
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 		cout<<"DEBUG 1456 | Naive Star Coloring | Coloring Vertex "<<STEP_UP(i_PresentVertex)<<"/"<<i_VertexCount<<endl;
 
@@ -549,7 +549,7 @@ namespace ColPack
 			}
 		}
 
-		return(_TRUE);
+		return(true);
 
 	}
 
@@ -558,7 +558,7 @@ namespace ColPack
 	{
 		//if(CheckVertexColoring("RESTRICTED STAR"))
 		//{
-		//	return(_TRUE);
+		//	return(true);
 		//}
 
 		int i, j, k;
@@ -584,7 +584,7 @@ namespace ColPack
 
 			i_PresentVertex = m_vi_OrderedVertices[i];
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 			cout<<"DEBUG 1457 | Restricted Star Coloring | Coloring Vertex "<<STEP_UP(i_PresentVertex)<<"/"<<i_VertexCount<<endl;
 
@@ -639,7 +639,7 @@ namespace ColPack
 			}
 		}
 
-		return(_TRUE);
+		return(true);
 
 	}
 
@@ -662,7 +662,7 @@ namespace ColPack
 			cout<<endl;
 
 		}
-		return (_TRUE);
+		return (true);
 	}
 
 	int GraphColoring::PrintPotentialHub(map< int, int> *PotentialHub_Private, int i_thread_num, pair<int, int> pii_ColorCombination) {
@@ -684,7 +684,7 @@ namespace ColPack
 			cout<<endl;
 
 		}
-		return (_TRUE);
+		return (true);
 	}
 
 
@@ -1122,7 +1122,7 @@ namespace ColPack
 			pii_pair.second = mii_iter->second; // if pii_pair.second < -1, then mii_iter->first is a leaf and its hub can be calculated as [-(pii_pair.second+2)]
 			Vertex2ColorCombination_Private[i_thread_num][ mii_iter->first ].push_back(pii_pair);
 		}
-		return (_TRUE);
+		return (true);
 	}
 
 
@@ -1290,7 +1290,7 @@ namespace ColPack
 			}
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int GraphColoring::PrintColorCombination(map< pair<int, int>, Colors2Edge_Value , lt_pii>* Colors2Edge_Private, int i_MaxNumThreads, pair<int, int> pii_ColorCombination, int i_MaxElementsOfCombination) {
@@ -1319,7 +1319,7 @@ namespace ColPack
 				if( i_ElementCount >= i_MaxElementsOfCombination) break;
 			}
 		}
-		return (_TRUE);
+		return (true);
 	}
 
 	int GraphColoring::PrintAllColorCombination(map< pair<int, int>, Colors2Edge_Value , lt_pii>* Colors2Edge_Private, int i_MaxNumThreads, int i_MaxNumOfCombination, int i_MaxElementsOfCombination) {
@@ -1354,7 +1354,7 @@ namespace ColPack
 		}
 		cout<<endl;
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int GraphColoring::PrintVertex2ColorCombination(int i_MaxNumThreads, map< int, vector< pair<int, int> > > *Vertex2ColorCombination_Private) {
@@ -1395,7 +1395,7 @@ namespace ColPack
 		cout<<"DONE PrintVertex2ColorCombination"<<endl;
 
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int GraphColoring::PrintConflictEdges(vector< pair<int, int> > *ConflictedEdges_Private, int i_MaxNumThreads) {
@@ -1407,7 +1407,7 @@ namespace ColPack
 		}
 		cout<<endl;
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int GraphColoring::PrintConflictCount(vector<int> &ConflictCount) {
@@ -1417,7 +1417,7 @@ namespace ColPack
 		}
 		cout<<endl;
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int GraphColoring::PickVerticesToBeRecolored(int i_MaxNumThreads, vector< pair<int, int> > *ConflictedEdges_Private, vector<int> &ConflictCount) {
@@ -1515,7 +1515,7 @@ namespace ColPack
 			if(ip_VerticesToBeRecolored[i] == true) i_TotalVertexToBeRecolored = i_TotalVertexToBeRecolored+1;
 		}
 		//*/
-		return (_TRUE);
+		return (true);
 	}
 
 	int GraphColoring::BuildVertex2ColorCombination(int i_MaxNumThreads, map< int, vector< pair<int, int> > > *Vertex2ColorCombination_Private, vector< map <int, int > > *Vertex2ColorCombination) {
@@ -1551,7 +1551,7 @@ namespace ColPack
 			Vertex2ColorCombination_Private[i].clear();
 		}
 		delete[] Vertex2ColorCombination_Private;
-		return (_TRUE);
+		return (true);
 	}
 
 	int GraphColoring::PrintD1Colors(map<int, int>* D1Colors, int i_thread_num) {
@@ -1561,7 +1561,7 @@ namespace ColPack
 		for(;mib_itr != D1Colors[i_thread_num].end(); mib_itr++) {
 			cout<<flush<<"\t color "<<mib_itr->first<<"; count "<<mib_itr->second<<endl;
 		}
-		return (_TRUE);
+		return (true);
 	}
 
 	int GraphColoring::PrintForbiddenColors(map<int, bool>* mip_ForbiddenColors,int i_thread_num) {
@@ -1571,7 +1571,7 @@ namespace ColPack
 			cout<< itr->first<<", ";
 		}
 		cout<<endl;
-		return (_TRUE);
+		return (true);
 	}
 
 	int GraphColoring::PrintSubGraph(map< int, map<int,bool> > *graph) {
@@ -1585,17 +1585,17 @@ namespace ColPack
 			}
 			cout<<endl;
 		}
-		return (_TRUE);
+		return (true);
 	}
 
 	int GraphColoring::PrintVertexD1NeighborAndColor(int VertexIndex, int excludedVertex) {
 		if(VertexIndex > (int)m_vi_Vertices.size() - 2) {
 			cout<<"Illegal request. VertexIndex is too large. VertexIndex > m_vi_Vertices.size() - 2"<<endl;
-			return _FALSE;
+			return false;
 		}
 		if(VertexIndex < 0) {
 			cout<<"Illegal request. VertexIndex is too small. VertexIndex < 0"<<endl;
-			return _FALSE;
+			return false;
 		}
 		cout<<"Distance-1 neighbors of "<<VertexIndex<<" are (0-based): ";
 		for(int i=m_vi_Vertices[VertexIndex]; i<m_vi_Vertices[STEP_UP(VertexIndex)]; i++) {
@@ -1604,7 +1604,7 @@ namespace ColPack
 		}
 		cout<<"( # of edges = "<<m_vi_Vertices[STEP_UP(VertexIndex)] - m_vi_Vertices[VertexIndex]<<")"<<endl;
 
-		return _TRUE;
+		return true;
 	}
 
 	int GraphColoring::FindDistance(int v1, int v2) {
@@ -1646,7 +1646,7 @@ namespace ColPack
 						}
 						cout<<endl;
 						cout<< "\tDistance = "<<i_Distance<<endl;
-						return _TRUE;
+						return true;
 					}
 					//cout<<"Push in v "<< pii_tmp.first<< " l "<<pii_tmp.second<<endl;
 					Q.push(pii_tmp);
@@ -1658,7 +1658,7 @@ namespace ColPack
 		}
 		cout<<"\tDISCONNECTED"<<endl;
 
-		return _FALSE;
+		return false;
 	}
 
 	int GraphColoring::BuildColorsSubGraph(map< int, map<int,bool> > *graph, map<int,bool> *mib_Colors) {
@@ -1670,11 +1670,11 @@ namespace ColPack
 
 		if(  mib_Colors==NULL) {
 			cout<<"ERR: mib_Colors==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 		if(  (*mib_Colors).size()==0) {
 			cout<<"ERR: (*mib_Colors).size()==0"<<endl;
-			return _FALSE;
+			return false;
 		}
 		// Step *: now build a subgraph with my own structure
 		for(int i=0; i<(int)m_vi_Vertices.size()-1;i++) {
@@ -1693,7 +1693,7 @@ namespace ColPack
 
 		}
 
-		return _TRUE;
+		return true;
 	}
 
 	int GraphColoring::BuildSubGraph(map< int, map<int,bool> > *graph, int i_CenterVertex, int distance, map<int, bool> *mib_FilterByColors) {
@@ -1768,7 +1768,7 @@ namespace ColPack
 
 		cout<<"DONE"<<endl;
 
-		return _TRUE;
+		return true;
 	}
 
 	int GraphColoring::BuildConnectedSubGraph(map< int, map<int,bool> > *graph, int i_CenterVertex, int distance, map<int, bool> *mib_FilterByColors) {
@@ -1837,7 +1837,7 @@ namespace ColPack
 
 		cout<<"DONE"<<endl;
 
-		return _TRUE;
+		return true;
 	}
 
 	int GraphColoring::PrintVertexAndColorAdded(int i_MaxNumThreads, vector< pair<int, int> > *vi_VertexAndColorAdded, int i_LastNEntries) {
@@ -1858,7 +1858,7 @@ namespace ColPack
 			}
 			cout<<endl;
 		}
-		return (_TRUE);
+		return (true);
 	}
 
 	int GraphColoring::BuildForbiddenColors(int i_MaxNumThreads, int i_thread_num, int i_CurrentVertex, map<int, bool>* mip_ForbiddenColors, map<int, int>* D1Colors, vector<  map <int, int > > *Vertex2ColorCombination) {
@@ -1935,13 +1935,13 @@ namespace ColPack
 				}
 
 			}
-		return (_TRUE);
+		return (true);
 	}
 
 	int GraphColoring::StarColoring_serial2() {
 		//if(CheckVertexColoring("STAR"))
 		//{
-		//	return(_TRUE);
+		//	return(true);
 		//}
 
 		int i_MaxNumThreads = 1;
@@ -2254,7 +2254,7 @@ namespace ColPack
 
 		m_i_VertexColorCount=i_MaxColor;
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int GraphColoring::PrintVertex2ColorCombination (vector<  map <int, int > > *Vertex2ColorCombination) {
@@ -2274,7 +2274,7 @@ namespace ColPack
 				}
 			}
 		}
-		return (_TRUE);
+		return (true);
 	}
 
 	int GraphColoring::PrintVertex2ColorCombination_raw (vector<  map <int, int > > *Vertex2ColorCombination) {
@@ -2286,7 +2286,7 @@ namespace ColPack
 				cout<<"\t Vertex2ColorCombination["<< i <<"][] "<<mii_iter->second<<" c "<<mii_iter->first<<endl;
 			}
 		}
-		return (_TRUE);
+		return (true);
 	}
 
 
@@ -2355,7 +2355,7 @@ namespace ColPack
 
 			for(j=m_vi_Vertices[i_PresentVertex]; j<m_vi_Vertices[STEP_UP(i_PresentVertex)]; j++)
 			{
-				int _FOUND = _FALSE;
+				int _FOUND = false;
 
 				if(m_vi_VertexColors[m_vi_Edges[j]] == _UNKNOWN)
 				{
@@ -2381,7 +2381,7 @@ namespace ColPack
 					// if D2 neighbor of v and v has the same color
 					if(m_vi_VertexColors[m_vi_Edges[k]] == m_vi_VertexColors[i_PresentVertex])
 					{
-						_FOUND = _TRUE;
+						_FOUND = true;
 
 						if(m_vi_Edges[j] < m_vi_Edges[k])
 						{
@@ -2453,7 +2453,7 @@ namespace ColPack
 
 		PrintVertexColors();
 		PrintStarCollection(vi_EdgeStarMap, vi_StarHubMap, mimi2_VertexEdgeMap);
-		return(_TRUE);
+		return(true);
 	}
 
 	int GraphColoring::PrintStarCollection(vector<int>& vi_EdgeStarMap, vector<int>& vi_StarHubMap, map< int, map<int, int> >& mimi2_VertexEdgeMap) {
@@ -2475,7 +2475,7 @@ namespace ColPack
 			}
 		}
 
-		return (_TRUE);
+		return (true);
 	}
 
 	//Public Function 1458
@@ -2484,7 +2484,7 @@ namespace ColPack
 	  // Line 2: Initialize data structures
 	//	if(CheckVertexColoring("STAR"))
 	//	{
-	//		return(_TRUE);
+	//		return(true);
 	//	}
 
 		int i, j, k;
@@ -2546,7 +2546,7 @@ namespace ColPack
 		vi_FirstTreated.clear();
 		vi_FirstTreated.resize((unsigned) i_VertexCount, _UNKNOWN);
 
-		k = _FALSE;
+		k = false;
 
 		// label each edge
 		//populate mimi2_VertexEdgeMap[][] and vi_EdgeStarMap[]
@@ -2565,7 +2565,7 @@ namespace ColPack
 			}
 		}
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 		cout<<endl;
 
@@ -2576,7 +2576,7 @@ namespace ColPack
 		{
 			i_PresentVertex = m_vi_OrderedVertices[i];
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 			cout<<"DEBUG 1458 | Star Coloring | Coloring Vertex "<<STEP_UP(i_PresentVertex)<<"/"<<i_VertexCount<<endl;
 
@@ -2704,7 +2704,7 @@ namespace ColPack
 			// i.e. update vi_EdgeStarMap[][] and vi_StarHubMap[]
 			for(j=m_vi_Vertices[i_PresentVertex]; j<m_vi_Vertices[STEP_UP(i_PresentVertex)]; j++)
 			{
-				_FOUND = _FALSE;
+				_FOUND = false;
 
 				if(m_vi_VertexColors[m_vi_Edges[j]] == _UNKNOWN)
 				{
@@ -2730,7 +2730,7 @@ namespace ColPack
 					// if D2 neighbor of v and v has the same color
 					if(m_vi_VertexColors[m_vi_Edges[k]] == m_vi_VertexColors[i_PresentVertex])
 					{
-						_FOUND = _TRUE;
+						_FOUND = true;
 
 						if(m_vi_Edges[j] < m_vi_Edges[k])
 						{
@@ -2815,19 +2815,19 @@ namespace ColPack
 			}
 		}
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 		cout<<endl;
 
 #endif
 
-#if STATISTICS == _TRUE
+#if STATISTICS == true
 /* Commented out due to apparent Memory violation (see the checking code below)
 		vector<int> vi_Hubs;
 
-		vi_Hubs.resize((unsigned) i_EdgeCount/2, _FALSE);
+		vi_Hubs.resize((unsigned) i_EdgeCount/2, false);
 
-		m_i_ColoringUnits = _FALSE;
+		m_i_ColoringUnits = false;
 
 		for(i=0; i<i_EdgeCount/2; i++)
 		{
@@ -2842,9 +2842,9 @@ namespace ColPack
 			  cout<<"Memory violation vi_StarHubMap[i] = "<<vi_StarHubMap[i]<<" ; vi_Hubs.size() = "<< vi_Hubs.size() <<endl;
 			  Pause();
 			}
-			if(vi_Hubs[vi_StarHubMap[i]] == _FALSE)
+			if(vi_Hubs[vi_StarHubMap[i]] == false)
 			{
-				vi_Hubs[vi_StarHubMap[i]] = _TRUE;
+				vi_Hubs[vi_StarHubMap[i]] = true;
 
 				m_i_ColoringUnits++;
 			}
@@ -2852,7 +2852,7 @@ namespace ColPack
 //*/
 #endif
 
-		return(_TRUE);
+		return(true);
 
 	}
 
@@ -2910,7 +2910,7 @@ namespace ColPack
 		vi_FirstTreated.clear();
 		vi_FirstTreated.resize((unsigned) i_VertexCount, _UNKNOWN);
 
-		k = _FALSE;
+		k = false;
 
 		for(i=0; i<i_VertexCount; i++)
 		{
@@ -2927,7 +2927,7 @@ namespace ColPack
 			}
 		}
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 		cout<<endl;
 
@@ -2937,7 +2937,7 @@ namespace ColPack
 		{
 			i_PresentVertex = m_vi_OrderedVertices[i];
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 			cout<<"DEBUG 305 | Star Coloring | Coloring Vertex "<<STEP_UP(i_PresentVertex)<<"/"<<i_VertexCount<<endl;
 
@@ -3055,7 +3055,7 @@ namespace ColPack
 
 			for(j=m_vi_Vertices[i_PresentVertex]; j<m_vi_Vertices[STEP_UP(i_PresentVertex)]; j++)
 			{
-				_FOUND = _FALSE;
+				_FOUND = false;
 
 				if(m_vi_VertexColors[m_vi_Edges[j]] == _UNKNOWN)
 				{
@@ -3076,7 +3076,7 @@ namespace ColPack
 
 					if(m_vi_VertexColors[m_vi_Edges[k]] == m_vi_VertexColors[i_PresentVertex])
 					{
-						_FOUND = _TRUE;
+						_FOUND = true;
 
 						if(m_vi_Edges[j] < m_vi_Edges[k])
 						{
@@ -3155,19 +3155,19 @@ namespace ColPack
 			}
 		}
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 		cout<<endl;
 
 #endif
 
-#if STATISTICS == _TRUE
+#if STATISTICS == true
 
 		vector<int> vi_Hubs;
 
-		vi_Hubs.resize((unsigned) i_EdgeCount/2, _FALSE);
+		vi_Hubs.resize((unsigned) i_EdgeCount/2, false);
 
-		m_i_ColoringUnits = _FALSE;
+		m_i_ColoringUnits = false;
 
 		for(i=0; i<i_EdgeCount/2; i++)
 		{
@@ -3178,9 +3178,9 @@ namespace ColPack
 				continue;
 			}
 
-			if(vi_Hubs[vi_StarHubMap[i]] == _FALSE)
+			if(vi_Hubs[vi_StarHubMap[i]] == false)
 			{
-				vi_Hubs[vi_StarHubMap[i]] = _TRUE;
+				vi_Hubs[vi_StarHubMap[i]] = true;
 
 				m_i_ColoringUnits++;
 			}
@@ -3188,7 +3188,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 
 	}
 
@@ -3208,7 +3208,7 @@ namespace ColPack
 
 		/*i_EdgeCount = (signed) m_vi_Edges.size();*/
 
-		i_ViolationCount = _FALSE;
+		i_ViolationCount = false;
 
 		for(i=0; i<i_VertexCount; i++)
 		{
@@ -3313,7 +3313,7 @@ namespace ColPack
 
 		//i_EdgeCount = (signed) m_vi_Edges.size();
 
-		i_ViolationCount = _FALSE;
+		i_ViolationCount = false;
 
 		for(i=0; i<i_VertexCount; i++)
 		{
@@ -3327,7 +3327,7 @@ namespace ColPack
 				{
 					i_ViolationCount++;
 
-					if(i_ViolationCount == _TRUE)
+					if(i_ViolationCount == true)
 					{
 						cout<<endl;
 						cout<<"Star Coloring | Violation Check | "<<m_s_InputFile<<endl;
@@ -3352,7 +3352,7 @@ namespace ColPack
 					{
 						i_ViolationCount++;
 
-						if(i_ViolationCount == _TRUE)
+						if(i_ViolationCount == true)
 						{
 							cout<<endl;
 							cout<<"Star Coloring | Violation Check | "<<m_s_InputFile<<endl;
@@ -3384,7 +3384,7 @@ namespace ColPack
 							{
 								i_ViolationCount++;
 
-								if(i_ViolationCount == _TRUE)
+								if(i_ViolationCount == true)
 								{
 									cout<<endl;
 									cout<<"Star Coloring | Violation Check | "<<m_s_InputFile<<endl;
@@ -3399,7 +3399,7 @@ namespace ColPack
 							{
 								i_ViolationCount++;
 
-								if(i_ViolationCount == _TRUE)
+								if(i_ViolationCount == true)
 								{
 									cout<<endl;
 									cout<<"Star Coloring | Violation Check | "<<m_s_InputFile<<endl;
@@ -3433,7 +3433,7 @@ namespace ColPack
 	{
 		//if(CheckVertexColoring("ACYCLIC"))
 		//{
-	//		return(_TRUE);
+	//		return(true);
 	//	}
 
 		int i, j, k;
@@ -3449,7 +3449,7 @@ namespace ColPack
 		vector<int> vi_FirstSeenOne, vi_FirstSeenTwo, vi_FirstSeenThree;
 		vector<int> vi_FirstVisitedOne, vi_FirstVisitedTwo;
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 		int l;
 
@@ -3465,7 +3465,7 @@ namespace ColPack
 
 #endif
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 		int i_SetOneID, i_SetTwoID;
 
@@ -3473,7 +3473,7 @@ namespace ColPack
 
 		i_VertexCount = STEP_DOWN((signed) m_vi_Vertices.size());
 
-		k = _FALSE;
+		k = false;
 
 		m_mimi2_VertexEdgeMap.clear();
 
@@ -3540,7 +3540,7 @@ namespace ColPack
 		vi_FirstVisitedTwo.clear();
 		vi_FirstVisitedTwo.resize((unsigned) i_EdgeCount/2, _UNKNOWN);
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 		vi_MemberEdges.clear();
 
@@ -3554,13 +3554,13 @@ namespace ColPack
 
 #endif
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 		m_ds_DisjointSets.SetSize(i_EdgeCount/2);
 
 #endif
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 		cout<<endl;
 
@@ -3572,7 +3572,7 @@ namespace ColPack
 		{
 			i_PresentVertex = m_vi_OrderedVertices[i];
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 			cout<<"DEBUG 1461 | Acyclic Coloring | Coloring Vertex "<<STEP_UP(i_PresentVertex)<<"/"<<i_VertexCount<<endl;
 
@@ -3612,7 +3612,7 @@ namespace ColPack
 						continue;
 					}
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 					if(m_vi_Edges[j] < m_vi_Edges[k])
 					{
@@ -3624,7 +3624,7 @@ namespace ColPack
 					}
 #endif
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 					if(m_vi_Edges[j] < m_vi_Edges[k])
 					{
@@ -3671,9 +3671,9 @@ namespace ColPack
 					i_EdgeID = m_mimi2_VertexEdgeMap[m_vi_Edges[j]][i_PresentVertex];
 				}
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
-				vi_DisjointSets.push_back(_TRUE);
+				vi_DisjointSets.push_back(true);
 
 				vi_EdgeSetMap[i_EdgeID] = STEP_DOWN((signed) vi_DisjointSets.size());
 
@@ -3685,7 +3685,7 @@ namespace ColPack
 				if(i_AdjacentEdgeID != _UNKNOWN)
 				{
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 					i_SetOneID = m_ds_DisjointSets.FindAndCompress(i_EdgeID);
 					i_SetTwoID = m_ds_DisjointSets.FindAndCompress(i_AdjacentEdgeID);
@@ -3702,7 +3702,7 @@ namespace ColPack
 
 #endif
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 #if DEBUG == 1461
 
@@ -3726,7 +3726,7 @@ namespace ColPack
 					vi_MemberEdges.clear();
 					vi_MemberEdges.swap(v2i_SetEdgeMap[i_BiggerSetID]);
 
-					vi_DisjointSets[i_BiggerSetID] = _FALSE;
+					vi_DisjointSets[i_BiggerSetID] = false;
 
 					i_MemberCount = (signed) vi_MemberEdges.size();
 
@@ -3776,7 +3776,7 @@ namespace ColPack
 						if(i_EdgeID != _UNKNOWN)
 						{
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 							i_SetOneID = m_ds_DisjointSets.FindAndCompress(i_EdgeID);
 							i_SetTwoID = m_ds_DisjointSets.FindAndCompress(i_AdjacentEdgeID);
@@ -3792,7 +3792,7 @@ namespace ColPack
 
 #endif
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 #if DEBUG == 1461
 							cout<<endl;
@@ -3815,7 +3815,7 @@ namespace ColPack
 							vi_MemberEdges.clear();
 							vi_MemberEdges.swap(v2i_SetEdgeMap[i_BiggerSetID]);
 
-							vi_DisjointSets[i_BiggerSetID] = _FALSE;
+							vi_DisjointSets[i_BiggerSetID] = false;
 
 							i_MemberCount = (signed) vi_MemberEdges.size();
 
@@ -3849,7 +3849,7 @@ namespace ColPack
 
 #if DEBUG == 1461
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 		i_EdgeCount = (signed) v2i_EdgeVertexMap.size();
 
@@ -3870,7 +3870,7 @@ namespace ColPack
 		{
 			i_MemberCount = (signed) v2i_SetEdgeMap[i].size();
 
-			if(i_MemberCount == _FALSE)
+			if(i_MemberCount == false)
 			{
 				continue;
 			}
@@ -3896,24 +3896,24 @@ namespace ColPack
 
 #endif
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 		cout<<endl;
 
 #endif
 
-#if STATISTICS == _TRUE
+#if STATISTICS == true
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 		m_i_ColoringUnits = m_ds_DisjointSets.Count();
 
 
-#elif DISJOINT_SETS == _FALSE
+#elif DISJOINT_SETS == false
 
 		int i_SetSize;
 
-		m_i_ColoringUnits = _FALSE;
+		m_i_ColoringUnits = false;
 
 		i_SetSize = (unsigned) v2i_SetEdgeMap.size();
 
@@ -3936,7 +3936,7 @@ namespace ColPack
 	//m_ds_DisjointSets.Print();
 	//cerr<<"END ds_DisjointSets.Print()"<<endl;
 	//Pause();
-		return(_TRUE);
+		return(true);
 
 	}
 
@@ -3944,7 +3944,7 @@ namespace ColPack
 //#define DEBUG 1462
 		//if(CheckVertexColoring("ACYCLIC"))
 		//{
-		//	return(_TRUE);
+		//	return(true);
 		//}
 
 		int i, j, k;
@@ -3962,7 +3962,7 @@ namespace ColPack
 
 		//m_mimi2_VertexEdgeMap is populated and used in this function;
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 		int l;
 
@@ -3978,7 +3978,7 @@ namespace ColPack
 
 #endif
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 		int i_SetOneID, i_SetTwoID;
 
@@ -3993,7 +3993,7 @@ namespace ColPack
 
 		i_VertexCount = STEP_DOWN((signed) m_vi_Vertices.size());
 
-		k=_FALSE;
+		k=false;
 
 		//populate m_mimi2_VertexEdgeMap
 		//Basically assign a number (k = 1, 2, 3 ...) for each edge of the graph
@@ -4058,7 +4058,7 @@ namespace ColPack
 		vi_FirstVisitedTwo.resize((unsigned) i_EdgeCount/2, _UNKNOWN);
 
 //cout<<"*1"<<endl;
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 		vi_MemberEdges.clear();
 
@@ -4072,13 +4072,13 @@ namespace ColPack
 
 #endif
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 		m_ds_DisjointSets.SetSize(i_EdgeCount/2);
 
 #endif
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 		cout<<endl;
 
@@ -4093,7 +4093,7 @@ namespace ColPack
 			i_PresentVertex = m_vi_OrderedVertices[i];
 //cout<<"*13 i_PresentVertex="<<i_PresentVertex<<endl;
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 //#if DEBUG == 1462
 
 			cout<<"DEBUG 1462 | Acyclic Coloring | Coloring Vertex "<<STEP_UP(i_PresentVertex)<<"/"<<i_VertexCount<<endl;
@@ -4134,7 +4134,7 @@ namespace ColPack
 						continue;
 					}
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 					if(m_vi_Edges[j] < m_vi_Edges[k])
 					{
@@ -4146,7 +4146,7 @@ namespace ColPack
 					}
 #endif
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 					if(m_vi_Edges[j] < m_vi_Edges[k])
 					{
@@ -4193,9 +4193,9 @@ namespace ColPack
 					i_EdgeID = m_mimi2_VertexEdgeMap[m_vi_Edges[j]][i_PresentVertex];
 				}
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
-				vi_DisjointSets.push_back(_TRUE);
+				vi_DisjointSets.push_back(true);
 
 				vi_EdgeSetMap[i_EdgeID] = STEP_DOWN((signed) vi_DisjointSets.size());
 
@@ -4208,7 +4208,7 @@ namespace ColPack
 				if(i_AdjacentEdgeID != _UNKNOWN)
 				{
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 					i_SetOneID = m_ds_DisjointSets.FindAndCompress(i_EdgeID);
 					i_SetTwoID = m_ds_DisjointSets.FindAndCompress(i_AdjacentEdgeID);
@@ -4233,7 +4233,7 @@ namespace ColPack
 
 #endif
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 #if DEBUG == 1462
 
@@ -4257,7 +4257,7 @@ namespace ColPack
 					vi_MemberEdges.clear();
 					vi_MemberEdges.swap(v2i_SetEdgeMap[i_BiggerSetID]);
 
-					vi_DisjointSets[i_BiggerSetID] = _FALSE;
+					vi_DisjointSets[i_BiggerSetID] = false;
 
 					i_MemberCount = (signed) vi_MemberEdges.size();
 
@@ -4308,7 +4308,7 @@ namespace ColPack
 						if(i_EdgeID != _UNKNOWN)
 						{
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 							i_SetOneID = m_ds_DisjointSets.FindAndCompress(i_EdgeID);
 							i_SetTwoID = m_ds_DisjointSets.FindAndCompress(i_AdjacentEdgeID);
@@ -4332,7 +4332,7 @@ namespace ColPack
 
 #endif
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 #if DEBUG == 1462
 
@@ -4356,7 +4356,7 @@ namespace ColPack
 							vi_MemberEdges.clear();
 							vi_MemberEdges.swap(v2i_SetEdgeMap[i_BiggerSetID]);
 
-							vi_DisjointSets[i_BiggerSetID] = _FALSE;
+							vi_DisjointSets[i_BiggerSetID] = false;
 
 							i_MemberCount = (signed) vi_MemberEdges.size();
 
@@ -4390,7 +4390,7 @@ namespace ColPack
 
 #if DEBUG == 1462
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 		i_EdgeCount = (signed) v2i_EdgeVertexMap.size();
 
@@ -4411,7 +4411,7 @@ namespace ColPack
 		{
 			i_MemberCount = (signed) v2i_SetEdgeMap[i].size();
 
-			if(i_MemberCount == _FALSE)
+			if(i_MemberCount == false)
 			{
 				continue;
 			}
@@ -4437,7 +4437,7 @@ namespace ColPack
 
 #endif
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 		cout<<endl;
 
@@ -4448,7 +4448,7 @@ namespace ColPack
 	//m_ds_DisjointSets.Print();
 	//cerr<<"END ds_DisjointSets.Print()"<<endl;
 	//Pause();
-		return(_TRUE);
+		return(true);
 	}
 
 	//Public Function 1462
@@ -4457,7 +4457,7 @@ namespace ColPack
 //#define DEBUG 1462
 		//if(CheckVertexColoring("ACYCLIC"))
 		//{
-		//	return(_TRUE);
+		//	return(true);
 		//}
 
 		int i, j, k;
@@ -4475,7 +4475,7 @@ namespace ColPack
 
 		map< int, map<int, int> > mimi2_VertexEdgeMap;
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 		int l;
 
@@ -4491,7 +4491,7 @@ namespace ColPack
 
 #endif
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 		int i_SetOneID, i_SetTwoID;
 
@@ -4506,7 +4506,7 @@ namespace ColPack
 
 		i_VertexCount = STEP_DOWN((signed) m_vi_Vertices.size());
 
-		k=_FALSE;
+		k=false;
 
 		//populate mimi2_VertexEdgeMap
 		//Basically assign a number (k = 1, 2, 3 ...) for each edge of the graph
@@ -4570,7 +4570,7 @@ namespace ColPack
 		vi_FirstVisitedTwo.resize((unsigned) i_EdgeCount/2, _UNKNOWN);
 
 //cout<<"*1"<<endl;
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 		vi_MemberEdges.clear();
 
@@ -4584,13 +4584,13 @@ namespace ColPack
 
 #endif
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 		m_ds_DisjointSets.SetSize(i_EdgeCount/2);
 
 #endif
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 		cout<<endl;
 
@@ -4605,7 +4605,7 @@ namespace ColPack
 			i_PresentVertex = m_vi_OrderedVertices[i];
 //cout<<"*13 i_PresentVertex="<<i_PresentVertex<<endl;
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 //#if DEBUG == 1462
 
 			cout<<"DEBUG 1462 | Acyclic Coloring | Coloring Vertex "<<STEP_UP(i_PresentVertex)<<"/"<<i_VertexCount<<endl;
@@ -4646,7 +4646,7 @@ namespace ColPack
 						continue;
 					}
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 					if(m_vi_Edges[j] < m_vi_Edges[k])
 					{
@@ -4658,7 +4658,7 @@ namespace ColPack
 					}
 #endif
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 					if(m_vi_Edges[j] < m_vi_Edges[k])
 					{
@@ -4705,9 +4705,9 @@ namespace ColPack
 					i_EdgeID = mimi2_VertexEdgeMap[m_vi_Edges[j]][i_PresentVertex];
 				}
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
-				vi_DisjointSets.push_back(_TRUE);
+				vi_DisjointSets.push_back(true);
 
 				vi_EdgeSetMap[i_EdgeID] = STEP_DOWN((signed) vi_DisjointSets.size());
 
@@ -4720,7 +4720,7 @@ namespace ColPack
 				if(i_AdjacentEdgeID != _UNKNOWN)
 				{
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 					i_SetOneID = m_ds_DisjointSets.FindAndCompress(i_EdgeID);
 					i_SetTwoID = m_ds_DisjointSets.FindAndCompress(i_AdjacentEdgeID);
@@ -4737,7 +4737,7 @@ namespace ColPack
 
 #endif
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 #if DEBUG == 1462
 
@@ -4761,7 +4761,7 @@ namespace ColPack
 					vi_MemberEdges.clear();
 					vi_MemberEdges.swap(v2i_SetEdgeMap[i_BiggerSetID]);
 
-					vi_DisjointSets[i_BiggerSetID] = _FALSE;
+					vi_DisjointSets[i_BiggerSetID] = false;
 
 					i_MemberCount = (signed) vi_MemberEdges.size();
 
@@ -4812,7 +4812,7 @@ namespace ColPack
 						if(i_EdgeID != _UNKNOWN)
 						{
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 
 							i_SetOneID = m_ds_DisjointSets.FindAndCompress(i_EdgeID);
 							i_SetTwoID = m_ds_DisjointSets.FindAndCompress(i_AdjacentEdgeID);
@@ -4828,7 +4828,7 @@ namespace ColPack
 
 #endif
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 #if DEBUG == 1462
 
@@ -4852,7 +4852,7 @@ namespace ColPack
 							vi_MemberEdges.clear();
 							vi_MemberEdges.swap(v2i_SetEdgeMap[i_BiggerSetID]);
 
-							vi_DisjointSets[i_BiggerSetID] = _FALSE;
+							vi_DisjointSets[i_BiggerSetID] = false;
 
 							i_MemberCount = (signed) vi_MemberEdges.size();
 
@@ -4886,7 +4886,7 @@ namespace ColPack
 
 #if DEBUG == 1462
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 		i_EdgeCount = (signed) v2i_EdgeVertexMap.size();
 
@@ -4907,7 +4907,7 @@ namespace ColPack
 		{
 			i_MemberCount = (signed) v2i_SetEdgeMap[i].size();
 
-			if(i_MemberCount == _FALSE)
+			if(i_MemberCount == false)
 			{
 				continue;
 			}
@@ -4933,13 +4933,13 @@ namespace ColPack
 
 #endif
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 		cout<<endl;
 
 #endif
 
-#if DISJOINT_SETS == _TRUE
+#if DISJOINT_SETS == true
 //cout<<"*Here is the difference"<<endl;
 //m_ds_DisjointSets.Print();
 		vi_Sets.clear();
@@ -4972,7 +4972,7 @@ namespace ColPack
 
 #endif
 
-#if DISJOINT_SETS == _FALSE
+#if DISJOINT_SETS == false
 
 		vi_Sets.clear();
 		mivi_VertexSets.clear();
@@ -5002,7 +5002,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -5019,14 +5019,14 @@ namespace ColPack
 
 		i_VertexCount = STEP_DOWN((signed) m_vi_Vertices.size());
 
-		i_ViolationCount = _FALSE;
+		i_ViolationCount = false;
 
 		for(i=0; i<i_VertexCount; i++)
 		{
 			vi_TouchedVertices.clear();
-			vi_TouchedVertices.resize((unsigned) i_VertexCount, _FALSE);
+			vi_TouchedVertices.resize((unsigned) i_VertexCount, false);
 
-			vi_TouchedVertices[i] = _TRUE;
+			vi_TouchedVertices[i] = true;
 
 			i_ViolationCount = SearchDepthFirst(i, i, i, vi_TouchedVertices);
 		}
@@ -5047,7 +5047,7 @@ namespace ColPack
 	{
 		//if(CheckVertexColoring("TRIANGULAR"))
 		//{
-		//	return(_TRUE);
+		//	return(true);
 		//}
 
 		int i, j, k, l;
@@ -5086,7 +5086,7 @@ namespace ColPack
 		{
 			i_PresentVertex = m_vi_OrderedVertices[i];
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 			cout<<"DEBUG 1464 | Triangular Coloring | Processing Vertex "<<STEP_UP(i_PresentVertex)<<"/"<<i_VertexCount<<endl;
 
@@ -5105,19 +5105,19 @@ namespace ColPack
 
 					if((vi_VertexHierarchy[m_vi_Edges[j]] > vi_VertexHierarchy[i_PresentVertex]) && (vi_VertexHierarchy[m_vi_Edges[j]] > vi_VertexHierarchy[m_vi_Edges[k]]))
 					{
-						_FOUND = _FALSE;
+						_FOUND = false;
 
 						for(l=m_vi_Vertices[m_vi_Edges[k]]; l<m_vi_Vertices[STEP_UP(m_vi_Edges[k])]; l++)
 						{
 							if(m_vi_Edges[l] == i_PresentVertex)
 							{
-								_FOUND = TRUE;
+								_FOUND = true;
 
 								break;
 							}
 						}
 
-						if(_FOUND == _FALSE)
+						if(_FOUND == false)
 						{
 							v2i_VertexAdjacency[i_PresentVertex].push_back(m_vi_Edges[k]);
 						}
@@ -5189,7 +5189,7 @@ namespace ColPack
 	{
 		//if(CheckVertexColoring("MODIFIED TRIANGULAR"))
 		//{
-		//	return(_TRUE);
+		//	return(true);
 		//}
 
 		int i, j, k;
@@ -5226,7 +5226,7 @@ namespace ColPack
 		{
 			i_PresentVertex = m_vi_OrderedVertices[i];
 
-#if VERBOSE == _TRUE
+#if VERBOSE == true
 
 			cout<<"DEBUG 1465 | Triangular Coloring | Coloring Vertex "<<STEP_UP(i_PresentVertex)<<"/"<<i_VertexCount<<endl;
 
@@ -5274,7 +5274,7 @@ namespace ColPack
 			}
 		}
 
-		return(_TRUE);
+		return(true);
 }
 
 	//Public Function 1466
@@ -5373,7 +5373,7 @@ namespace ColPack
 			cout<<"Vertex "<<STEP_UP(i)<<"\t"<<" : "<<STEP_UP(m_vi_VertexColors[i])<<endl;
 		}
 
-#if STATISTICS == _TRUE
+#if STATISTICS == true
 
 		if(m_s_VertexColoringVariant.compare("STAR") == 0)
 		{
@@ -5408,7 +5408,7 @@ namespace ColPack
 
 #endif
 
-#if STATISTICS == _FALSE
+#if STATISTICS == false
 
 
 		if(m_s_VertexColoringVariant.compare("TRIANGULAR") == 0)
@@ -5429,7 +5429,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -5552,7 +5552,7 @@ namespace ColPack
 			OutputStream<<"Vertex "<<STEP_UP(i)<<"\t"<<" : "<<STEP_UP(m_vi_VertexColors[i])<<endl;
 		}
 
-#if STATISTICS == _TRUE
+#if STATISTICS == true
 
 		if(m_s_VertexColoringVariant.compare("STAR") == 0)
 		{
@@ -5587,7 +5587,7 @@ namespace ColPack
 
 #endif
 
-#if STATISTICS == _FALSE
+#if STATISTICS == false
 
 		if(m_s_VertexColoringVariant.compare("TRIANGULAR") == 0)
 		{
@@ -5608,7 +5608,7 @@ namespace ColPack
 
 		OutputStream.close();
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -5620,7 +5620,7 @@ namespace ColPack
 		cout<<m_s_VertexColoringVariant<<" Coloring | "<<m_s_VertexOrderingVariant<<" Ordering | "<<m_s_InputFile<<endl;
 		cout<<endl;
 
-#if STATISTICS == _TRUE
+#if STATISTICS == true
 
 		if(m_s_VertexColoringVariant.compare("STAR") == 0)
 		{
@@ -5659,7 +5659,7 @@ namespace ColPack
 
 #endif
 
-#if STATISTICS == _FALSE
+#if STATISTICS == false
 
 		if(m_s_VertexColoringVariant.compare("TRIANGULAR") == 0)
 		{
@@ -5681,7 +5681,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 
 	}
 
@@ -5803,7 +5803,7 @@ namespace ColPack
 		OutputStream<<m_s_VertexColoringVariant<<" Coloring | "<<m_s_VertexOrderingVariant<<" Ordering | "<<m_s_InputFile<<endl;
 		OutputStream<<endl;
 
-#if STATISTICS == _TRUE
+#if STATISTICS == true
 
 		if(m_s_VertexColoringVariant.compare("STAR") == 0)
 		{
@@ -5842,7 +5842,7 @@ namespace ColPack
 
 #endif
 
-#if STATISTICS == _FALSE
+#if STATISTICS == false
 
 		if(m_s_VertexColoringVariant.compare("TRIANGULAR") == 0)
 		{
@@ -5865,7 +5865,7 @@ namespace ColPack
 
 		OutputStream.close();
 
-		return(_TRUE);
+		return(true);
 
 	}
 
@@ -5873,7 +5873,7 @@ namespace ColPack
 	//Public Function 1478
 	void GraphColoring::PrintVertexColorClasses()
 	{
-		if(CalculateVertexColorClasses() != _TRUE)
+		if(CalculateVertexColorClasses() != true)
 		{
 			cout<<endl;
 			cout<<"Vertex Color Classes | "<<m_s_VertexColoringVariant<<" Coloring | "<<m_s_VertexOrderingVariant<<" Ordering | "<<m_s_InputFile<<" | Vertex Colors Not Set"<<endl;
@@ -6050,7 +6050,7 @@ namespace ColPack
 
 #ifndef _OPENMP
 //Public Function 
-int GraphColoring::D1_Coloring_OMP(){ printf("OpenMP is disabled. Recompile the code with correct flag\n"); return _TRUE;}
+int GraphColoring::D1_Coloring_OMP(){ printf("OpenMP is disabled. Recompile the code with correct flag\n"); return true;}
 #endif
 
 #ifdef _OPENMP
@@ -6248,7 +6248,7 @@ int GraphColoring::D1_Coloring_OMP(){
 
     m_i_VertexColorCount=(unsigned int)(nColors);  //number of colors C <- nColors+1 //color 0 is an valid color 
     //return nColors; //Return the number of colors used
-    return(_TRUE);
+    return(true);
 }//end of function DistanceOneColoring_omp_cx
 #endif
 

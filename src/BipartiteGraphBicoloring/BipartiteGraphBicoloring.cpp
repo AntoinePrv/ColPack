@@ -19,10 +19,10 @@ namespace ColPack
 		m_i_LeftVertexColorCount = m_i_RightVertexColorCount = m_i_VertexColorCount = _UNKNOWN;
 
 		m_vi_LeftVertexColors.clear();
-		m_vi_LeftVertexColors.resize((unsigned) i_LeftVertexCount, _FALSE);
+		m_vi_LeftVertexColors.resize((unsigned) i_LeftVertexCount, false);
 
 		m_vi_RightVertexColors.clear();
-		m_vi_RightVertexColors.resize((unsigned) i_RightVertexCount, _FALSE);
+		m_vi_RightVertexColors.resize((unsigned) i_RightVertexCount, false);
 
 		int i_CoveredLeftVertexCount = m_vi_CoveredLeftVertices.size();
 		int i_CoveredRightVertexCount = m_vi_CoveredRightVertices.size();
@@ -47,7 +47,7 @@ namespace ColPack
 	{
 		if(m_s_VertexColoringVariant.compare(s_VertexColoringVariant) == 0)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		if(m_s_VertexColoringVariant.compare("ALL") != 0)
@@ -60,7 +60,7 @@ namespace ColPack
 			NaturalOrdering();
 		}
 
-		return(_FALSE);
+		return(false);
 	}
 
 
@@ -69,11 +69,11 @@ namespace ColPack
 	{
 		if(m_s_VertexColoringVariant.empty())
 		{
-			return(_FALSE);
+			return(false);
 		}
 
 		m_vi_LeftVertexColorFrequency.clear();
-		m_vi_LeftVertexColorFrequency.resize((unsigned) m_i_LeftVertexColorCount, _FALSE);
+		m_vi_LeftVertexColorFrequency.resize((unsigned) m_i_LeftVertexColorCount, false);
 
 		int i_LeftVertexCount = STEP_DOWN((signed) m_vi_LeftVertices.size());
 
@@ -107,7 +107,7 @@ namespace ColPack
 		}
 
 		m_vi_RightVertexColorFrequency.clear();
-		m_vi_RightVertexColorFrequency.resize((unsigned) m_i_RightVertexColorCount, _FALSE);
+		m_vi_RightVertexColorFrequency.resize((unsigned) m_i_RightVertexColorCount, false);
 
 		int i_RightVertexCount = STEP_DOWN((signed) m_vi_RightVertices.size());
 
@@ -150,7 +150,7 @@ namespace ColPack
 		m_d_AverageRightVertexColorClassSize = i_RightVertexCount / m_i_RightVertexColorCount;
 		m_d_AverageVertexColorClassSize = (i_LeftVertexCount + i_RightVertexCount) / m_i_VertexColorCount;
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -174,21 +174,21 @@ namespace ColPack
 		m_i_VertexColorCount = STEP_UP(i_LeftVertexCoverSize) + STEP_UP(i_RightVertexCoverSize);
 
 		vi_VertexColors.clear();
-		vi_VertexColors.resize((unsigned) i_LeftVertexCount + i_RightVertexCount, _FALSE);
+		vi_VertexColors.resize((unsigned) i_LeftVertexCount + i_RightVertexCount, false);
 
 		vi_CandidateColors.clear();
 		vi_CandidateColors.resize((unsigned) m_i_VertexColorCount, _UNKNOWN);
 
-		i_ColorViolationCount = _FALSE;
+		i_ColorViolationCount = false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
-			vi_VertexColors[m_vi_LeftVertexColors[i]] = _TRUE;
+			vi_VertexColors[m_vi_LeftVertexColors[i]] = true;
 		}
 
 		for(i=0; i<i_RightVertexCount; i++)
 		{
-			if(vi_VertexColors[m_vi_RightVertexColors[i]] == _TRUE)
+			if(vi_VertexColors[m_vi_RightVertexColors[i]] == true)
 			{
 				i_ColorViolationCount++;
 
@@ -235,7 +235,7 @@ namespace ColPack
 			}
 		}
 
-		i_PathViolationCount = _FALSE;
+		i_PathViolationCount = false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
@@ -499,7 +499,7 @@ namespace ColPack
 	{
 		if(CheckVertexColoring("MINIMAL_COVER_ROW_STAR"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k;
@@ -540,7 +540,7 @@ namespace ColPack
 
 		m_mimi2_VertexEdgeMap.clear();
 
-		k=_FALSE;
+		k=false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
@@ -627,13 +627,13 @@ namespace ColPack
 			{
 				i_NeighboringVertex = m_vi_Edges[j];
 
-				if(m_vi_RightVertexColors[i_NeighboringVertex] == _FALSE)
+				if(m_vi_RightVertexColors[i_NeighboringVertex] == false)
 				{
 					for(k=m_vi_RightVertices[i_NeighboringVertex]; k<m_vi_RightVertices[STEP_UP(i_NeighboringVertex)]; k++)
 					{
 						i_SecondNeighboringVertex = m_vi_Edges[k];
 
-						if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] > _FALSE)
+						if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] > false)
 						{
 							vi_CandidateColors[m_vi_LeftVertexColors[i_SecondNeighboringVertex]] = i_PresentVertex;
 						}
@@ -641,7 +641,7 @@ namespace ColPack
 				}
 			}
 
-			for(j=_TRUE; j<STEP_UP(i_LeftVertexCoverSize); j++)
+			for(j=true; j<STEP_UP(i_LeftVertexCoverSize); j++)
 			{
 				if(vi_CandidateColors[j] != i_PresentVertex)
 				{
@@ -674,7 +674,7 @@ namespace ColPack
 					continue;
 				}
 
-				if(i_ColorID == _FALSE)
+				if(i_ColorID == false)
 				{
 					for(k=m_vi_LeftVertices[i_NeighboringVertex]; k<m_vi_LeftVertices[STEP_UP(i_NeighboringVertex)]; k++)
 					{
@@ -685,7 +685,7 @@ namespace ColPack
 							continue;
 						}
 
-						if(m_vi_RightVertexColors[i_SecondNeighboringVertex] != _FALSE)
+						if(m_vi_RightVertexColors[i_SecondNeighboringVertex] != false)
 						{
 							vi_CandidateColors[m_vi_RightVertexColors[i_SecondNeighboringVertex]] = i_PresentVertex;
 						}
@@ -782,7 +782,7 @@ namespace ColPack
 
 			for(j=m_vi_RightVertices[i_PresentVertex]; j<m_vi_RightVertices[STEP_UP(i_PresentVertex)]; j++)
 			{
-				_FOUND = _FALSE;
+				_FOUND = false;
 
 				i_NeighboringVertex = m_vi_Edges[j];
 
@@ -807,7 +807,7 @@ namespace ColPack
 
 					if(m_vi_RightVertexColors[i_SecondNeighboringVertex] == m_vi_RightVertexColors[i_PresentVertex])
 					{
-						_FOUND = _TRUE;
+						_FOUND = true;
 
 						i_StarID = vi_EdgeStarMap[m_mimi2_VertexEdgeMap[i_NeighboringVertex][i_SecondNeighboringVertex]];
 
@@ -860,7 +860,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -870,7 +870,7 @@ namespace ColPack
 	{
 		if(CheckVertexColoring("MINIMAL_COVER_COLUMN_STAR"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k;
@@ -911,7 +911,7 @@ namespace ColPack
 
 		m_mimi2_VertexEdgeMap.clear();
 
-		k=_FALSE;
+		k=false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
@@ -998,13 +998,13 @@ namespace ColPack
 			{
 				i_NeighboringVertex = m_vi_Edges[j];
 
-				if(m_vi_LeftVertexColors[i_NeighboringVertex] == _FALSE)
+				if(m_vi_LeftVertexColors[i_NeighboringVertex] == false)
 				{
 					for(k=m_vi_LeftVertices[i_NeighboringVertex]; k<m_vi_LeftVertices[STEP_UP(i_NeighboringVertex)]; k++)
 					{
 						i_SecondNeighboringVertex = m_vi_Edges[k];
 
-						if(m_vi_RightVertexColors[i_SecondNeighboringVertex] > _FALSE)
+						if(m_vi_RightVertexColors[i_SecondNeighboringVertex] > false)
 						{
 							vi_CandidateColors[m_vi_RightVertexColors[i_SecondNeighboringVertex]] = i_PresentVertex;
 						}
@@ -1012,7 +1012,7 @@ namespace ColPack
 				}
 			}
 
-			for(j=_TRUE; j<STEP_UP(i_RightVertexCoverSize); j++)
+			for(j=true; j<STEP_UP(i_RightVertexCoverSize); j++)
 			{
 				if(vi_CandidateColors[j] != i_PresentVertex)
 				{
@@ -1067,7 +1067,7 @@ namespace ColPack
 					continue;
 				}
 
-				if(i_ColorID == _FALSE)
+				if(i_ColorID == false)
 				{
 					for(k=m_vi_RightVertices[i_NeighboringVertex]; k<m_vi_RightVertices[STEP_UP(i_NeighboringVertex)]; k++)
 					{
@@ -1078,7 +1078,7 @@ namespace ColPack
 							continue;
 						}
 
-						if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] != _FALSE)
+						if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] != false)
 						{
 							vi_CandidateColors[m_vi_LeftVertexColors[i_SecondNeighboringVertex]] = i_PresentVertex;
 						}
@@ -1176,7 +1176,7 @@ namespace ColPack
 
 			for(j=m_vi_LeftVertices[i_PresentVertex]; j<m_vi_LeftVertices[STEP_UP(i_PresentVertex)]; j++)
 			{
-				_FOUND = _FALSE;
+				_FOUND = false;
 
 				i_NeighboringVertex = m_vi_Edges[j];
 
@@ -1201,7 +1201,7 @@ namespace ColPack
 
 					if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] == m_vi_LeftVertexColors[i_PresentVertex])
 					{
-						_FOUND = _TRUE;
+						_FOUND = true;
 
 						i_StarID = vi_EdgeStarMap[m_mimi2_VertexEdgeMap[i_SecondNeighboringVertex][i_NeighboringVertex]];
 
@@ -1254,7 +1254,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -1263,7 +1263,7 @@ namespace ColPack
 	{
 		if(CheckVertexColoring("EXPLICIT_COVER_MODIFIED_STAR"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k, l;
@@ -1291,7 +1291,7 @@ namespace ColPack
 
 		m_mimi2_VertexEdgeMap.clear();
 
-		k=_FALSE;
+		k=false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
@@ -1328,7 +1328,7 @@ namespace ColPack
 
 		int i_EdgeCodeZero, i_EdgeCodeOne, i_EdgeCodeTwo, i_EdgeCodeThree;
 
-		i_EdgeCodeZero = i_EdgeCodeOne = i_EdgeCodeTwo = i_EdgeCodeThree = _FALSE;
+		i_EdgeCodeZero = i_EdgeCodeOne = i_EdgeCodeTwo = i_EdgeCodeThree = false;
 
 		cout<<endl;
 		cout<<"DEBUG 3558 | Bipartite Graph Bicoloring | Edge Codes"<<endl;
@@ -1391,7 +1391,7 @@ namespace ColPack
 
 			if(m_vi_OrderedVertices[i] < i_LeftVertexCount)
 			{
-				if(m_vi_IncludedLeftVertices[m_vi_OrderedVertices[i]] == _FALSE)
+				if(m_vi_IncludedLeftVertices[m_vi_OrderedVertices[i]] == false)
 				{
 					continue;
 				}
@@ -1427,7 +1427,7 @@ namespace ColPack
 
 						if(vi_EdgeCodes[i_NeighboringEdgeID] != 2)
 						{
-							if(m_vi_RightVertexColors[i_NeighboringVertex] <= _FALSE)
+							if(m_vi_RightVertexColors[i_NeighboringVertex] <= false)
 							{
 								vi_CandidateColors[m_vi_LeftVertexColors[i_SecondNeighboringVertex]] = i_PresentVertex;
 							}
@@ -1452,7 +1452,7 @@ namespace ColPack
 					}
 				}
 
-				for(j=_TRUE; j<STEP_UP(i_LeftVertexCoverSize); j++)
+				for(j=true; j<STEP_UP(i_LeftVertexCoverSize); j++)
 				{
 					if(vi_CandidateColors[j] != i_PresentVertex)
 					{
@@ -1469,7 +1469,7 @@ namespace ColPack
 			}
 			else
 			{
-				if(m_vi_IncludedRightVertices[m_vi_OrderedVertices[i] - i_LeftVertexCount] == _FALSE)
+				if(m_vi_IncludedRightVertices[m_vi_OrderedVertices[i] - i_LeftVertexCount] == false)
 				{
 					continue;
 				}
@@ -1505,7 +1505,7 @@ namespace ColPack
 
 						if(vi_EdgeCodes[i_NeighboringEdgeID] != 3)
 						{
-							if(m_vi_LeftVertexColors[i_NeighboringVertex] <= _FALSE)
+							if(m_vi_LeftVertexColors[i_NeighboringVertex] <= false)
 							{
 								vi_CandidateColors[m_vi_RightVertexColors[i_SecondNeighboringVertex]] = i_PresentVertex;
 							}
@@ -1547,30 +1547,30 @@ namespace ColPack
 			}
 		}
 
-		i_LeftVertexDefaultColor = _FALSE;
-		i_RightVertexDefaultColor = _FALSE;
+		i_LeftVertexDefaultColor = false;
+		i_RightVertexDefaultColor = false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
-			if(m_vi_LeftVertexColors[i] == _FALSE)
+			if(m_vi_LeftVertexColors[i] == false)
 			{
-				i_LeftVertexDefaultColor = _TRUE;
+				i_LeftVertexDefaultColor = true;
 			}
 		}
 
 		for(i=0; i<i_RightVertexCount; i++)
 		{
-			if(m_vi_RightVertexColors[i] == FALSE)
+			if(m_vi_RightVertexColors[i] == false)
 			{
 				m_vi_RightVertexColors[i] = m_i_VertexColorCount;
 
-				i_RightVertexDefaultColor = _TRUE;
+				i_RightVertexDefaultColor = true;
 			}
 		}
 
 		if(m_i_LeftVertexColorCount == _UNKNOWN)
 		{
-			m_i_LeftVertexColorCount = _TRUE;
+			m_i_LeftVertexColorCount = true;
 		}
 		else
 		{
@@ -1579,7 +1579,7 @@ namespace ColPack
 
 		if(m_i_RightVertexColorCount == _UNKNOWN)
 		{
-			m_i_RightVertexColorCount = _TRUE;
+			m_i_RightVertexColorCount = true;
 		}
 		else
 		{
@@ -1614,7 +1614,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -1624,7 +1624,7 @@ namespace ColPack
 	{
 		if(CheckVertexColoring("EXPLICIT_COVER_STAR"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k;
@@ -1663,7 +1663,7 @@ namespace ColPack
 
 		m_mimi2_VertexEdgeMap.clear();
 
-		k=_FALSE;
+		k=false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
@@ -1758,7 +1758,7 @@ namespace ColPack
 
 			if(m_vi_OrderedVertices[i] < i_LeftVertexCount)
 			{
-				if(m_vi_IncludedLeftVertices[m_vi_OrderedVertices[i]] == _FALSE)
+				if(m_vi_IncludedLeftVertices[m_vi_OrderedVertices[i]] == false)
 				{
 					continue;
 				}
@@ -1781,7 +1781,7 @@ namespace ColPack
 						continue;
 					}
 
-					if(i_ColorID == _FALSE)
+					if(i_ColorID == false)
 					{
 						for(k=m_vi_RightVertices[i_NeighboringVertex]; k<m_vi_RightVertices[STEP_UP(i_NeighboringVertex)]; k++)
 						{
@@ -1792,7 +1792,7 @@ namespace ColPack
 								continue;
 							}
 
-							if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] != _FALSE)
+							if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] != false)
 							{
 								vi_CandidateColors[m_vi_LeftVertexColors[i_SecondNeighboringVertex]] = i_PresentVertex;
 							}
@@ -1871,7 +1871,7 @@ namespace ColPack
 					}
 				}
 
-				for(j=_TRUE; j<STEP_UP(i_LeftVertexCoverSize); j++)
+				for(j=true; j<STEP_UP(i_LeftVertexCoverSize); j++)
 				{
 					if(vi_CandidateColors[j] != i_PresentVertex)
 					{
@@ -1888,7 +1888,7 @@ namespace ColPack
 
 				for(j=m_vi_LeftVertices[i_PresentVertex]; j<m_vi_LeftVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
-					_FOUND = _FALSE;
+					_FOUND = false;
 
 					i_NeighboringVertex = m_vi_Edges[j];
 
@@ -1913,7 +1913,7 @@ namespace ColPack
 
 						if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] == m_vi_LeftVertexColors[i_PresentVertex])
 						{
-							_FOUND = _TRUE;
+							_FOUND = true;
 
 							i_StarID = vi_EdgeStarMap[m_mimi2_VertexEdgeMap[i_SecondNeighboringVertex][i_NeighboringVertex]];
 
@@ -1943,7 +1943,7 @@ namespace ColPack
 			}
 			else
 			{
-				if(m_vi_IncludedRightVertices[m_vi_OrderedVertices[i] - i_LeftVertexCount] == _FALSE)
+				if(m_vi_IncludedRightVertices[m_vi_OrderedVertices[i] - i_LeftVertexCount] == false)
 				{
 					continue;
 				}
@@ -1966,7 +1966,7 @@ namespace ColPack
 						continue;
 					}
 
-					if(i_ColorID == _FALSE)
+					if(i_ColorID == false)
 					{
 						for(k=m_vi_LeftVertices[i_NeighboringVertex]; k<m_vi_LeftVertices[STEP_UP(i_NeighboringVertex)]; k++)
 						{
@@ -1977,7 +1977,7 @@ namespace ColPack
 								continue;
 							}
 
-							if(m_vi_RightVertexColors[i_SecondNeighboringVertex] != _FALSE)
+							if(m_vi_RightVertexColors[i_SecondNeighboringVertex] != false)
 							{
 								vi_CandidateColors[m_vi_RightVertexColors[i_SecondNeighboringVertex]] = i_PresentVertex;
 							}
@@ -2075,7 +2075,7 @@ namespace ColPack
 
 				for(j=m_vi_RightVertices[i_PresentVertex]; j<m_vi_RightVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
-					_FOUND = _FALSE;
+					_FOUND = false;
 
 					i_NeighboringVertex = m_vi_Edges[j];
 
@@ -2100,7 +2100,7 @@ namespace ColPack
 
 						if(m_vi_RightVertexColors[i_SecondNeighboringVertex] == m_vi_RightVertexColors[i_PresentVertex])
 						{
-							_FOUND = _TRUE;
+							_FOUND = true;
 
 							i_StarID = vi_EdgeStarMap[m_mimi2_VertexEdgeMap[i_NeighboringVertex][i_SecondNeighboringVertex]];
 
@@ -2130,30 +2130,30 @@ namespace ColPack
 			}
 		}
 
-		i_LeftVertexDefaultColor = _FALSE;
-		i_RightVertexDefaultColor = _FALSE;
+		i_LeftVertexDefaultColor = false;
+		i_RightVertexDefaultColor = false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
-			if(m_vi_LeftVertexColors[i] == _FALSE)
+			if(m_vi_LeftVertexColors[i] == false)
 			{
-				i_LeftVertexDefaultColor = _TRUE;
+				i_LeftVertexDefaultColor = true;
 			}
 		}
 
 		for(i=0; i<i_RightVertexCount; i++)
 		{
-			if(m_vi_RightVertexColors[i] == FALSE)
+			if(m_vi_RightVertexColors[i] == false)
 			{
 				m_vi_RightVertexColors[i] = m_i_VertexColorCount;
 
-				i_RightVertexDefaultColor = _TRUE;
+				i_RightVertexDefaultColor = true;
 			}
 		}
 
 		if(m_i_LeftVertexColorCount == _UNKNOWN)
 		{
-			m_i_LeftVertexColorCount = _TRUE;
+			m_i_LeftVertexColorCount = true;
 		}
 		else
 		{
@@ -2162,7 +2162,7 @@ namespace ColPack
 
 		if(m_i_RightVertexColorCount == _UNKNOWN)
 		{
-			m_i_RightVertexColorCount = _TRUE;
+			m_i_RightVertexColorCount = true;
 		}
 		else
 		{
@@ -2193,7 +2193,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 
 }
 
@@ -2202,7 +2202,7 @@ namespace ColPack
 	{
 		if(CheckVertexColoring("MINIMAL_COVER_STAR"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k;
@@ -2241,7 +2241,7 @@ namespace ColPack
 
 		m_mimi2_VertexEdgeMap.clear();
 
-		k=_FALSE;
+		k=false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
@@ -2336,7 +2336,7 @@ namespace ColPack
 
 			if(m_vi_OrderedVertices[i] < i_LeftVertexCount)
 			{
-				if(m_vi_IncludedLeftVertices[m_vi_OrderedVertices[i]] == _FALSE)
+				if(m_vi_IncludedLeftVertices[m_vi_OrderedVertices[i]] == false)
 				{
 					continue;
 				}
@@ -2359,7 +2359,7 @@ namespace ColPack
 						continue;
 					}
 
-					if(i_ColorID == _FALSE)
+					if(i_ColorID == false)
 					{
 						for(k=m_vi_RightVertices[i_NeighboringVertex]; k<m_vi_RightVertices[STEP_UP(i_NeighboringVertex)]; k++)
 						{
@@ -2370,7 +2370,7 @@ namespace ColPack
 								continue;
 							}
 
-							if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] != _FALSE)
+							if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] != false)
 							{
 								vi_CandidateColors[m_vi_LeftVertexColors[i_SecondNeighboringVertex]] = i_PresentVertex;
 							}
@@ -2449,7 +2449,7 @@ namespace ColPack
 					}
 				}
 
-				for(j=_TRUE; j<STEP_UP(i_LeftVertexCoverSize); j++)
+				for(j=true; j<STEP_UP(i_LeftVertexCoverSize); j++)
 				{
 					if(vi_CandidateColors[j] != i_PresentVertex)
 					{
@@ -2466,7 +2466,7 @@ namespace ColPack
 
 				for(j=m_vi_LeftVertices[i_PresentVertex]; j<m_vi_LeftVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
-					_FOUND = _FALSE;
+					_FOUND = false;
 
 					i_NeighboringVertex = m_vi_Edges[j];
 
@@ -2491,7 +2491,7 @@ namespace ColPack
 
 						if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] == m_vi_LeftVertexColors[i_PresentVertex])
 						{
-							_FOUND = _TRUE;
+							_FOUND = true;
 
 							i_StarID = vi_EdgeStarMap[m_mimi2_VertexEdgeMap[i_SecondNeighboringVertex][i_NeighboringVertex]];
 
@@ -2521,7 +2521,7 @@ namespace ColPack
 			}
 			else
 			{
-				if(m_vi_IncludedRightVertices[m_vi_OrderedVertices[i] - i_LeftVertexCount] == _FALSE)
+				if(m_vi_IncludedRightVertices[m_vi_OrderedVertices[i] - i_LeftVertexCount] == false)
 				{
 					continue;
 				}
@@ -2544,7 +2544,7 @@ namespace ColPack
 						continue;
 					}
 
-					if(i_ColorID == _FALSE)
+					if(i_ColorID == false)
 					{
 						for(k=m_vi_LeftVertices[i_NeighboringVertex]; k<m_vi_LeftVertices[STEP_UP(i_NeighboringVertex)]; k++)
 						{
@@ -2555,7 +2555,7 @@ namespace ColPack
 								continue;
 							}
 
-							if(m_vi_RightVertexColors[i_SecondNeighboringVertex] != _FALSE)
+							if(m_vi_RightVertexColors[i_SecondNeighboringVertex] != false)
 							{
 								vi_CandidateColors[m_vi_RightVertexColors[i_SecondNeighboringVertex]] = i_PresentVertex;
 							}
@@ -2653,7 +2653,7 @@ namespace ColPack
 
 				for(j=m_vi_RightVertices[i_PresentVertex]; j<m_vi_RightVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
-					_FOUND = _FALSE;
+					_FOUND = false;
 
 					i_NeighboringVertex = m_vi_Edges[j];
 
@@ -2678,7 +2678,7 @@ namespace ColPack
 
 						if(m_vi_RightVertexColors[i_SecondNeighboringVertex] == m_vi_RightVertexColors[i_PresentVertex])
 						{
-							_FOUND = _TRUE;
+							_FOUND = true;
 
 							i_StarID = vi_EdgeStarMap[m_mimi2_VertexEdgeMap[i_NeighboringVertex][i_SecondNeighboringVertex]];
 
@@ -2710,7 +2710,7 @@ namespace ColPack
 
 		for(i=0; i<i_RightVertexCount; i++)
 		{
-			if(m_vi_RightVertexColors[i] == FALSE)
+			if(m_vi_RightVertexColors[i] == false)
 			{
 				m_vi_RightVertexColors[i] = m_i_VertexColorCount;
 			}
@@ -2718,14 +2718,14 @@ namespace ColPack
 
 		FixMinimalCoverStarBicoloring();
 
-		i_LeftVertexDefaultColor = _FALSE;
-		i_RightVertexDefaultColor = _FALSE;
+		i_LeftVertexDefaultColor = false;
+		i_RightVertexDefaultColor = false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
-			if(m_vi_LeftVertexColors[i] == _FALSE)
+			if(m_vi_LeftVertexColors[i] == false)
 			{
-				i_LeftVertexDefaultColor = _TRUE;
+				i_LeftVertexDefaultColor = true;
 			}
 		}
 
@@ -2733,13 +2733,13 @@ namespace ColPack
 		{
 			if(m_vi_RightVertexColors[i] == m_i_VertexColorCount)
 			{
-				i_RightVertexDefaultColor = _TRUE;
+				i_RightVertexDefaultColor = true;
 			}
 		}
 
 		if(m_i_LeftVertexColorCount == _UNKNOWN)
 		{
-			m_i_LeftVertexColorCount = _TRUE;
+			m_i_LeftVertexColorCount = true;
 		}
 		else
 		{
@@ -2748,7 +2748,7 @@ namespace ColPack
 
 		if(m_i_RightVertexColorCount == _UNKNOWN)
 		{
-			m_i_RightVertexColorCount = _TRUE;
+			m_i_RightVertexColorCount = true;
 		}
 		else
 		{
@@ -2779,7 +2779,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 
 }
 
@@ -2790,7 +2790,7 @@ namespace ColPack
 	{
 		if(CheckVertexColoring("IMPLICIT_COVER_CONSERVATIVE_STAR"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k;
@@ -2829,7 +2829,7 @@ namespace ColPack
 
 		m_mimi2_VertexEdgeMap.clear();
 
-		i_IncludedEdgeCount =_FALSE;
+		i_IncludedEdgeCount =false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
@@ -2846,7 +2846,7 @@ namespace ColPack
 		m_i_VertexColorCount = STEP_UP(i_LeftVertexCount +  i_RightVertexCount);
 
 		vi_IncludedEdges.clear();
-		vi_IncludedEdges.resize((unsigned) i_EdgeCount, _FALSE);
+		vi_IncludedEdges.resize((unsigned) i_EdgeCount, false);
 
 		vi_CandidateColors.clear();
 		vi_CandidateColors.resize((unsigned) m_i_VertexColorCount, _UNKNOWN);
@@ -2875,7 +2875,7 @@ namespace ColPack
 		vi_RightTreated.clear();
 		vi_RightTreated.resize((unsigned) i_LeftVertexCount, _UNKNOWN);
 
-		i_IncludedEdgeCount = _FALSE;
+		i_IncludedEdgeCount = false;
 
 		m_i_LeftVertexColorCount = m_i_RightVertexColorCount = _UNKNOWN;
 
@@ -2892,21 +2892,21 @@ namespace ColPack
 			{
 				i_PresentVertex = m_vi_OrderedVertices[i];
 
-				_FOUND = _FALSE;
+				_FOUND = false;
 
 				for(j= m_vi_LeftVertices[i_PresentVertex]; j<m_vi_LeftVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
 					i_PresentEdge = m_mimi2_VertexEdgeMap[i_PresentVertex][m_vi_Edges[j]];
 
-					if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+					if(vi_IncludedEdges[i_PresentEdge] == false)
 					{
-						_FOUND = _TRUE;
+						_FOUND = true;
 
 						break;
 					}
 				}
 
-				if(_FOUND == _FALSE)
+				if(_FOUND == false)
 				{
 
 	#if DEBUG == 3561
@@ -3041,7 +3041,7 @@ namespace ColPack
 					}
 				}
 
-				for(j=_TRUE; j<STEP_UP(i_LeftVertexCount); j++)
+				for(j=true; j<STEP_UP(i_LeftVertexCount); j++)
 				{
 					if(vi_CandidateColors[j] != i_PresentVertex)
 					{
@@ -3056,9 +3056,9 @@ namespace ColPack
 						{
 							i_PresentEdge = m_mimi2_VertexEdgeMap[i_PresentVertex][m_vi_Edges[k]];
 
-							if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+							if(vi_IncludedEdges[i_PresentEdge] == false)
 							{
-								vi_IncludedEdges[i_PresentEdge] = _TRUE;
+								vi_IncludedEdges[i_PresentEdge] = true;
 
 								i_IncludedEdgeCount++;
 							}
@@ -3070,7 +3070,7 @@ namespace ColPack
 
 				for(j=m_vi_LeftVertices[i_PresentVertex]; j<m_vi_LeftVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
-					_FOUND = _FALSE;
+					_FOUND = false;
 
 					i_NeighboringVertex = m_vi_Edges[j];
 
@@ -3095,7 +3095,7 @@ namespace ColPack
 
 						if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] == m_vi_LeftVertexColors[i_PresentVertex])
 						{
-							_FOUND = _TRUE;
+							_FOUND = true;
 
 							i_StarID = vi_EdgeStarMap[m_mimi2_VertexEdgeMap[i_SecondNeighboringVertex][i_NeighboringVertex]];
 
@@ -3127,21 +3127,21 @@ namespace ColPack
 			{
 				i_PresentVertex = m_vi_OrderedVertices[i] - i_LeftVertexCount;
 
-				_FOUND = _FALSE;
+				_FOUND = false;
 
 				for(j= m_vi_RightVertices[i_PresentVertex]; j<m_vi_RightVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
 					i_PresentEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[j]][i_PresentVertex];
 
-					if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+					if(vi_IncludedEdges[i_PresentEdge] == false)
 					{
-						_FOUND = _TRUE;
+						_FOUND = true;
 
 						break;
 					}
 				}
 
-				if(_FOUND == _FALSE)
+				if(_FOUND == false)
 				{
 
 #if DEBUG == 3561
@@ -3290,9 +3290,9 @@ namespace ColPack
 						{
 							i_PresentEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[k]][i_PresentVertex];
 
-							if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+							if(vi_IncludedEdges[i_PresentEdge] == false)
 							{
-								vi_IncludedEdges[i_PresentEdge] = _TRUE;
+								vi_IncludedEdges[i_PresentEdge] = true;
 
 								i_IncludedEdgeCount++;
 							}
@@ -3304,7 +3304,7 @@ namespace ColPack
 
 				for(j=m_vi_RightVertices[i_PresentVertex]; j<m_vi_RightVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
-					_FOUND = _FALSE;
+					_FOUND = false;
 
 					i_NeighboringVertex = m_vi_Edges[j];
 
@@ -3329,7 +3329,7 @@ namespace ColPack
 
 						if(m_vi_RightVertexColors[i_SecondNeighboringVertex] == m_vi_RightVertexColors[i_PresentVertex])
 						{
-							_FOUND = _TRUE;
+							_FOUND = true;
 
 							i_StarID = vi_EdgeStarMap[m_mimi2_VertexEdgeMap[i_NeighboringVertex][i_SecondNeighboringVertex]];
 
@@ -3364,16 +3364,16 @@ namespace ColPack
 			}
 		}
 
-		i_LeftVertexDefaultColor = _FALSE;
-		i_RightVertexDefaultColor = _FALSE;
+		i_LeftVertexDefaultColor = false;
+		i_RightVertexDefaultColor = false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
 			if(m_vi_LeftVertexColors[i] == _UNKNOWN)
 			{
-				m_vi_LeftVertexColors[i] = _FALSE;
+				m_vi_LeftVertexColors[i] = false;
 
-				i_LeftVertexDefaultColor = _TRUE;
+				i_LeftVertexDefaultColor = true;
 			}
 		}
 
@@ -3383,13 +3383,13 @@ namespace ColPack
 			{
 				m_vi_RightVertexColors[i] = m_i_VertexColorCount;
 
-				i_RightVertexDefaultColor = _TRUE;
+				i_RightVertexDefaultColor = true;
 			}
 		}
 
 		if(m_i_LeftVertexColorCount == _UNKNOWN)
 		{
-			m_i_LeftVertexColorCount = _TRUE;
+			m_i_LeftVertexColorCount = true;
 		}
 		else
 		{
@@ -3398,7 +3398,7 @@ namespace ColPack
 
 		if(m_i_RightVertexColorCount == _UNKNOWN)
 		{
-			m_i_RightVertexColorCount = _TRUE;
+			m_i_RightVertexColorCount = true;
 		}
 		else
 		{
@@ -3429,7 +3429,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -3438,7 +3438,7 @@ namespace ColPack
 	{
 		if(CheckVertexColoring("IMPLICIT_COVER_STAR"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k;
@@ -3477,7 +3477,7 @@ namespace ColPack
 
 		m_mimi2_VertexEdgeMap.clear();
 
-		i_IncludedEdgeCount =_FALSE;
+		i_IncludedEdgeCount =false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
@@ -3494,7 +3494,7 @@ namespace ColPack
 		m_i_VertexColorCount = STEP_UP(i_LeftVertexCount +  i_RightVertexCount);
 
 		vi_IncludedEdges.clear();
-		vi_IncludedEdges.resize((unsigned) i_EdgeCount, _FALSE);
+		vi_IncludedEdges.resize((unsigned) i_EdgeCount, false);
 
 		vi_CandidateColors.clear();
 		vi_CandidateColors.resize((unsigned) m_i_VertexColorCount, _UNKNOWN);
@@ -3523,7 +3523,7 @@ namespace ColPack
 		vi_RightTreated.clear();
 		vi_RightTreated.resize((unsigned) i_LeftVertexCount, _UNKNOWN);
 
-		i_IncludedEdgeCount = _FALSE;
+		i_IncludedEdgeCount = false;
 
 		m_i_LeftVertexColorCount = m_i_RightVertexColorCount = _UNKNOWN;
 
@@ -3540,21 +3540,21 @@ namespace ColPack
 			{
 				i_PresentVertex = m_vi_OrderedVertices[i];
 
-				_FOUND = _FALSE;
+				_FOUND = false;
 
 				for(j= m_vi_LeftVertices[i_PresentVertex]; j<m_vi_LeftVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
 					i_PresentEdge = m_mimi2_VertexEdgeMap[i_PresentVertex][m_vi_Edges[j]];
 
-					if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+					if(vi_IncludedEdges[i_PresentEdge] == false)
 					{
-						_FOUND = _TRUE;
+						_FOUND = true;
 
 						break;
 					}
 				}
 
-				if(_FOUND == _FALSE)
+				if(_FOUND == false)
 				{
 
 #if DEBUG == 3562
@@ -3690,7 +3690,7 @@ namespace ColPack
 					}
 				}
 
-				for(j=_TRUE; j<STEP_UP(i_LeftVertexCount); j++)
+				for(j=true; j<STEP_UP(i_LeftVertexCount); j++)
 				{
 					if(vi_CandidateColors[j] != i_PresentVertex)
 					{
@@ -3705,9 +3705,9 @@ namespace ColPack
 						{
 							i_PresentEdge = m_mimi2_VertexEdgeMap[i_PresentVertex][m_vi_Edges[k]];
 
-							if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+							if(vi_IncludedEdges[i_PresentEdge] == false)
 							{
-								vi_IncludedEdges[i_PresentEdge] = _TRUE;
+								vi_IncludedEdges[i_PresentEdge] = true;
 
 								i_IncludedEdgeCount++;
 							}
@@ -3719,7 +3719,7 @@ namespace ColPack
 
 				for(j=m_vi_LeftVertices[i_PresentVertex]; j<m_vi_LeftVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
-					_FOUND = _FALSE;
+					_FOUND = false;
 
 					i_NeighboringVertex = m_vi_Edges[j];
 
@@ -3744,7 +3744,7 @@ namespace ColPack
 
 						if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] == m_vi_LeftVertexColors[i_PresentVertex])
 						{
-							_FOUND = _TRUE;
+							_FOUND = true;
 
 							i_StarID = vi_EdgeStarMap[m_mimi2_VertexEdgeMap[i_SecondNeighboringVertex][i_NeighboringVertex]];
 
@@ -3776,21 +3776,21 @@ namespace ColPack
 			{
 				i_PresentVertex = m_vi_OrderedVertices[i] - i_LeftVertexCount;
 
-				_FOUND = _FALSE;
+				_FOUND = false;
 
 				for(j= m_vi_RightVertices[i_PresentVertex]; j<m_vi_RightVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
 					i_PresentEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[j]][i_PresentVertex];
 
-					if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+					if(vi_IncludedEdges[i_PresentEdge] == false)
 					{
-						_FOUND = _TRUE;
+						_FOUND = true;
 
 						break;
 					}
 				}
 
-				if(_FOUND == _FALSE)
+				if(_FOUND == false)
 				{
 
 #if DEBUG == 3562
@@ -3941,9 +3941,9 @@ namespace ColPack
 						{
 							i_PresentEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[k]][i_PresentVertex];
 
-							if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+							if(vi_IncludedEdges[i_PresentEdge] == false)
 							{
-								vi_IncludedEdges[i_PresentEdge] = _TRUE;
+								vi_IncludedEdges[i_PresentEdge] = true;
 
 								i_IncludedEdgeCount++;
 							}
@@ -3955,7 +3955,7 @@ namespace ColPack
 
 				for(j=m_vi_RightVertices[i_PresentVertex]; j<m_vi_RightVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
-					_FOUND = _FALSE;
+					_FOUND = false;
 
 					i_NeighboringVertex = m_vi_Edges[j];
 
@@ -3980,7 +3980,7 @@ namespace ColPack
 
 						if(m_vi_RightVertexColors[i_SecondNeighboringVertex] == m_vi_RightVertexColors[i_PresentVertex])
 						{
-							_FOUND = _TRUE;
+							_FOUND = true;
 
 							i_StarID = vi_EdgeStarMap[m_mimi2_VertexEdgeMap[i_NeighboringVertex][i_SecondNeighboringVertex]];
 
@@ -4016,16 +4016,16 @@ namespace ColPack
 
 		}
 
-		i_LeftVertexDefaultColor = _FALSE;
-		i_RightVertexDefaultColor = _FALSE;
+		i_LeftVertexDefaultColor = false;
+		i_RightVertexDefaultColor = false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
 			if(m_vi_LeftVertexColors[i] == _UNKNOWN)
 			{
-				m_vi_LeftVertexColors[i] = _FALSE;
+				m_vi_LeftVertexColors[i] = false;
 
-				i_LeftVertexDefaultColor = _TRUE;
+				i_LeftVertexDefaultColor = true;
 			}
 		}
 
@@ -4035,13 +4035,13 @@ namespace ColPack
 			{
 				m_vi_RightVertexColors[i] = m_i_VertexColorCount; // m_i_VertexColorCount == (i_LeftVertexCount +  i_RightVertexCount + 1)
 
-				i_RightVertexDefaultColor = _TRUE;
+				i_RightVertexDefaultColor = true;
 			}
 		}
 
 		if(m_i_LeftVertexColorCount == _UNKNOWN)
 		{
-			m_i_LeftVertexColorCount = _TRUE;
+			m_i_LeftVertexColorCount = true;
 		}
 		else
 		{
@@ -4050,7 +4050,7 @@ namespace ColPack
 
 		if(m_i_RightVertexColorCount == _UNKNOWN)
 		{
-			m_i_RightVertexColorCount = _TRUE;
+			m_i_RightVertexColorCount = true;
 		}
 		else
 		{
@@ -4082,7 +4082,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 }
 
 	//Public Function 3563
@@ -4090,7 +4090,7 @@ namespace ColPack
 	{
 		if(CheckVertexColoring("IMPLICIT_COVER_RESTRICTED_STAR"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k;
@@ -4129,7 +4129,7 @@ namespace ColPack
 
 		m_mimi2_VertexEdgeMap.clear();
 
-		i_IncludedEdgeCount =_FALSE;
+		i_IncludedEdgeCount =false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
@@ -4146,7 +4146,7 @@ namespace ColPack
 		m_i_VertexColorCount = STEP_UP(i_LeftVertexCount +  i_RightVertexCount);
 
 		vi_IncludedEdges.clear();
-		vi_IncludedEdges.resize((unsigned) i_EdgeCount, _FALSE);
+		vi_IncludedEdges.resize((unsigned) i_EdgeCount, false);
 
 		vi_CandidateColors.clear();
 		vi_CandidateColors.resize((unsigned) m_i_VertexColorCount, _UNKNOWN);
@@ -4175,7 +4175,7 @@ namespace ColPack
 		vi_RightTreated.clear();
 		vi_RightTreated.resize((unsigned) i_LeftVertexCount, _UNKNOWN);
 
-		i_IncludedEdgeCount = _FALSE;
+		i_IncludedEdgeCount = false;
 
 		m_i_LeftVertexColorCount = m_i_RightVertexColorCount = _UNKNOWN;
 
@@ -4191,21 +4191,21 @@ namespace ColPack
 			{
 				i_PresentVertex = m_vi_OrderedVertices[i];
 
-				_FOUND = _FALSE;
+				_FOUND = false;
 
 				for(j= m_vi_LeftVertices[i_PresentVertex]; j<m_vi_LeftVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
 					i_PresentEdge = m_mimi2_VertexEdgeMap[i_PresentVertex][m_vi_Edges[j]];
 
-					if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+					if(vi_IncludedEdges[i_PresentEdge] == false)
 					{
-						_FOUND = _TRUE;
+						_FOUND = true;
 
 						break;
 					}
 				}
 
-				if(_FOUND == _FALSE)
+				if(_FOUND == false)
 				{
 
 #if DEBUG == 3563
@@ -4338,7 +4338,7 @@ namespace ColPack
 					}
 				}
 
-				for(j=_TRUE; j<STEP_UP(i_LeftVertexCount); j++)
+				for(j=true; j<STEP_UP(i_LeftVertexCount); j++)
 				{
 					if(vi_CandidateColors[j] != i_PresentVertex)
 					{
@@ -4353,9 +4353,9 @@ namespace ColPack
 						{
 							i_PresentEdge = m_mimi2_VertexEdgeMap[i_PresentVertex][m_vi_Edges[k]];
 
-							if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+							if(vi_IncludedEdges[i_PresentEdge] == false)
 							{
-								vi_IncludedEdges[i_PresentEdge] = _TRUE;
+								vi_IncludedEdges[i_PresentEdge] = true;
 
 								i_IncludedEdgeCount++;
 							}
@@ -4367,7 +4367,7 @@ namespace ColPack
 
 				for(j=m_vi_LeftVertices[i_PresentVertex]; j<m_vi_LeftVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
-					_FOUND = _FALSE;
+					_FOUND = false;
 
 					i_NeighboringVertex = m_vi_Edges[j];
 
@@ -4392,7 +4392,7 @@ namespace ColPack
 
 						if(m_vi_LeftVertexColors[i_SecondNeighboringVertex] == m_vi_LeftVertexColors[i_PresentVertex])
 						{
-							_FOUND = _TRUE;
+							_FOUND = true;
 
 							i_StarID = vi_EdgeStarMap[m_mimi2_VertexEdgeMap[i_SecondNeighboringVertex][i_NeighboringVertex]];
 
@@ -4424,21 +4424,21 @@ namespace ColPack
 			{
 				i_PresentVertex = m_vi_OrderedVertices[i] - i_LeftVertexCount;
 
-				_FOUND = _FALSE;
+				_FOUND = false;
 
 				for(j= m_vi_RightVertices[i_PresentVertex]; j<m_vi_RightVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
 					i_PresentEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[j]][i_PresentVertex];
 
-					if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+					if(vi_IncludedEdges[i_PresentEdge] == false)
 					{
-						_FOUND = _TRUE;
+						_FOUND = true;
 
 						break;
 					}
 				}
 
-				if(_FOUND == _FALSE)
+				if(_FOUND == false)
 				{
 
 #if DEBUG == 3563
@@ -4586,9 +4586,9 @@ namespace ColPack
 						{
 							i_PresentEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[k]][i_PresentVertex];
 
-							if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+							if(vi_IncludedEdges[i_PresentEdge] == false)
 							{
-								vi_IncludedEdges[i_PresentEdge] = _TRUE;
+								vi_IncludedEdges[i_PresentEdge] = true;
 
 								i_IncludedEdgeCount++;
 							}
@@ -4600,7 +4600,7 @@ namespace ColPack
 
 				for(j=m_vi_RightVertices[i_PresentVertex]; j<m_vi_RightVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
-					_FOUND = _FALSE;
+					_FOUND = false;
 
 					i_NeighboringVertex = m_vi_Edges[j];
 
@@ -4625,7 +4625,7 @@ namespace ColPack
 
 						if(m_vi_RightVertexColors[i_SecondNeighboringVertex] == m_vi_RightVertexColors[i_PresentVertex])
 						{
-							_FOUND = _TRUE;
+							_FOUND = true;
 
 							i_StarID = vi_EdgeStarMap[m_mimi2_VertexEdgeMap[i_NeighboringVertex][i_SecondNeighboringVertex]];
 
@@ -4660,16 +4660,16 @@ namespace ColPack
 			}
 		}
 
-		i_LeftVertexDefaultColor = _FALSE;
-		i_RightVertexDefaultColor = _FALSE;
+		i_LeftVertexDefaultColor = false;
+		i_RightVertexDefaultColor = false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
 			if(m_vi_LeftVertexColors[i] == _UNKNOWN)
 			{
-				m_vi_LeftVertexColors[i] = _FALSE;
+				m_vi_LeftVertexColors[i] = false;
 
-				i_LeftVertexDefaultColor = _TRUE;
+				i_LeftVertexDefaultColor = true;
 			}
 		}
 
@@ -4679,13 +4679,13 @@ namespace ColPack
 			{
 				m_vi_RightVertexColors[i] = m_i_VertexColorCount;
 
-				i_RightVertexDefaultColor = _TRUE;
+				i_RightVertexDefaultColor = true;
 			}
 		}
 
 		if(m_i_LeftVertexColorCount == _UNKNOWN)
 		{
-			m_i_LeftVertexColorCount = _TRUE;
+			m_i_LeftVertexColorCount = true;
 		}
 		else
 		{
@@ -4694,7 +4694,7 @@ namespace ColPack
 
 		if(m_i_RightVertexColorCount == _UNKNOWN)
 		{
-			m_i_RightVertexColorCount = _TRUE;
+			m_i_RightVertexColorCount = true;
 		}
 		else
 		{
@@ -4726,7 +4726,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -4735,7 +4735,7 @@ namespace ColPack
 	{
 		if(CheckVertexColoring("IMPLICIT_COVER_GREEDY_STAR"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k, l;
@@ -4763,7 +4763,7 @@ namespace ColPack
 
 		m_mimi2_VertexEdgeMap.clear();
 
-		i_IncludedEdgeCount =_FALSE;
+		i_IncludedEdgeCount =false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
@@ -4778,7 +4778,7 @@ namespace ColPack
 		m_i_VertexColorCount = STEP_UP(i_LeftVertexCount +  i_RightVertexCount);
 
 		vi_IncludedEdges.clear();
-		vi_IncludedEdges.resize((unsigned) i_EdgeCount, _FALSE);
+		vi_IncludedEdges.resize((unsigned) i_EdgeCount, false);
 
 		vi_CandidateColors.clear();
 		vi_CandidateColors.resize((unsigned) m_i_VertexColorCount, _UNKNOWN);
@@ -4791,7 +4791,7 @@ namespace ColPack
 
 		i_OrderedVertexCount = (signed) m_vi_OrderedVertices.size();
 
-		i_IncludedEdgeCount = _FALSE;
+		i_IncludedEdgeCount = false;
 
 		m_i_LeftVertexColorCount = m_i_RightVertexColorCount = _UNKNOWN;
 
@@ -4808,21 +4808,21 @@ namespace ColPack
 			{
 				i_PresentVertex = m_vi_OrderedVertices[i];
 
-				_FOUND = _FALSE;
+				_FOUND = false;
 
 				for(j= m_vi_LeftVertices[i_PresentVertex]; j<m_vi_LeftVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
 					i_PresentEdge = m_mimi2_VertexEdgeMap[i_PresentVertex][m_vi_Edges[j]];
 
-					if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+					if(vi_IncludedEdges[i_PresentEdge] == false)
 					{
-						_FOUND = _TRUE;
+						_FOUND = true;
 
 						break;
 					}
 				}
 
-				if(_FOUND == _FALSE)
+				if(_FOUND == false)
 				{
 
 #if DEBUG == 3564
@@ -4876,7 +4876,7 @@ namespace ColPack
 					}
 				}
 
-				for(j=_TRUE; j<STEP_UP(i_LeftVertexCount); j++)
+				for(j=true; j<STEP_UP(i_LeftVertexCount); j++)
 				{
 					if(vi_CandidateColors[j] != i_PresentVertex)
 					{
@@ -4891,9 +4891,9 @@ namespace ColPack
 						{
 							i_PresentEdge = m_mimi2_VertexEdgeMap[i_PresentVertex][m_vi_Edges[k]];
 
-							if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+							if(vi_IncludedEdges[i_PresentEdge] == false)
 							{
-								vi_IncludedEdges[i_PresentEdge] = _TRUE;
+								vi_IncludedEdges[i_PresentEdge] = true;
 
 								i_IncludedEdgeCount++;
 							}
@@ -4907,21 +4907,21 @@ namespace ColPack
 			{
 				i_PresentVertex = m_vi_OrderedVertices[i] - i_LeftVertexCount;
 
-				_FOUND = _FALSE;
+				_FOUND = false;
 
 				for(j= m_vi_RightVertices[i_PresentVertex]; j<m_vi_RightVertices[STEP_UP(i_PresentVertex)]; j++)
 				{
 					i_PresentEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[j]][i_PresentVertex];
 
-					if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+					if(vi_IncludedEdges[i_PresentEdge] == false)
 					{
-						_FOUND = _TRUE;
+						_FOUND = true;
 
 						break;
 					}
 				}
 
-				if(_FOUND == _FALSE)
+				if(_FOUND == false)
 				{
 
 #if DEBUG == 3564
@@ -4989,9 +4989,9 @@ namespace ColPack
 						{
 							i_PresentEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[k]][i_PresentVertex];
 
-							if(vi_IncludedEdges[i_PresentEdge] == _FALSE)
+							if(vi_IncludedEdges[i_PresentEdge] == false)
 							{
-								vi_IncludedEdges[i_PresentEdge] = _TRUE;
+								vi_IncludedEdges[i_PresentEdge] = true;
 
 								i_IncludedEdgeCount++;
 							}
@@ -5008,16 +5008,16 @@ namespace ColPack
 			}
 		}
 
-		i_LeftVertexDefaultColor = _FALSE;
-		i_RightVertexDefaultColor = _FALSE;
+		i_LeftVertexDefaultColor = false;
+		i_RightVertexDefaultColor = false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
 			if(m_vi_LeftVertexColors[i] == _UNKNOWN)
 			{
-				m_vi_LeftVertexColors[i] = _FALSE;
+				m_vi_LeftVertexColors[i] = false;
 
-				i_LeftVertexDefaultColor = _TRUE;
+				i_LeftVertexDefaultColor = true;
 			}
 		}
 
@@ -5027,13 +5027,13 @@ namespace ColPack
 			{
 				m_vi_RightVertexColors[i] = m_i_VertexColorCount;
 
-				i_RightVertexDefaultColor = _TRUE;
+				i_RightVertexDefaultColor = true;
 			}
 		}
 
 		if(m_i_LeftVertexColorCount == _UNKNOWN)
 		{
-			m_i_LeftVertexColorCount = _TRUE;
+			m_i_LeftVertexColorCount = true;
 		}
 		else
 		{
@@ -5042,7 +5042,7 @@ namespace ColPack
 
 		if(m_i_RightVertexColorCount == _UNKNOWN)
 		{
-			m_i_RightVertexColorCount = _TRUE;
+			m_i_RightVertexColorCount = true;
 		}
 		else
 		{
@@ -5077,7 +5077,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -5102,22 +5102,22 @@ namespace ColPack
 		i_MaximumColorCount = STEP_UP(i_LeftVertexCount) + STEP_UP(i_RightVertexCount);
 
 		vi_VertexColors.clear();
-		vi_VertexColors.resize((unsigned) i_MaximumColorCount, _FALSE);
+		vi_VertexColors.resize((unsigned) i_MaximumColorCount, false);
 
-		i_ColorViolationCount = _FALSE;
+		i_ColorViolationCount = false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
-			vi_VertexColors[m_vi_LeftVertexColors[i]] = _TRUE;
+			vi_VertexColors[m_vi_LeftVertexColors[i]] = true;
 		}
 
 		for(i=0; i<i_RightVertexCount; i++)
 		{
-			if(vi_VertexColors[m_vi_RightVertexColors[i]] == _TRUE)
+			if(vi_VertexColors[m_vi_RightVertexColors[i]] == true)
 			{
 				i_ColorViolationCount++;
 
-				if(i_ColorViolationCount == _TRUE)
+				if(i_ColorViolationCount == true)
 				{
 					cout<<endl;
 					cout<<"Star Bicoloring | Violation Check | Vertex Colors | "<<m_s_InputFile<<endl;
@@ -5128,7 +5128,7 @@ namespace ColPack
 			}
 		}
 
-		i_PathViolationCount = _FALSE;
+		i_PathViolationCount = false;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
@@ -5162,7 +5162,7 @@ namespace ColPack
 							{
 								i_PathViolationCount++;
 
-								if(i_PathViolationCount == _TRUE)
+								if(i_PathViolationCount == true)
 								{
 									cout<<endl;
 									cout<<"Star Bicoloring | Violation Check | Path Colors | "<<m_s_InputFile<<endl;
@@ -5317,7 +5317,7 @@ namespace ColPack
 	//Public Function 3575
 	void BipartiteGraphBicoloring::PrintVertexBicolorClasses()
 	{
-		if(CalculateVertexColorClasses() != _TRUE)
+		if(CalculateVertexColorClasses() != true)
 		{
 			cout<<endl;
 			cout<<"Vertex Bicolor Classes | "<<m_s_VertexColoringVariant<<" Coloring | "<<m_s_VertexOrderingVariant<<" Ordering | "<<m_s_InputFile<<" | Vertex Bicolors Not Set"<<endl;

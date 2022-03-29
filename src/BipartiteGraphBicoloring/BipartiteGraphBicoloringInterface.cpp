@@ -73,7 +73,7 @@ namespace ColPack
 		m_T_Timer.Stop();
 		m_d_OrderingTime = m_T_Timer.GetWallTime();
 
-		if(i_OrderingStatus != _TRUE)
+		if(i_OrderingStatus != true)
 		{
 			cerr<<endl;
 			cerr<<s_OrderingVariant<<" Ordering Failed";
@@ -98,7 +98,7 @@ namespace ColPack
 			cout<<" Unknown Bicoloring Method "<<s_BicoloringVariant<<". Please use a legal Method."<<endl;
 			m_T_Timer.Stop();
 			m_d_ColoringTime = m_T_Timer.GetWallTime();
-			return (_FALSE);
+			return (false);
 		}
 
 		m_T_Timer.Stop();
@@ -171,7 +171,7 @@ namespace ColPack
 
 		m_d_OrderingTime = m_T_Timer.GetWallTime();
 
-		if(i_OrderingStatus != _TRUE)
+		if(i_OrderingStatus != true)
 		{
 			cerr<<endl<<"*ERROR: "<<s_OrderingVariant<<" Ordering Failed"<<endl;
 			return;

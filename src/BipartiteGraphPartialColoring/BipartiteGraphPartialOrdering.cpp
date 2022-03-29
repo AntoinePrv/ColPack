@@ -15,7 +15,7 @@ namespace ColPack
 	{
 		if(m_s_VertexOrderingVariant.compare(s_VertexOrderingVariant) == 0)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		if(m_s_VertexOrderingVariant.compare("ALL") != 0)
@@ -23,7 +23,7 @@ namespace ColPack
 			m_s_VertexOrderingVariant = s_VertexOrderingVariant;
 		}
 
-		return(_FALSE);
+		return(false);
 	}
 
 
@@ -74,7 +74,7 @@ namespace ColPack
 	{
 		if(CheckVertexOrdering("ROW_NATURAL"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i_LeftVertexCount = STEP_DOWN((signed) m_vi_LeftVertices.size());
@@ -87,7 +87,7 @@ namespace ColPack
 			m_vi_OrderedVertices.push_back(i);
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -96,7 +96,7 @@ namespace ColPack
 	{
 		if(CheckVertexOrdering("COLUMN_NATURAL"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i_LeftVertexCount = STEP_DOWN((signed) m_vi_LeftVertices.size());
@@ -110,13 +110,13 @@ namespace ColPack
 			m_vi_OrderedVertices.push_back(i + i_LeftVertexCount);
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int BipartiteGraphPartialOrdering::RowRandomOrdering() {
 		if(CheckVertexOrdering("ROW_RANDOM"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		m_s_VertexOrderingVariant = "ROW_RANDOM";
@@ -132,13 +132,13 @@ namespace ColPack
 
 		randomOrdering(m_vi_OrderedVertices);
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int BipartiteGraphPartialOrdering::ColumnRandomOrdering() {
 		if(CheckVertexOrdering("COLUMN_RANDOM"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		m_s_VertexOrderingVariant = "COLUMN_RANDOM";
@@ -155,7 +155,7 @@ namespace ColPack
 
 		randomOrdering(m_vi_OrderedVertices);
 
-		return(_TRUE);
+		return(true);
 	}
 
 	//Public Function 2357
@@ -163,7 +163,7 @@ namespace ColPack
 	{
 		if(CheckVertexOrdering("ROW_LARGEST_FIRST"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k;
@@ -232,7 +232,7 @@ namespace ColPack
 			}
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -242,7 +242,7 @@ namespace ColPack
 	{
 		if(CheckVertexOrdering("COLUMN_LARGEST_FIRST"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k;
@@ -313,7 +313,7 @@ namespace ColPack
 			}
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -332,7 +332,7 @@ namespace ColPack
 // 		cout<<"IN ROW_SMALLEST_LAST_OMP()"<<endl<<flush;
 		if(CheckVertexOrdering("ROW_SMALLEST_LAST_OMP"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 // 		PrintBipartiteGraph();
@@ -532,7 +532,7 @@ namespace ColPack
 		}
 // 		cout<<"OUT ROW_SMALLEST_LAST_OMP()"<<endl<<flush;
 
-		return(_TRUE);
+		return(true);
 	}
 
 	//Public Function 2359
@@ -540,7 +540,7 @@ namespace ColPack
 	{
 		if(CheckVertexOrdering("ROW_SMALLEST_LAST"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k, u, l;
@@ -623,7 +623,7 @@ namespace ColPack
 		// stop when i_SelectedVertexCount == i_VertexCount, i.e. we have looked through all the vertices
 		while ( i_SelectedVertexCount < i_VertexCount )
 		{
-			if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin - 1].size() != _FALSE)
+			if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin - 1].size() != false)
 				iMin--;
 
 			// selecte first item from the bucket
@@ -714,7 +714,7 @@ namespace ColPack
                 vi_VertexLocation.clear();
                 vvi_GroupedInducedVertexDegree.clear();
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int BipartiteGraphPartialOrdering::ColumnSmallestLastOrdering() {
@@ -732,7 +732,7 @@ namespace ColPack
 // 	  cout<<"IN COLUMN_SMALLEST_LAST_OMP()"<<endl<<flush;
 		if(CheckVertexOrdering("COLUMN_SMALLEST_LAST_OMP"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 // 		PrintBipartiteGraph();
@@ -932,7 +932,7 @@ namespace ColPack
 		}
 // 		cout<<"OUT COLUMN_SMALLEST_LAST_OMP()"<<endl<<flush;
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -941,7 +941,7 @@ namespace ColPack
 	{
 		if(CheckVertexOrdering("COLUMN_SMALLEST_LAST"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k, u, l;
@@ -1025,7 +1025,7 @@ namespace ColPack
 		// stop when i_SelectedVertexCount == i_VertexCount, i.e. we have looked through all the vertices
 		while ( i_SelectedVertexCount < i_VertexCount )
 		{
-			if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin - 1].size() != _FALSE)
+			if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin - 1].size() != false)
 				iMin--;
 
 			// selecte first item from the bucket
@@ -1113,14 +1113,14 @@ namespace ColPack
                 vi_VertexLocation.clear();
                 vvi_GroupedInducedVertexDegree.clear();
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int BipartiteGraphPartialOrdering::ColumnDynamicLargestFirstOrdering()
 	{
 		if(CheckVertexOrdering("COLUMN_DYNAMIC_LARGEST_FIRST"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k, u, l;
@@ -1209,7 +1209,7 @@ namespace ColPack
 		// stop when i_SelectedVertexCount == i_VertexCount, i.e. we have looked through all the vertices
 		while ( i_SelectedVertexCount < i_VertexCount )
 		{
-			//if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin - 1].size() != _FALSE)
+			//if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin - 1].size() != false)
 			//	iMin--;
 
 			// selecte first item from the bucket
@@ -1296,14 +1296,14 @@ namespace ColPack
                 vi_VertexLocation.clear();
                 vvi_GroupedInducedVertexDegree.clear();
 		vi_Visited.clear ();
-		return(_TRUE);
+		return(true);
 	}
 
 	int BipartiteGraphPartialOrdering::RowDynamicLargestFirstOrdering()
 	{
 		if(CheckVertexOrdering("ROW_DYNAMIC_LARGEST_FIRST"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k, u, l;
@@ -1387,7 +1387,7 @@ namespace ColPack
 		// stop when i_SelectedVertexCount == i_VertexCount, i.e. we have looked through all the vertices
 		while ( i_SelectedVertexCount < i_VertexCount )
 		{
-			//if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin - 1].size() != _FALSE)
+			//if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin - 1].size() != false)
 			//	iMin--;
 
 			// selecte first item from the bucket
@@ -1477,7 +1477,7 @@ namespace ColPack
                 vvi_GroupedInducedVertexDegree.clear();
 		vi_Visited.clear();
 
-		return(_TRUE);
+		return(true);
 	}
 
 	//Public Function 2361
@@ -1485,7 +1485,7 @@ namespace ColPack
 	{
 		if(CheckVertexOrdering("ROW_INCIDENCE_DEGREE"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k, l, u;
@@ -1558,7 +1558,7 @@ namespace ColPack
 
 		while ( i_SelectedVertexCount < i_VertexCount )
 		{
-			if(iMax != m_i_MaximumVertexDegree && vvi_GroupedIncidenceVertexDegree[iMax + 1].size() != _FALSE)
+			if(iMax != m_i_MaximumVertexDegree && vvi_GroupedIncidenceVertexDegree[iMax + 1].size() != false)
 				iMax++;
 
 			for ( i=iMax; i>=0; i-- )
@@ -1637,7 +1637,7 @@ namespace ColPack
                 vi_VertexLocation.clear();
                 vvi_GroupedIncidenceVertexDegree.clear();
 
-		return(_TRUE);
+		return(true);
 
 	}
 
@@ -1648,7 +1648,7 @@ namespace ColPack
 	{
 		if(CheckVertexOrdering("COLUMN_INCIDENCE_DEGREE"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j, k, l, u;
@@ -1718,7 +1718,7 @@ namespace ColPack
 
 		while ( i_SelectedVertexCount < i_VertexCount )
 		{
-			if(iMax != m_i_MaximumVertexDegree && vvi_GroupedIncidenceVertexDegree[iMax + 1].size() != _FALSE)
+			if(iMax != m_i_MaximumVertexDegree && vvi_GroupedIncidenceVertexDegree[iMax + 1].size() != false)
 				iMax++;
 
 			// select the vertex with the highest Incidence degree
@@ -1798,7 +1798,7 @@ namespace ColPack
                 vi_VertexLocation.clear();
                 vvi_GroupedIncidenceVertexDegree.clear();
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -1934,7 +1934,7 @@ namespace ColPack
 			cerr<<endl;
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 

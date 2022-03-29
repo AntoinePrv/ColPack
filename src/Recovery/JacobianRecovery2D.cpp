@@ -14,7 +14,7 @@ namespace ColPack
 	int JacobianRecovery2D::DirectRecover_RowCompressedFormat_usermem(BipartiteGraphBicoloringInterface* g, double** dp2_RowCompressedMatrix, double** dp2_ColumnCompressedMatrix, unsigned int ** uip2_JacobianSparsityPattern, double*** dp3_JacobianValue) {
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		int rowCount = g->GetRowVertexCount();
@@ -82,7 +82,7 @@ namespace ColPack
 	int JacobianRecovery2D::DirectRecover_RowCompressedFormat_unmanaged(BipartiteGraphBicoloringInterface* g, double** dp2_RowCompressedMatrix, double** dp2_ColumnCompressedMatrix, unsigned int ** uip2_JacobianSparsityPattern, double*** dp3_JacobianValue) {
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		int rowCount = g->GetRowVertexCount();
@@ -122,7 +122,7 @@ namespace ColPack
 	int JacobianRecovery2D::DirectRecover_SparseSolversFormat_usermem(BipartiteGraphBicoloringInterface* g, double** dp2_RowCompressedMatrix, double** dp2_ColumnCompressedMatrix, unsigned int ** uip2_JacobianSparsityPattern, unsigned int** ip2_RowIndex, unsigned int** ip2_ColumnIndex, double** dp2_JacobianValue) {
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		int rowCount = g->GetRowVertexCount();
@@ -213,7 +213,7 @@ namespace ColPack
 	int JacobianRecovery2D::DirectRecover_SparseSolversFormat_unmanaged(BipartiteGraphBicoloringInterface* g, double** dp2_RowCompressedMatrix, double** dp2_ColumnCompressedMatrix, unsigned int ** uip2_JacobianSparsityPattern, unsigned int** ip2_RowIndex, unsigned int** ip2_ColumnIndex, double** dp2_JacobianValue) {
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		int rowCount = g->GetRowVertexCount();
@@ -262,7 +262,7 @@ namespace ColPack
 	int JacobianRecovery2D::DirectRecover_CoordinateFormat_usermem(BipartiteGraphBicoloringInterface* g, double** dp2_RowCompressedMatrix, double** dp2_ColumnCompressedMatrix, unsigned int ** uip2_JacobianSparsityPattern, unsigned int** ip2_RowIndex, unsigned int** ip2_ColumnIndex, double** dp2_JacobianValue) {
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		int rowCount = g->GetRowVertexCount();
@@ -334,7 +334,7 @@ namespace ColPack
 	int JacobianRecovery2D::DirectRecover_CoordinateFormat_unmanaged(BipartiteGraphBicoloringInterface* g, double** dp2_RowCompressedMatrix, double** dp2_ColumnCompressedMatrix, unsigned int ** uip2_JacobianSparsityPattern, unsigned int** ip2_RowIndex, unsigned int** ip2_ColumnIndex, double** dp2_JacobianValue) {
 		if(g==NULL) {
 			cerr<<"g==NULL"<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		unsigned int numOfNonZeros = g->GetEdgeCount();

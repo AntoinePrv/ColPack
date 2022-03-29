@@ -34,7 +34,7 @@ namespace ColPack
 		  http://software.intel.com/sites/products/documentation/hpc/mkl/webhelp/appendices/mkl_appA_SMSF.html#table_79228E147DA0413086BEFF4EFA0D3F04
 
 		Return value:
-		- _TRUE upon successful
+		- true upon successful
 		*/
 		int BuildBPGraphFromCSRFormat(int* ip_RowIndex, int i_RowCount, int i_ColumnCount, int* ip_ColumnIndex);
 
@@ -44,7 +44,7 @@ namespace ColPack
 		- The Jacobian matrix must be stored in Row Compressed Format
 
 		Return value:
-		- _TRUE upon successful
+		- true upon successful
 		*/
 		int BuildBPGraphFromRowCompressedFormat(unsigned int ** uip2_JacobianSparsityPattern, int i_RowCount, int i_ColumnCount);
 
@@ -54,7 +54,7 @@ namespace ColPack
 		- The Jacobian matrix must be stored in Row Compressed Format
 
 		Return value:
-		- _TRUE upon successful
+		- true upon successful
 		*/
 		int RowCompressedFormat2BipartiteGraph(unsigned int ** uip2_JacobianSparsityPattern, int i_RowCount, int i_ColumnCount);
 
@@ -151,7 +151,7 @@ namespace ColPack
 		- (*uip3_JacobianSparsityPattern) size is (GetRowVertexCount()) rows x (GetColumnVertexCount()) columns
 
 		Return value:
-		- _TRUE upon successful
+		- true upon successful
 		*/
 		int BipartiteGraph2RowCompressedFormat(unsigned int *** uip3_JacobianSparsityPattern, unsigned int * uip1_RowCount, unsigned int * uip1_ColumnCount);
 

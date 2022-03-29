@@ -49,7 +49,7 @@ int main(int argc, char ** argv)
 
 	/* 1. Check Partial Distance Two Coloring result
 	cout<<"Check Partial Distance Two coloring result ... "<<endl;
-	if(g->CheckPartialDistanceTwoColoring() == _FALSE) cout<<" FAILED"<<endl;
+	if(g->CheckPartialDistanceTwoColoring() == false) cout<<" FAILED"<<endl;
 	else cout<<" SUCCEEDED"<<endl;
 	//*/
 

@@ -17,9 +17,9 @@ namespace ColPack
 
 		int i_RightVertexCount = STEP_DOWN((signed) m_vi_RightVertices.size());
 
-		int i_TotalLeftVertexDegree = _FALSE;
+		int i_TotalLeftVertexDegree = false;
 
-		int i_TotalRightVertexDegree = _FALSE;
+		int i_TotalRightVertexDegree = false;
 
 		i_TotalLeftVertexDegree = i_TotalRightVertexDegree = m_vi_Edges.size()/2;
 
@@ -123,7 +123,7 @@ namespace ColPack
 		istringstream in2;
 		int entry_counter = 0, num_of_entries = 0, nz_counter=0;
 		//bool value_not_specified = false;
-		int i_LineCount = _TRUE;
+		int i_LineCount = true;
 
 		int i, j;
 
@@ -151,9 +151,9 @@ namespace ColPack
 
 		Clear();
 
-		i_EdgeCount = _FALSE;
+		i_EdgeCount = false;
 
-		i_LeftVertexCount = i_RightVertexCount = _FALSE;
+		i_LeftVertexCount = i_RightVertexCount = false;
 
 		m_s_InputFile = s_InputFile;
 
@@ -201,7 +201,7 @@ namespace ColPack
 		if(!InputStream)
 		{
 			cout<<"File "<<m_s_InputFile<<" Not Found"<<endl;
-			return _FALSE;
+			return false;
 		}
 		else
 		{
@@ -227,7 +227,7 @@ namespace ColPack
 				continue;
 			}
 
-			if(i_LineCount == _TRUE)
+			if(i_LineCount == true)
 			{
 				in2.clear();
 				in2.str(s_InputLine);
@@ -244,7 +244,7 @@ namespace ColPack
 				v2i_RightVertexAdjacency.resize((unsigned) i_RightVertexCount);
 			}
 
-			if((i_LineCount > _TRUE) && (i_LineCount <= STEP_UP(i_EdgeCount)))
+			if((i_LineCount > true) && (i_LineCount <= STEP_UP(i_EdgeCount)))
 			{
 //cout<<"i_LineCount = "<<i_LineCount<<endl;
 				in2.clear();
@@ -334,7 +334,7 @@ namespace ColPack
 
 			i_VertexDegree = mvi_LeftVertices[STEP_UP(i)] - mvi_LeftVertices[i];
 
-			k = _FALSE;
+			k = false;
 
 			for(j=mvi_LeftVertices[i]; j<mvi_LeftVertices[STEP_UP(i)]; j++)
 			{
@@ -363,7 +363,7 @@ namespace ColPack
 
 			i_VertexDegree = mvi_RightVertices[STEP_UP(i)] - mvi_RightVertices[i];
 
-			k = _FALSE;
+			k = false;
 
 			for(j=mvi_RightVertices[i]; j<mvi_RightVertices[STEP_UP(i)]; j++)
 			{
@@ -388,7 +388,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 	//Public Function 2256;3256
@@ -402,7 +402,7 @@ namespace ColPack
 		if(!InputStream)
 		{
 			cout<<"File "<<m_s_InputFile<<" Not Found"<<endl;
-			return _FALSE;
+			return false;
 		}
 		else
 		{
@@ -448,7 +448,7 @@ namespace ColPack
 		{
 			cout<<"Read fail: rowCounter!=row+1 || edges*2!=numCount"<<endl;
 			cout<<"Read fail: "<<rowCounter<<"!="<<row+1<<" || "<<edges*2<<"!="<<numCount<<endl;
-			return _FALSE;
+			return false;
 		}
 
 		//put together the right vertices
@@ -473,7 +473,7 @@ namespace ColPack
 
 		CalculateVertexDegrees();
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int BipartiteGraphInputOutput::ReadHarwellBoeingBipartiteGraph(string s_InputFile) {
@@ -485,7 +485,7 @@ namespace ColPack
 		if(!in)
 		{
 			cout<<"File "<<m_s_InputFile<<" Not Found"<<endl;
-			return _FALSE;
+			return false;
 		}
 		else
 		{
@@ -664,7 +664,7 @@ namespace ColPack
 		if (tempCounter==-1)
 		{
 			cout<<"Input file\""<<s_InputFile<<"\" has a wrong name format"<<endl;
-			return _FALSE;
+			return false;
 		}
 		in2.clear();in2.str(sRow);in2>>row;
 		in2.clear();in2.str(sCol);in2>>col;
@@ -692,14 +692,14 @@ namespace ColPack
 			{
 				cerr<<"WARNING: BipartiteGraphInputOutput::ReadGenericMatrixBipartiteGraph()"<<endl;
 				cerr<<"Input file\""<<s_InputFile<<"\" has a wrong format. The number of entries in 1 column < # of columns"<<endl;
-				return _FALSE;
+				return false;
 			}
 		}
 		if (rowCounter!=row)
 		{
 			cerr<<"WARNING: BipartiteGraphInputOutput::ReadGenericMatrixBipartiteGraph()"<<endl;
 			cout<<"Input file\""<<s_InputFile<<"\" has a wrong format. The number of rows is less than what it suppose to be"<<endl;
-			return _FALSE;
+			return false;
 		}
 		//put together the right vertices
 		m_vi_RightVertices.push_back(m_vi_Edges.size());
@@ -710,7 +710,7 @@ namespace ColPack
 
 		CalculateVertexDegrees();
 
-		return (_TRUE);
+		return (true);
 	}
 
 	//Public Function 2259;3259
@@ -769,7 +769,7 @@ namespace ColPack
 		if (tempCounter==-1)
 		{
 			cout<<"Input file\""<<s_InputFile<<"\" has a wrong name format"<<endl;
-			return _FALSE;
+			return false;
 		}
 		in2.clear();in2.str(sRow);in2>>row;
 		in2.clear();in2.str(sCol);in2>>col;
@@ -809,7 +809,7 @@ namespace ColPack
 
 		CalculateVertexDegrees();
 
-		return (_TRUE);
+		return (true);
 	}
 
 	//Public Function 2260;3260
@@ -838,7 +838,7 @@ namespace ColPack
 
 			i_VertexDegree = m_vi_LeftVertices[STEP_UP(i)] - m_vi_LeftVertices[i];
 
-			k = _FALSE;
+			k = false;
 
 			for(j=m_vi_LeftVertices[i]; j<m_vi_LeftVertices[STEP_UP(i)]; j++)
 			{
@@ -867,7 +867,7 @@ namespace ColPack
 
 			i_VertexDegree = m_vi_RightVertices[STEP_UP(i)] - m_vi_RightVertices[i];
 
-			k = _FALSE;
+			k = false;
 
 			for(j=m_vi_RightVertices[i]; j<m_vi_RightVertices[STEP_UP(i)]; j++)
 			{
@@ -959,7 +959,7 @@ namespace ColPack
 
 	  CalculateVertexDegrees();
 
-	  return (_TRUE);
+	  return (true);
 	}
 
 	int BipartiteGraphInputOutput::BuildBPGraphFromADICFormat(std::list<std::set<int> > *  lsi_SparsityPattern, int i_ColumnCount) {
@@ -1008,7 +1008,7 @@ namespace ColPack
 	  //PrintBipartiteGraph();
 	  //Pause();
 	  //cout<<"OUT BipartiteGraphInputOutput::RowCompressedFormat2BipartiteGraph"<<endl;
-	  return _TRUE;
+	  return true;
 	}
 
 	int BipartiteGraphInputOutput::BuildBPGraphFromRowCompressedFormat(unsigned int ** uip2_JacobianSparsityPattern, int i_RowCount, int i_ColumnCount) {
@@ -1054,7 +1054,7 @@ namespace ColPack
 	  //PrintBipartiteGraph();
 	  //Pause();
 	  //cout<<"OUT BipartiteGraphInputOutput::RowCompressedFormat2BipartiteGraph"<<endl;
-	  return _TRUE;
+	  return true;
 	}
 
 	int BipartiteGraphInputOutput::BipartiteGraph2RowCompressedFormat(unsigned int *** uip3_JacobianSparsityPattern, unsigned int * uip1_RowCount, unsigned int * uip1_ColumnCount) {
@@ -1082,7 +1082,7 @@ namespace ColPack
 		  }
 	  }
 
-	  return _TRUE;
+	  return true;
 	}
 
 	int BipartiteGraphInputOutput::ReadBipartiteGraph(string s_InputFile, string s_fileFormat) {
@@ -1139,7 +1139,7 @@ namespace ColPack
 			exit(1);
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -1269,7 +1269,7 @@ namespace ColPack
             m_d_AverageRightVertexDegree = (m_vi_RightVertices.back() - m_vi_RightVertices.front())*1.0/col_count;
             m_d_AverageVertexDegree      = (m_vi_LeftVertices.back() - m_vi_LeftVertices.front() + m_vi_RightVertices.back() - m_vi_RightVertices.front())*1.0/(row_count+col_count);
              
-            return (_TRUE);
+            return (true);
         }// end fun ReadMMBipartiteGraphCpp11 
 
 
@@ -1415,7 +1415,7 @@ namespace ColPack
             m_d_AverageRightVertexDegree = (m_vi_RightVertices.back() - m_vi_RightVertices.front())*1.0/col_count;
             m_d_AverageVertexDegree      = (m_vi_LeftVertices.back() - m_vi_LeftVertices.front() + m_vi_RightVertices.back() - m_vi_RightVertices.front())*1.0/(row_count+col_count);
 
-            return (_TRUE);   
+            return (true);   
         }// end funtion ReadMMGeneralGraphIntoPothenBipartiteGraphCpp11
 
 

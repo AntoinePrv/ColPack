@@ -43,7 +43,7 @@ namespace ColPack
 		p_vi_Nodes.clear();
 		p_vi_Nodes.resize((unsigned) li_SetSize, _UNKNOWN);
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -56,11 +56,11 @@ namespace ColPack
 
 		li_SetSize = (signed) p_vi_Nodes.size();
 
-		li_HeadCount = _FALSE;
+		li_HeadCount = false;
 
 		for(i=0; i<li_SetSize; i++)
 		{
-			if(p_vi_Nodes[i] < _FALSE)
+			if(p_vi_Nodes[i] < false)
 			{
 				li_HeadCount++;
 			}
@@ -95,14 +95,14 @@ namespace ColPack
 			}
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 
 	//Public Function 4257
 	int DisjointSets::Find(int li_Node)
 	{
-		if(p_vi_Nodes[li_Node] < _FALSE)
+		if(p_vi_Nodes[li_Node] < false)
 		{
 			return(li_Node);
 		}
@@ -117,7 +117,7 @@ namespace ColPack
 	//Public Function 4258
 	int DisjointSets::FindAndCompress(int li_Node)
 	{
-		if(p_vi_Nodes[li_Node] < _FALSE)
+		if(p_vi_Nodes[li_Node] < false)
 		{
 			return(li_Node);
 		}
@@ -132,7 +132,7 @@ namespace ColPack
 	{
 		if(li_SetOne == li_SetTwo)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		p_vi_Nodes[li_SetTwo] = li_SetOne;
@@ -146,12 +146,12 @@ namespace ColPack
 	{
 		if(li_SetOne == li_SetTwo)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		p_vi_Nodes[li_SetOne] = p_vi_Nodes[li_SetTwo];
 
-		return(_TRUE);
+		return(true);
 	}
 	//*/
 
@@ -161,7 +161,7 @@ namespace ColPack
 	{
 		if(li_SetOne == li_SetTwo)
 		{
-		return(_TRUE);
+		return(true);
 		}
 
 		if(p_vi_Nodes[li_SetOne] == p_vi_Nodes[li_SetTwo])
@@ -181,7 +181,7 @@ namespace ColPack
 			p_vi_Nodes[li_SetOne] = li_SetTwo;
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -191,7 +191,7 @@ namespace ColPack
 	{
 		if(li_SetOne == li_SetTwo)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		if(p_vi_Nodes[li_SetOne] < p_vi_Nodes[li_SetTwo])
@@ -208,7 +208,7 @@ namespace ColPack
 
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 }

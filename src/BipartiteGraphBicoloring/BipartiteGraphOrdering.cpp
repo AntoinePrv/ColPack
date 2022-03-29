@@ -15,7 +15,7 @@ namespace ColPack
 	{
 		if(m_s_VertexOrderingVariant.compare(s_VertexOrderingVariant) == 0)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		if(m_s_VertexOrderingVariant.compare("ALL") != 0)
@@ -23,7 +23,7 @@ namespace ColPack
 			m_s_VertexOrderingVariant = s_VertexOrderingVariant;
 		}
 
-		return(_FALSE);
+		return(false);
 	}
 
 
@@ -74,7 +74,7 @@ namespace ColPack
 	{
 		if(CheckVertexOrdering("NATURAL"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i;
@@ -97,14 +97,14 @@ namespace ColPack
 			m_vi_OrderedVertices.push_back(i + i_LeftVertexCount);
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int BipartiteGraphOrdering::RandomOrdering()
 	{
 		if(CheckVertexOrdering("RANDOM"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		m_s_VertexOrderingVariant = "RANDOM";
@@ -145,14 +145,14 @@ namespace ColPack
 			m_vi_OrderedVertices.push_back(tempOrdering[i]);
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int BipartiteGraphOrdering::LargestFirstOrdering()
 	{
 		if(CheckVertexOrdering("LARGEST_FIRST"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j;
@@ -165,7 +165,7 @@ namespace ColPack
 
 		vector< vector< int > > vvi_GroupedVertexDegree;
 
-		m_i_MaximumVertexDegree = _FALSE;
+		m_i_MaximumVertexDegree = false;
 
 		i_HighestDegreeVertex = _UNKNOWN;
 
@@ -233,14 +233,14 @@ namespace ColPack
 
 		vvi_GroupedVertexDegree.clear();
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int BipartiteGraphOrdering::SmallestLastOrdering()
 	{
 		if(CheckVertexOrdering("SMALLEST_LAST"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, u, l;
@@ -286,7 +286,7 @@ namespace ColPack
                 vi_LeftSidedVertexinBucket.clear();
 		vi_LeftSidedVertexinBucket.reserve((unsigned) i_LeftVertexCount + i_RightVertexCount);
 
-		i_HighestInducedVertexDegree = _FALSE;
+		i_HighestInducedVertexDegree = false;
 
 		i_HighestInducedDegreeVertex = _UNKNOWN;
 
@@ -337,20 +337,20 @@ namespace ColPack
 		m_vi_OrderedVertices.clear();
 		m_vi_OrderedVertices.resize(i_LeftVertexCount + i_RightVertexCount, _UNKNOWN);
 
-		i_SelectedVertexCount = _FALSE;
+		i_SelectedVertexCount = false;
 
 		int iMin = 1;
 
 		while(i_SelectedVertexCount < i_LeftVertexCount + i_RightVertexCount)
 		{
-                        if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin -1].size() != _FALSE)
+                        if(iMin != 0 && vvi_GroupedInducedVertexDegree[iMin -1].size() != false)
 				iMin--;
 
 			for(i=iMin; i<STEP_UP(i_HighestInducedVertexDegree); i++)
 			{
 				i_InducedVertexDegreeCount = (signed) vvi_GroupedInducedVertexDegree[i].size();
 
-				if(i_InducedVertexDegreeCount == _FALSE)
+				if(i_InducedVertexDegreeCount == false)
 				{
 					iMin++;
 					continue;
@@ -358,7 +358,7 @@ namespace ColPack
 
 				if(i_HighestInducedDegreeVertex < i_LeftVertexCount)
 				{
-					_FOUND = _FALSE;
+					_FOUND = false;
 
 					/*
 					if(vi_LeftSidedVertexinBucket[i] > 0)
@@ -369,7 +369,7 @@ namespace ColPack
 						vvi_GroupedInducedVertexDegree[i][vi_LeftSidedVertexinBucket[i]] = vvi_GroupedInducedVertexDegree[i].back();
                                                 vi_VertexLocation[vvi_GroupedInducedVertexDegree[i].back()] = vi_VertexLocation[u];
 
-						_FOUND = _TRUE;
+						_FOUND = true;
 					}
 					*/
 					if(vi_LeftSidedVertexinBucket[i] > 0)
@@ -386,7 +386,7 @@ namespace ColPack
 								vvi_GroupedInducedVertexDegree[i][j] = vvi_GroupedInducedVertexDegree[i].back();
 								vi_VertexLocation[vvi_GroupedInducedVertexDegree[i].back()] = vi_VertexLocation[u];
 							}
-							_FOUND = _TRUE;
+							_FOUND = true;
 							vi_LeftSidedVertexinBucket[i]--;
 
 							break;
@@ -400,7 +400,7 @@ namespace ColPack
 				}
 				else
 				{
-					_FOUND = _FALSE;
+					_FOUND = false;
 
 					if((i_InducedVertexDegreeCount - vi_LeftSidedVertexinBucket[i]) > 0)
 					for(unsigned int j = 0; j < vvi_GroupedInducedVertexDegree[i].size(); j++)
@@ -415,7 +415,7 @@ namespace ColPack
 								vvi_GroupedInducedVertexDegree[i][j] = vvi_GroupedInducedVertexDegree[i].back();
 								vi_VertexLocation[vvi_GroupedInducedVertexDegree[i].back()] = vi_VertexLocation[u];
 							}
-							_FOUND = _TRUE;
+							_FOUND = true;
 
 							break;
 						}
@@ -549,14 +549,14 @@ namespace ColPack
 		vi_VertexLocation.clear();
 		vi_LeftSidedVertexinBucket.clear();
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int BipartiteGraphOrdering::IncidenceDegreeOrdering()
 	{
 		if(CheckVertexOrdering("INCIDENCE_DEGREE"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, u, l;
@@ -598,7 +598,7 @@ namespace ColPack
 
 		i_HighestIncidenceVertexDegree = _UNKNOWN;
 
-		i_IncidenceVertexDegree = _FALSE;
+		i_IncidenceVertexDegree = false;
 
 		i_SelectedVertex = _UNKNOWN;
 
@@ -639,7 +639,7 @@ namespace ColPack
 		m_vi_OrderedVertices.clear();
 		m_vi_OrderedVertices.reserve((unsigned) (i_VertexCount));
 
-		i_SelectedVertexCount = _FALSE;
+		i_SelectedVertexCount = false;
 
 		while(i_SelectedVertexCount < i_VertexCount)
 		{
@@ -767,7 +767,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -775,7 +775,7 @@ namespace ColPack
 	{
 		if(CheckVertexOrdering("DYNAMIC_LARGEST_FIRST"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, u, l;
@@ -847,7 +847,7 @@ namespace ColPack
 		m_vi_OrderedVertices.clear();
 		m_vi_OrderedVertices.reserve((unsigned) i_VertexCount);
 
-		i_SelectedVertexCount = _FALSE;
+		i_SelectedVertexCount = false;
 
 		// just counting the number of vertices that we have worked with,
 		// stop when i_SelectedVertexCount == i_VertexCount, i.e. we have looked through all the vertices
@@ -969,14 +969,14 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int BipartiteGraphOrdering::SelectiveLargestFirstOrdering()
 	{
 		if(CheckVertexOrdering("SELECTVE_LARGEST_FIRST"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j;
@@ -987,7 +987,7 @@ namespace ColPack
 
 		vector< vector<int> > vvi_GroupedVertexDegree;
 
-		m_i_MaximumVertexDegree = _FALSE;
+		m_i_MaximumVertexDegree = false;
 
 		i_LeftVertexCount = STEP_DOWN((signed) m_vi_LeftVertices.size());
 		i_RightVertexCount = STEP_DOWN((signed) m_vi_RightVertices.size());
@@ -997,16 +997,16 @@ namespace ColPack
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
-			if(m_vi_IncludedLeftVertices[i] == _FALSE)
+			if(m_vi_IncludedLeftVertices[i] == false)
 			{
 				continue;
 			}
 
-			i_VertexDegree = _FALSE;
+			i_VertexDegree = false;
 
 			for(j=m_vi_LeftVertices[i]; j<m_vi_LeftVertices[STEP_UP(i)]; j++)
 			{
-				if(m_vi_IncludedRightVertices[m_vi_Edges[j]] == _FALSE)
+				if(m_vi_IncludedRightVertices[m_vi_Edges[j]] == false)
 				{
 					continue;
 				}
@@ -1024,16 +1024,16 @@ namespace ColPack
 
 		for(i=0; i<i_RightVertexCount; i++)
 		{
-			if(m_vi_IncludedRightVertices[i] == _FALSE)
+			if(m_vi_IncludedRightVertices[i] == false)
 			{
 				continue;
 			}
 
-			i_VertexDegree = _FALSE;
+			i_VertexDegree = false;
 
 			for(j=m_vi_RightVertices[i]; j<m_vi_RightVertices[STEP_UP(i)]; j++)
 			{
-				if(m_vi_IncludedLeftVertices[m_vi_Edges[j]] == _FALSE)
+				if(m_vi_IncludedLeftVertices[m_vi_Edges[j]] == false)
 				{
 					continue;
 				}
@@ -1089,14 +1089,14 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 	int BipartiteGraphOrdering::SelectiveSmallestLastOrdering()
 	{
 		if(CheckVertexOrdering("SELECTIVE_SMALLEST_LAST"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j;
@@ -1131,26 +1131,26 @@ namespace ColPack
 		vlit_VertexLocation.clear();
 		vlit_VertexLocation.resize((unsigned) i_LeftVertexCount + i_RightVertexCount);
 
-		i_IncludedVertexCount = _FALSE;
+		i_IncludedVertexCount = false;
 
-		i_HighestInducedVertexDegree = _FALSE;
+		i_HighestInducedVertexDegree = false;
 
 		i_SelectedVertex = _UNKNOWN;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
-      		if(m_vi_IncludedLeftVertices[i] == _FALSE)
+      		if(m_vi_IncludedLeftVertices[i] == false)
 			{
 				continue;
 			}
 
 			i_IncludedVertexCount++;
 
-			i_InducedVertexDegree = _FALSE;
+			i_InducedVertexDegree = false;
 
 			for(j=m_vi_LeftVertices[i]; j<m_vi_LeftVertices[STEP_UP(i)]; j++)
 			{
-				if(m_vi_IncludedRightVertices[m_vi_Edges[j]] == _FALSE)
+				if(m_vi_IncludedRightVertices[m_vi_Edges[j]] == false)
 				{
 					continue;
 				}
@@ -1172,18 +1172,18 @@ namespace ColPack
 
 		for(i=0; i<i_RightVertexCount; i++)
 		{
-      		if(m_vi_IncludedRightVertices[i] == _FALSE)
+      		if(m_vi_IncludedRightVertices[i] == false)
 			{
 				continue;
 			}
 
 			i_IncludedVertexCount++;
 
-			i_InducedVertexDegree = _FALSE;
+			i_InducedVertexDegree = false;
 
 			for(j=m_vi_RightVertices[i]; j<m_vi_RightVertices[STEP_UP(i)]; j++)
 			{
-				if(m_vi_IncludedLeftVertices[m_vi_Edges[j]] == _FALSE)
+				if(m_vi_IncludedLeftVertices[m_vi_Edges[j]] == false)
 				{
 					continue;
 				}
@@ -1218,7 +1218,7 @@ namespace ColPack
 
 			i_InducedVertexDegreeCount = (signed) vli_GroupedInducedVertexDegree[i].size();
 
-			j = _FALSE;
+			j = false;
 
 			for(lit_ListIterator = vli_GroupedInducedVertexDegree[i].begin(); lit_ListIterator != vli_GroupedInducedVertexDegree[i].end(); lit_ListIterator++)
 			{
@@ -1243,7 +1243,7 @@ namespace ColPack
 
 		m_vi_OrderedVertices.clear();
 
-		i_SelectedVertexCount = _FALSE;
+		i_SelectedVertexCount = false;
 
 		while(i_SelectedVertexCount < i_IncludedVertexCount)
 		{
@@ -1251,7 +1251,7 @@ namespace ColPack
 			{
 				i_InducedVertexDegreeCount = (signed) vli_GroupedInducedVertexDegree[i].size();
 
-				if(i_InducedVertexDegreeCount != _FALSE)
+				if(i_InducedVertexDegreeCount != false)
 				{
 					i_SelectedVertex = vli_GroupedInducedVertexDegree[i].front();
 
@@ -1327,7 +1327,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -1335,7 +1335,7 @@ namespace ColPack
 	{
 		if(CheckVertexOrdering("SELECTIVE_INCIDENCE_DEGREE"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, j;
@@ -1370,20 +1370,20 @@ namespace ColPack
 
 		i_SelectedVertex = _UNKNOWN;
 
-		i_IncludedVertexCount = _FALSE;
+		i_IncludedVertexCount = false;
 
 		i_HighestDegreeVertex = m_i_MaximumVertexDegree = _UNKNOWN;
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
-			if(m_vi_IncludedLeftVertices[i] == _FALSE)
+			if(m_vi_IncludedLeftVertices[i] == false)
 			{
 				continue;
 			}
 
 			i_IncludedVertexCount++;
 
-			i_IncidenceVertexDegree = _FALSE;
+			i_IncidenceVertexDegree = false;
 
 			vi_IncidenceVertexDegree[i] = i_IncidenceVertexDegree;
 
@@ -1393,7 +1393,7 @@ namespace ColPack
 
 			for(j=m_vi_LeftVertices[i]; j<m_vi_LeftVertices[STEP_UP(i)]; j++)
 			{
-				if(m_vi_IncludedRightVertices[m_vi_Edges[j]] == _FALSE)
+				if(m_vi_IncludedRightVertices[m_vi_Edges[j]] == false)
 				{
 					continue;
 				}
@@ -1411,14 +1411,14 @@ namespace ColPack
 
 		for(i=0; i<i_RightVertexCount; i++)
 		{
-      		if(m_vi_IncludedRightVertices[i] == _FALSE)
+      		if(m_vi_IncludedRightVertices[i] == false)
 			{
 				continue;
 			}
 
 			i_IncludedVertexCount++;
 
-			i_IncidenceVertexDegree = _FALSE;
+			i_IncidenceVertexDegree = false;
 
 			vi_IncidenceVertexDegree[i + i_LeftVertexCount] = i_IncidenceVertexDegree;
 
@@ -1428,7 +1428,7 @@ namespace ColPack
 
 			for(j=m_vi_RightVertices[i]; j<m_vi_RightVertices[STEP_UP(i)]; j++)
 			{
-				if(m_vi_IncludedLeftVertices[m_vi_Edges[j]] == _FALSE)
+				if(m_vi_IncludedLeftVertices[m_vi_Edges[j]] == false)
 				{
 					continue;
 				}
@@ -1458,7 +1458,7 @@ namespace ColPack
 
 			i_IncidenceVertexDegreeCount = (signed) vli_GroupedIncidenceVertexDegree[i].size();
 
-			j = _FALSE;
+			j = false;
 
 			for(lit_ListIterator = vli_GroupedIncidenceVertexDegree[i].begin(); lit_ListIterator != vli_GroupedIncidenceVertexDegree[i].end(); lit_ListIterator++)
 			{
@@ -1485,11 +1485,11 @@ namespace ColPack
 
 		m_vi_OrderedVertices.clear();
 
-		i_SelectedVertexCount = _FALSE;
+		i_SelectedVertexCount = false;
 
 		while(i_SelectedVertexCount < i_IncludedVertexCount)
 		{
-			if(i_SelectedVertexCount == _FALSE)
+			if(i_SelectedVertexCount == false)
 			{
 				i_SelectedVertex = i_HighestDegreeVertex;
 			}
@@ -1499,7 +1499,7 @@ namespace ColPack
 				{
 					i_IncidenceVertexDegreeCount = (signed) vli_GroupedIncidenceVertexDegree[i].size();
 
-					if(i_IncidenceVertexDegreeCount != _FALSE)
+					if(i_IncidenceVertexDegreeCount != false)
 					{
 						i_SelectedVertex = vli_GroupedIncidenceVertexDegree[i].front();
 
@@ -1604,7 +1604,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -1700,7 +1700,7 @@ namespace ColPack
 			cerr<<endl;
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 	void BipartiteGraphOrdering::PrintVertexOrdering() {

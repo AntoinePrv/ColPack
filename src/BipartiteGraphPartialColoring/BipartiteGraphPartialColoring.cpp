@@ -15,7 +15,7 @@ namespace ColPack
 	{
 		if(m_s_VertexColoringVariant.empty())
 		{
-			return(_FALSE);
+			return(false);
 		}
 
 		if(m_i_LeftVertexColorCount != _UNKNOWN)
@@ -23,7 +23,7 @@ namespace ColPack
 			int i_TotalLeftVertexColors = STEP_UP(m_i_LeftVertexColorCount);
 
 			m_vi_LeftVertexColorFrequency.clear();
-			m_vi_LeftVertexColorFrequency.resize((unsigned) i_TotalLeftVertexColors, _FALSE);
+			m_vi_LeftVertexColorFrequency.resize((unsigned) i_TotalLeftVertexColors, false);
 
 			int i_LeftVertexCount = STEP_DOWN((signed) m_vi_LeftVertices.size());
 
@@ -64,7 +64,7 @@ namespace ColPack
 			int i_TotalRightVertexColors = STEP_UP(m_i_RightVertexColorCount);
 
 			m_vi_RightVertexColorFrequency.clear();
-			m_vi_RightVertexColorFrequency.resize((unsigned) i_TotalRightVertexColors, _FALSE);
+			m_vi_RightVertexColorFrequency.resize((unsigned) i_TotalRightVertexColors, false);
 
 			int i_RightVertexCount = STEP_DOWN((signed) m_vi_RightVertices.size());
 
@@ -100,7 +100,7 @@ namespace ColPack
 			m_d_AverageRightVertexColorClassSize = i_RightVertexCount / i_TotalRightVertexColors;
 		}
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -110,7 +110,7 @@ namespace ColPack
 	{
 		if(m_s_VertexColoringVariant.compare(s_VertexColoringVariant) == 0)
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		if(m_s_VertexColoringVariant.compare("ALL") != 0)
@@ -141,7 +141,7 @@ namespace ColPack
 			}
 		}
 
-		return(_FALSE);
+		return(false);
 	}
 
 
@@ -273,7 +273,7 @@ namespace ColPack
 	{
 		if(CheckVertexColoring("ROW_PARTIAL_DISTANCE_TWO"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i_LeftVertexCount;
@@ -415,7 +415,7 @@ namespace ColPack
 		// Note that m_i_LeftVertexColorCount has not been updated yet
 		m_i_VertexColorCount = m_i_LeftVertexColorCount;
 
-		return _TRUE;
+		return true;
 
 	}
 
@@ -432,7 +432,7 @@ namespace ColPack
 	{
 		if(CheckVertexColoring("ROW_PARTIAL_DISTANCE_TWO"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, w, x, c;
@@ -482,13 +482,13 @@ namespace ColPack
 
 		m_i_VertexColorCount = m_i_LeftVertexColorCount;
 
-		return ( _TRUE );
+		return ( true );
 	}
 
 	int BipartiteGraphPartialColoring::PartialDistanceTwoColumnColoring_OMP() {
 		if(CheckVertexColoring("COLUMN_PARTIAL_DISTANCE_TWO"))
 		{
-		  return(_TRUE);
+		  return(true);
 		}
 
 		int i_LeftVertexCount, i_RightVertexCount;
@@ -610,7 +610,7 @@ namespace ColPack
 		//note that m_i_RightVertexColorCount has not been updated yet
 		m_i_VertexColorCount = m_i_RightVertexColorCount;
 
-		return _TRUE;
+		return true;
 
 	}
 
@@ -627,7 +627,7 @@ namespace ColPack
 	{
 		if(CheckVertexColoring("COLUMN_PARTIAL_DISTANCE_TWO"))
 		{
-			return(_TRUE);
+			return(true);
 		}
 
 		int i, w, x, c;
@@ -681,7 +681,7 @@ namespace ColPack
 
 		m_i_VertexColorCount = m_i_RightVertexColorCount;
 
-		return ( _TRUE );
+		return ( true );
 	}
 
 
@@ -702,13 +702,13 @@ namespace ColPack
 					{
 						cout<<"Left vertices "<<i+1<<" and "<<m_vi_Edges[k]+1<< " (connected by right vectex "<<m_vi_Edges[j]+1<<") have the same color ("<<m_vi_LeftVertexColors[i]<<")"<<endl;
 
-						return _FALSE;
+						return false;
 					}
 				}
 			}
 		}
 
-		return _TRUE;
+		return true;
 	}
 
 
@@ -727,13 +727,13 @@ namespace ColPack
 					if(m_vi_RightVertexColors[m_vi_Edges[k]]==m_vi_RightVertexColors[i])
 					{
 						cout<<"Right vertices "<<i+1<<" and "<<m_vi_Edges[k]+1<< " (connected by left vectex "<<m_vi_Edges[j]+1<<") have the same color ("<<m_vi_RightVertexColors[i]<<")"<<endl;
-						return _FALSE;
+						return false;
 					}
 				}
 			}
 		}
 
-		return (_TRUE);
+		return (true);
 	}
 
 	//Public Function 2459
@@ -914,7 +914,7 @@ namespace ColPack
 	//Public Function 2469
 	void BipartiteGraphPartialColoring::PrintVertexPartialColorClasses()
 	{
-		if(CalculateVertexColorClasses() != _TRUE)
+		if(CalculateVertexColorClasses() != true)
 		{
 			cout<<endl;
 			cout<<"Vertex Partial Color Classes | "<<m_s_VertexColoringVariant<<" Coloring | "<<m_s_VertexOrderingVariant<<" Ordering | "<<m_s_InputFile<<" | Vertex Partial Colors Not Set"<<endl;
@@ -1131,7 +1131,7 @@ namespace ColPack
 		else { // Unrecognized Coloring Method
 			cerr<<" Unknown Partial Distance Two Coloring Method: "<<m_s_VertexColoringVariant
 				<<". Please use a legal Method before calling CheckPartialDistanceTwoColoring()."<<endl;
-			return _FALSE;
+			return false;
 		}
 	}
 

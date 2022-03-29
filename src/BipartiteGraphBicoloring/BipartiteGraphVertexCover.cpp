@@ -97,10 +97,10 @@ namespace ColPack
 		i_RightVertexCount = STEP_DOWN((signed) m_vi_RightVertices.size());
 
 		m_vi_IncludedLeftVertices.clear();
-		m_vi_IncludedLeftVertices.resize((unsigned) i_LeftVertexCount, _TRUE);
+		m_vi_IncludedLeftVertices.resize((unsigned) i_LeftVertexCount, true);
 
 		m_vi_IncludedRightVertices.clear();
-		m_vi_IncludedRightVertices.resize((unsigned) i_RightVertexCount, _TRUE);
+		m_vi_IncludedRightVertices.resize((unsigned) i_RightVertexCount, true);
 
 #if DEBUG == 3355
 
@@ -121,7 +121,7 @@ namespace ColPack
 		i_EdgeCount = (signed) m_vi_Edges.size()/2;
 
 		vi_EdgeCodes.clear();
-		vi_EdgeCodes.resize((unsigned) i_EdgeCount, _FALSE);
+		vi_EdgeCodes.resize((unsigned) i_EdgeCount, false);
 
 		vi_LeftVertexDegree.clear();
 		vi_LeftVertexDegree.resize((unsigned) i_LeftVertexCount);
@@ -133,7 +133,7 @@ namespace ColPack
 
 		vlit_CodeZeroLeftVertexLocation.clear();
 
-		i_HighestCodeZeroLeftVertexDegree = _FALSE;
+		i_HighestCodeZeroLeftVertexDegree = false;
 		i_LowestCodeZeroLeftVertexDegree = i_RightVertexCount;
 
 		for(i=0; i<i_LeftVertexCount; i++)
@@ -169,7 +169,7 @@ namespace ColPack
 
 		vlit_CodeZeroRightVertexLocation.clear();
 
-		i_HighestCodeZeroRightVertexDegree = _FALSE;
+		i_HighestCodeZeroRightVertexDegree = false;
 		i_LowestCodeZeroRightVertexDegree = i_RightVertexCount;
 
 		for(i=0; i<i_RightVertexCount; i++)
@@ -196,22 +196,22 @@ namespace ColPack
 		}
 
 		vi_CodeOneLeftVertexDegree.clear();
-		vi_CodeOneLeftVertexDegree.resize((unsigned) i_LeftVertexCount, _FALSE);
+		vi_CodeOneLeftVertexDegree.resize((unsigned) i_LeftVertexCount, false);
 
 		vi_CodeTwoLeftVertexDegree.clear();
-		vi_CodeTwoLeftVertexDegree.resize((unsigned) i_LeftVertexCount, _FALSE);
+		vi_CodeTwoLeftVertexDegree.resize((unsigned) i_LeftVertexCount, false);
 
 		vi_CodeThreeLeftVertexDegree.clear();
-		vi_CodeThreeLeftVertexDegree.resize((unsigned) i_LeftVertexCount, _FALSE);
+		vi_CodeThreeLeftVertexDegree.resize((unsigned) i_LeftVertexCount, false);
 
 		vi_CodeOneRightVertexDegree.clear();
-		vi_CodeOneRightVertexDegree.resize((unsigned) i_RightVertexCount, _FALSE);
+		vi_CodeOneRightVertexDegree.resize((unsigned) i_RightVertexCount, false);
 
 		vi_CodeTwoRightVertexDegree.clear();
-		vi_CodeTwoRightVertexDegree.resize((unsigned) i_RightVertexCount, _FALSE);
+		vi_CodeTwoRightVertexDegree.resize((unsigned) i_RightVertexCount, false);
 
 		vi_CodeThreeRightVertexDegree.clear();
-		vi_CodeThreeRightVertexDegree.resize((unsigned) i_RightVertexCount, _FALSE);
+		vi_CodeThreeRightVertexDegree.resize((unsigned) i_RightVertexCount, false);
 
 
 #if DEBUG == 3355
@@ -226,7 +226,7 @@ namespace ColPack
 
 			i_CodeZeroDegreeVertexCount = (signed) vli_GroupedCodeZeroLeftVertexDegree[i].size();
 
-			j = _FALSE;
+			j = false;
 
 			for(lit_ListIterator = vli_GroupedCodeZeroLeftVertexDegree[i].begin(); lit_ListIterator != vli_GroupedCodeZeroLeftVertexDegree[i].end(); lit_ListIterator++)
 			{
@@ -255,7 +255,7 @@ namespace ColPack
 
 			i_CodeZeroDegreeVertexCount = (signed) vli_GroupedCodeZeroRightVertexDegree[i].size();
 
-			j = _FALSE;
+			j = false;
 
 			for(lit_ListIterator = vli_GroupedCodeZeroRightVertexDegree[i].begin(); lit_ListIterator != vli_GroupedCodeZeroRightVertexDegree[i].end(); lit_ListIterator++)
 			{
@@ -278,7 +278,7 @@ namespace ColPack
 
 #endif
 
-		i_HighestCodeTwoLeftVertexDegree = i_HighestCodeThreeRightVertexDegree = _FALSE;
+		i_HighestCodeTwoLeftVertexDegree = i_HighestCodeThreeRightVertexDegree = false;
 
 		i_CodeZeroEdgeCount = i_EdgeCount;
 
@@ -290,7 +290,7 @@ namespace ColPack
 			{
 				i_CodeZeroDegreeVertexCount = (signed) vli_GroupedCodeZeroLeftVertexDegree[i].size();
 
-				if(i_CodeZeroDegreeVertexCount != _FALSE)
+				if(i_CodeZeroDegreeVertexCount != false)
 				{
 					i_VertexDegree = _UNKNOWN;
 
@@ -321,7 +321,7 @@ namespace ColPack
 			{
 				i_CodeZeroDegreeVertexCount = (signed) vli_GroupedCodeZeroRightVertexDegree[i].size();
 
-				if(i_CodeZeroDegreeVertexCount != _FALSE)
+				if(i_CodeZeroDegreeVertexCount != false)
 				{
 					i_VertexDegree = _UNKNOWN;
 
@@ -409,7 +409,7 @@ namespace ColPack
 
 			if(i_CandidateRightVertex == _UNKNOWN)
 			{
-				m_vi_IncludedLeftVertices[i_CandidateLeftVertex] = _FALSE;
+				m_vi_IncludedLeftVertices[i_CandidateLeftVertex] = false;
 
 				vli_GroupedCodeZeroLeftVertexDegree[vi_CodeZeroLeftVertexDegree[i_CandidateLeftVertex]].erase(vlit_CodeZeroLeftVertexLocation[i_CandidateLeftVertex]);
 
@@ -417,9 +417,9 @@ namespace ColPack
 				{
 					i_PresentEdge = m_mimi2_VertexEdgeMap[i_CandidateLeftVertex][m_vi_Edges[i]];
 
-					if((vi_EdgeCodes[i_PresentEdge] == _FALSE) || (vi_EdgeCodes[i_PresentEdge] == _TRUE))
+					if((vi_EdgeCodes[i_PresentEdge] == false) || (vi_EdgeCodes[i_PresentEdge] == true))
 					{
-						if(vi_EdgeCodes[i_PresentEdge] == _FALSE)
+						if(vi_EdgeCodes[i_PresentEdge] == false)
 						{
 							i_CodeZeroEdgeCount = STEP_DOWN(i_CodeZeroEdgeCount);
 
@@ -461,7 +461,7 @@ namespace ColPack
 
 							i_NeighboringEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[j]][m_vi_Edges[i]];
 
-							if(vi_EdgeCodes[i_NeighboringEdge] == _FALSE)
+							if(vi_EdgeCodes[i_NeighboringEdge] == false)
 							{
 								i_CodeZeroEdgeCount = STEP_DOWN(i_CodeZeroEdgeCount);
 
@@ -499,7 +499,7 @@ namespace ColPack
 
 #endif
 
-								vi_EdgeCodes[i_NeighboringEdge] = _TRUE;
+								vi_EdgeCodes[i_NeighboringEdge] = true;
 
 								vi_CodeOneLeftVertexDegree[m_vi_Edges[j]] = STEP_UP(vi_CodeOneLeftVertexDegree[m_vi_Edges[j]]);
 
@@ -513,7 +513,7 @@ namespace ColPack
 			else
 			if(i_CandidateLeftVertex == _UNKNOWN)
 			{
-				m_vi_IncludedRightVertices[i_CandidateRightVertex] = _FALSE;
+				m_vi_IncludedRightVertices[i_CandidateRightVertex] = false;
 
 				vli_GroupedCodeZeroRightVertexDegree[vi_CodeZeroRightVertexDegree[i_CandidateRightVertex]].erase(vlit_CodeZeroRightVertexLocation[i_CandidateRightVertex]);
 
@@ -521,9 +521,9 @@ namespace ColPack
 				{
 					i_PresentEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[i]][i_CandidateRightVertex];
 
-					if((vi_EdgeCodes[i_PresentEdge] == _FALSE) || (vi_EdgeCodes[i_PresentEdge] == _TRUE))
+					if((vi_EdgeCodes[i_PresentEdge] == false) || (vi_EdgeCodes[i_PresentEdge] == true))
 					{
-						if(vi_EdgeCodes[i_PresentEdge] == _FALSE)
+						if(vi_EdgeCodes[i_PresentEdge] == false)
 						{
 							i_CodeZeroEdgeCount = STEP_DOWN(i_CodeZeroEdgeCount);
 
@@ -564,7 +564,7 @@ namespace ColPack
 
 							i_NeighboringEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[i]][m_vi_Edges[j]];
 
-							if(vi_EdgeCodes[i_NeighboringEdge] == _FALSE)
+							if(vi_EdgeCodes[i_NeighboringEdge] == false)
 							{
 								i_CodeZeroEdgeCount = STEP_DOWN(i_CodeZeroEdgeCount);
 
@@ -602,7 +602,7 @@ namespace ColPack
 								cout<<"Edge "<<STEP_UP(m_vi_Edges[i])<<" - "<<STEP_UP(m_vi_Edges[j])<<" ["<<STEP_UP(i_NeighboringEdge)<<"] : Code Changed From "<<vi_EdgeCodes[i_NeighboringEdge]<<" To 1"<<endl;
 
 #endif
-								vi_EdgeCodes[i_NeighboringEdge] = _TRUE;
+								vi_EdgeCodes[i_NeighboringEdge] = true;
 
 								vi_CodeOneLeftVertexDegree[m_vi_Edges[i]] = STEP_UP(vi_CodeOneLeftVertexDegree[m_vi_Edges[i]]);
 
@@ -626,7 +626,7 @@ namespace ColPack
 
 				i_CodeZeroDegreeVertexCount = (signed) vli_GroupedCodeZeroLeftVertexDegree[i].size();
 
-				j = _FALSE;
+				j = false;
 
 				for(lit_ListIterator = vli_GroupedCodeZeroLeftVertexDegree[i].begin(); lit_ListIterator != vli_GroupedCodeZeroLeftVertexDegree[i].end(); lit_ListIterator++)
 				{
@@ -655,7 +655,7 @@ namespace ColPack
 
 				i_CodeZeroDegreeVertexCount = (signed) vli_GroupedCodeZeroRightVertexDegree[i].size();
 
-				j = _FALSE;
+				j = false;
 
 				for(lit_ListIterator = vli_GroupedCodeZeroRightVertexDegree[i].begin(); lit_ListIterator != vli_GroupedCodeZeroRightVertexDegree[i].end(); lit_ListIterator++)
 				{
@@ -687,7 +687,7 @@ namespace ColPack
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
-			if(m_vi_IncludedLeftVertices[i] == _TRUE)
+			if(m_vi_IncludedLeftVertices[i] == true)
 			{
 				m_vi_CoveredLeftVertices.push_back(i);
 			}
@@ -695,7 +695,7 @@ namespace ColPack
 
 		for(i=0; i<i_RightVertexCount; i++)
 		{
-			if(m_vi_IncludedRightVertices[i] == _TRUE)
+			if(m_vi_IncludedRightVertices[i] == true)
 			{
 				m_vi_CoveredRightVertices.push_back(i);
 			}
@@ -710,7 +710,7 @@ namespace ColPack
 
 		int i_LeftVertexCoverSize, i_RightVertexCoverSize;
 
-		i_CoveredEdgeCount = _FALSE;
+		i_CoveredEdgeCount = false;
 
 		cout<<endl;
 		cout<<"DEBUG 3355 | Star Bicoloring | Vertex Cover | Left Vertices"<<endl;
@@ -731,7 +731,7 @@ namespace ColPack
 
 			i_VertexDegree = m_vi_LeftVertices[STEP_UP(m_vi_CoveredLeftVertices[i])] - m_vi_LeftVertices[m_vi_CoveredLeftVertices[i]];
 
-			k = _FALSE;
+			k = false;
 
 			for(j=m_vi_LeftVertices[m_vi_CoveredLeftVertices[i]]; j<m_vi_LeftVertices[STEP_UP(m_vi_CoveredLeftVertices[i])]; j++)
 			{
@@ -772,7 +772,7 @@ namespace ColPack
 
 			i_VertexDegree = m_vi_RightVertices[STEP_UP(m_vi_CoveredRightVertices[i])] - m_vi_RightVertices[m_vi_CoveredRightVertices[i]];
 
-			k = _FALSE;
+			k = false;
 
 			for(j=m_vi_RightVertices[m_vi_CoveredRightVertices[i]]; j<m_vi_RightVertices[STEP_UP(m_vi_CoveredRightVertices[i])]; j++)
 			{
@@ -799,7 +799,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -842,10 +842,10 @@ namespace ColPack
 		i_RightVertexCount = STEP_DOWN((signed) m_vi_RightVertices.size());
 
 		m_vi_IncludedLeftVertices.clear();
-		m_vi_IncludedLeftVertices.resize((unsigned) i_LeftVertexCount, _TRUE);
+		m_vi_IncludedLeftVertices.resize((unsigned) i_LeftVertexCount, true);
 
 		m_vi_IncludedRightVertices.clear();
-		m_vi_IncludedRightVertices.resize((unsigned) i_RightVertexCount, _TRUE);
+		m_vi_IncludedRightVertices.resize((unsigned) i_RightVertexCount, true);
 
 #if DEBUG == 3356
 
@@ -866,7 +866,7 @@ namespace ColPack
 		i_EdgeCount = (signed) m_vi_Edges.size()/2;
 
 		vi_EdgeCodes.clear();
-		vi_EdgeCodes.resize((unsigned) i_EdgeCount, _FALSE);
+		vi_EdgeCodes.resize((unsigned) i_EdgeCount, false);
 
 		vi_LeftVertexDegree.clear();
 		vi_LeftVertexDegree.resize((unsigned) i_LeftVertexCount);
@@ -878,7 +878,7 @@ namespace ColPack
 
 		vlit_CodeZeroLeftVertexLocation.clear();
 
-		i_HighestCodeZeroLeftVertexDegree = _FALSE;
+		i_HighestCodeZeroLeftVertexDegree = false;
 		i_LowestCodeZeroLeftVertexDegree = i_RightVertexCount;
 
 		for(i=0; i<i_LeftVertexCount; i++)
@@ -914,7 +914,7 @@ namespace ColPack
 
 		vlit_CodeZeroRightVertexLocation.clear();
 
-		i_HighestCodeZeroRightVertexDegree = _FALSE;
+		i_HighestCodeZeroRightVertexDegree = false;
 		i_LowestCodeZeroRightVertexDegree = i_RightVertexCount;
 
 		for(i=0; i<i_RightVertexCount; i++)
@@ -941,22 +941,22 @@ namespace ColPack
 		}
 
 		vi_CodeOneLeftVertexDegree.clear();
-		vi_CodeOneLeftVertexDegree.resize((unsigned) i_LeftVertexCount, _FALSE);
+		vi_CodeOneLeftVertexDegree.resize((unsigned) i_LeftVertexCount, false);
 
 		vi_CodeTwoLeftVertexDegree.clear();
-		vi_CodeTwoLeftVertexDegree.resize((unsigned) i_LeftVertexCount, _FALSE);
+		vi_CodeTwoLeftVertexDegree.resize((unsigned) i_LeftVertexCount, false);
 
 		vi_CodeThreeLeftVertexDegree.clear();
-		vi_CodeThreeLeftVertexDegree.resize((unsigned) i_LeftVertexCount, _FALSE);
+		vi_CodeThreeLeftVertexDegree.resize((unsigned) i_LeftVertexCount, false);
 
 		vi_CodeOneRightVertexDegree.clear();
-		vi_CodeOneRightVertexDegree.resize((unsigned) i_RightVertexCount, _FALSE);
+		vi_CodeOneRightVertexDegree.resize((unsigned) i_RightVertexCount, false);
 
 		vi_CodeTwoRightVertexDegree.clear();
-		vi_CodeTwoRightVertexDegree.resize((unsigned) i_RightVertexCount, _FALSE);
+		vi_CodeTwoRightVertexDegree.resize((unsigned) i_RightVertexCount, false);
 
 		vi_CodeThreeRightVertexDegree.clear();
-		vi_CodeThreeRightVertexDegree.resize((unsigned) i_RightVertexCount, _FALSE);
+		vi_CodeThreeRightVertexDegree.resize((unsigned) i_RightVertexCount, false);
 
 
 #if DEBUG == 3356
@@ -971,7 +971,7 @@ namespace ColPack
 
 			i_CodeZeroDegreeVertexCount = (signed) vli_GroupedCodeZeroLeftVertexDegree[i].size();
 
-			j = _FALSE;
+			j = false;
 
 			for(lit_ListIterator = vli_GroupedCodeZeroLeftVertexDegree[i].begin(); lit_ListIterator != vli_GroupedCodeZeroLeftVertexDegree[i].end(); lit_ListIterator++)
 			{
@@ -1000,7 +1000,7 @@ namespace ColPack
 
 			i_CodeZeroDegreeVertexCount = (signed) vli_GroupedCodeZeroRightVertexDegree[i].size();
 
-			j = _FALSE;
+			j = false;
 
 			for(lit_ListIterator = vli_GroupedCodeZeroRightVertexDegree[i].begin(); lit_ListIterator != vli_GroupedCodeZeroRightVertexDegree[i].end(); lit_ListIterator++)
 			{
@@ -1023,7 +1023,7 @@ namespace ColPack
 
 #endif
 
-		i_HighestCodeTwoLeftVertexDegree = i_HighestCodeThreeRightVertexDegree = _FALSE;
+		i_HighestCodeTwoLeftVertexDegree = i_HighestCodeThreeRightVertexDegree = false;
 
 		i_CodeZeroEdgeCount = i_EdgeCount;
 
@@ -1035,7 +1035,7 @@ namespace ColPack
 			{
 				i_CodeZeroDegreeVertexCount = (signed) vli_GroupedCodeZeroLeftVertexDegree[i].size();
 
-				if(i_CodeZeroDegreeVertexCount != _FALSE)
+				if(i_CodeZeroDegreeVertexCount != false)
 				{
 					i_VertexDegree = _UNKNOWN;
 
@@ -1066,7 +1066,7 @@ namespace ColPack
 			{
 				i_CodeZeroDegreeVertexCount = (signed) vli_GroupedCodeZeroRightVertexDegree[i].size();
 
-				if(i_CodeZeroDegreeVertexCount != _FALSE)
+				if(i_CodeZeroDegreeVertexCount != false)
 				{
 					i_VertexDegree = _UNKNOWN;
 
@@ -1154,7 +1154,7 @@ namespace ColPack
 
 			if(i_CandidateRightVertex == _UNKNOWN)
 			{
-				m_vi_IncludedLeftVertices[i_CandidateLeftVertex] = _FALSE;
+				m_vi_IncludedLeftVertices[i_CandidateLeftVertex] = false;
 
 				vli_GroupedCodeZeroLeftVertexDegree[vi_CodeZeroLeftVertexDegree[i_CandidateLeftVertex]].erase(vlit_CodeZeroLeftVertexLocation[i_CandidateLeftVertex]);
 
@@ -1162,9 +1162,9 @@ namespace ColPack
 				{
 					i_PresentEdge = m_mimi2_VertexEdgeMap[i_CandidateLeftVertex][m_vi_Edges[i]];
 
-					if((vi_EdgeCodes[i_PresentEdge] == _FALSE) || (vi_EdgeCodes[i_PresentEdge] == _TRUE))
+					if((vi_EdgeCodes[i_PresentEdge] == false) || (vi_EdgeCodes[i_PresentEdge] == true))
 					{
-						if(vi_EdgeCodes[i_PresentEdge] == _FALSE)
+						if(vi_EdgeCodes[i_PresentEdge] == false)
 						{
 							i_CodeZeroEdgeCount = STEP_DOWN(i_CodeZeroEdgeCount);
 
@@ -1207,7 +1207,7 @@ namespace ColPack
 
 							i_NeighboringEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[j]][m_vi_Edges[i]];
 
-							if(vi_EdgeCodes[i_NeighboringEdge] == _FALSE)
+							if(vi_EdgeCodes[i_NeighboringEdge] == false)
 							{
 								i_CodeZeroEdgeCount = STEP_DOWN(i_CodeZeroEdgeCount);
 
@@ -1246,7 +1246,7 @@ namespace ColPack
 
 #endif
 
-								vi_EdgeCodes[i_NeighboringEdge] = _TRUE;
+								vi_EdgeCodes[i_NeighboringEdge] = true;
 
 								vi_CodeOneLeftVertexDegree[m_vi_Edges[j]] = STEP_UP(vi_CodeOneLeftVertexDegree[m_vi_Edges[j]]);
 
@@ -1260,7 +1260,7 @@ namespace ColPack
 			else
 			if(i_CandidateLeftVertex == _UNKNOWN)
 			{
-				m_vi_IncludedRightVertices[i_CandidateRightVertex] = _FALSE;
+				m_vi_IncludedRightVertices[i_CandidateRightVertex] = false;
 
 				vli_GroupedCodeZeroRightVertexDegree[vi_CodeZeroRightVertexDegree[i_CandidateRightVertex]].erase(vlit_CodeZeroRightVertexLocation[i_CandidateRightVertex]);
 
@@ -1268,9 +1268,9 @@ namespace ColPack
 				{
 					i_PresentEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[i]][i_CandidateRightVertex];
 
-					if((vi_EdgeCodes[i_PresentEdge] == _FALSE) || (vi_EdgeCodes[i_PresentEdge] == _TRUE))
+					if((vi_EdgeCodes[i_PresentEdge] == false) || (vi_EdgeCodes[i_PresentEdge] == true))
 					{
-						if(vi_EdgeCodes[i_PresentEdge] == _FALSE)
+						if(vi_EdgeCodes[i_PresentEdge] == false)
 						{
 							i_CodeZeroEdgeCount = STEP_DOWN(i_CodeZeroEdgeCount);
 
@@ -1313,7 +1313,7 @@ namespace ColPack
 
 							i_NeighboringEdge = m_mimi2_VertexEdgeMap[m_vi_Edges[i]][m_vi_Edges[j]];
 
-							if(vi_EdgeCodes[i_NeighboringEdge] == _FALSE)
+							if(vi_EdgeCodes[i_NeighboringEdge] == false)
 							{
 								i_CodeZeroEdgeCount = STEP_DOWN(i_CodeZeroEdgeCount);
 
@@ -1351,7 +1351,7 @@ namespace ColPack
 								cout<<"Edge "<<STEP_UP(m_vi_Edges[i])<<" - "<<STEP_UP(m_vi_Edges[j])<<" ["<<STEP_UP(i_NeighboringEdge)<<"] : Code Changed From "<<vi_EdgeCodes[i_NeighboringEdge]<<" To 1"<<endl;
 
 #endif
-								vi_EdgeCodes[i_NeighboringEdge] = _TRUE;
+								vi_EdgeCodes[i_NeighboringEdge] = true;
 
 								vi_CodeOneLeftVertexDegree[m_vi_Edges[i]] = STEP_UP(vi_CodeOneLeftVertexDegree[m_vi_Edges[i]]);
 
@@ -1375,7 +1375,7 @@ namespace ColPack
 
 				i_CodeZeroDegreeVertexCount = (signed) vli_GroupedCodeZeroLeftVertexDegree[i].size();
 
-				j = _FALSE;
+				j = false;
 
 				for(lit_ListIterator = vli_GroupedCodeZeroLeftVertexDegree[i].begin(); lit_ListIterator != vli_GroupedCodeZeroLeftVertexDegree[i].end(); lit_ListIterator++)
 				{
@@ -1404,7 +1404,7 @@ namespace ColPack
 
 				i_CodeZeroDegreeVertexCount = (signed) vli_GroupedCodeZeroRightVertexDegree[i].size();
 
-				j = _FALSE;
+				j = false;
 
 				for(lit_ListIterator = vli_GroupedCodeZeroRightVertexDegree[i].begin(); lit_ListIterator != vli_GroupedCodeZeroRightVertexDegree[i].end(); lit_ListIterator++)
 				{
@@ -1436,7 +1436,7 @@ namespace ColPack
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
-			if(m_vi_IncludedLeftVertices[i] == _TRUE)
+			if(m_vi_IncludedLeftVertices[i] == true)
 			{
 				m_vi_CoveredLeftVertices.push_back(i);
 			}
@@ -1444,7 +1444,7 @@ namespace ColPack
 
 		for(i=0; i<i_RightVertexCount; i++)
 		{
-			if(m_vi_IncludedRightVertices[i] == _TRUE)
+			if(m_vi_IncludedRightVertices[i] == true)
 			{
 				m_vi_CoveredRightVertices.push_back(i);
 			}
@@ -1459,7 +1459,7 @@ namespace ColPack
 
 		int i_LeftVertexCoverSize, i_RightVertexCoverSize;
 
-		i_CoveredEdgeCount = _FALSE;
+		i_CoveredEdgeCount = false;
 
 		cout<<endl;
 		cout<<"DEBUG 3356 | Star Bicoloring | Vertex Cover | Left Vertices"<<endl;
@@ -1480,7 +1480,7 @@ namespace ColPack
 
 			i_VertexDegree = m_vi_LeftVertices[STEP_UP(m_vi_CoveredLeftVertices[i])] - m_vi_LeftVertices[m_vi_CoveredLeftVertices[i]];
 
-			k = _FALSE;
+			k = false;
 
 			for(j=m_vi_LeftVertices[m_vi_CoveredLeftVertices[i]]; j<m_vi_LeftVertices[STEP_UP(m_vi_CoveredLeftVertices[i])]; j++)
 			{
@@ -1521,7 +1521,7 @@ namespace ColPack
 
 			i_VertexDegree = m_vi_RightVertices[STEP_UP(m_vi_CoveredRightVertices[i])] - m_vi_RightVertices[m_vi_CoveredRightVertices[i]];
 
-			k = _FALSE;
+			k = false;
 
 			for(j=m_vi_RightVertices[m_vi_CoveredRightVertices[i]]; j<m_vi_RightVertices[STEP_UP(m_vi_CoveredRightVertices[i])]; j++)
 			{
@@ -1548,7 +1548,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -1622,13 +1622,13 @@ namespace ColPack
 		i_AvailableVertexCount = i_LeftVertexCount + i_RightVertexCount;
 
 		vi_AvailableVertices.clear();
-		vi_AvailableVertices.resize((unsigned) i_AvailableVertexCount, _TRUE);
+		vi_AvailableVertices.resize((unsigned) i_AvailableVertexCount, true);
 
 		m_vi_IncludedLeftVertices.clear();
-		m_vi_IncludedLeftVertices.resize((unsigned) i_LeftVertexCount, _TRUE);
+		m_vi_IncludedLeftVertices.resize((unsigned) i_LeftVertexCount, true);
 
 		m_vi_IncludedRightVertices.clear();
-		m_vi_IncludedRightVertices.resize((unsigned) i_RightVertexCount, _TRUE);
+		m_vi_IncludedRightVertices.resize((unsigned) i_RightVertexCount, true);
 
 		vi_IndependentSet.clear();
 
@@ -1656,35 +1656,35 @@ namespace ColPack
 				}
 			}
 
-			if( vi_AvailableVertices[i_SelectedVertex] == _FALSE)
+			if( vi_AvailableVertices[i_SelectedVertex] == false)
 			{
 				if(i_SelectedVertex < i_LeftVertexCount)
 				{
-					m_vi_IncludedLeftVertices[i_SelectedVertex] = _FALSE;
+					m_vi_IncludedLeftVertices[i_SelectedVertex] = false;
 				}
 				else
 				{
-					m_vi_IncludedLeftVertices[i_SelectedVertex - i_LeftVertexCount] = _FALSE;
+					m_vi_IncludedLeftVertices[i_SelectedVertex - i_LeftVertexCount] = false;
 				}
 
 				continue;
 			}
 			else
 			{
-				vi_AvailableVertices[i_SelectedVertex] = _FALSE;
+				vi_AvailableVertices[i_SelectedVertex] = false;
 			}
 
 			if(i_SelectedVertex < i_LeftVertexCount)
 			{
 				i_PresentVertex = i_SelectedVertex;
 
-				m_vi_IncludedLeftVertices[i_PresentVertex] = _FALSE;
+				m_vi_IncludedLeftVertices[i_PresentVertex] = false;
 
 				for(i=m_vi_LeftVertices[i_PresentVertex]; i<m_vi_LeftVertices[STEP_UP(i_PresentVertex)]; i++)
 				{
 					i_NeighboringVertex = m_vi_Edges[i];
 
-					if(vi_AvailableVertices[i_NeighboringVertex + i_LeftVertexCount] == _FALSE)
+					if(vi_AvailableVertices[i_NeighboringVertex + i_LeftVertexCount] == false)
 					{
 						continue;
 					}
@@ -1698,7 +1698,7 @@ namespace ColPack
 							continue;
 						}
 
-						if(vi_AvailableVertices[i_SecondNeighboringVertex] == _FALSE)
+						if(vi_AvailableVertices[i_SecondNeighboringVertex] == false)
 						{
 							continue;
 						}
@@ -1711,9 +1711,9 @@ namespace ColPack
 
 						vlit_VertexLocation[i_SecondNeighboringVertex] = vli_GroupedVertexDegree[vi_VertexDegree[i_SecondNeighboringVertex]].begin();
 
-						if(vi_VertexDegree[i_SecondNeighboringVertex] == _FALSE)
+						if(vi_VertexDegree[i_SecondNeighboringVertex] == false)
 						{
-							vi_AvailableVertices[i_SecondNeighboringVertex] = _FALSE;
+							vi_AvailableVertices[i_SecondNeighboringVertex] = false;
 						}
 
 					}
@@ -1722,7 +1722,7 @@ namespace ColPack
 
 					vi_VertexDegree[i_NeighboringVertex + i_LeftVertexCount] = _UNKNOWN;
 
-					vi_AvailableVertices[i_NeighboringVertex + i_LeftVertexCount] = _FALSE;
+					vi_AvailableVertices[i_NeighboringVertex + i_LeftVertexCount] = false;
 
 					i_AvailableVertexCount--;
 				}
@@ -1732,13 +1732,13 @@ namespace ColPack
 			{
 				i_PresentVertex = i_SelectedVertex - i_LeftVertexCount;
 
-				m_vi_IncludedRightVertices[i_PresentVertex] = _FALSE;
+				m_vi_IncludedRightVertices[i_PresentVertex] = false;
 
 				for(i=m_vi_RightVertices[i_PresentVertex]; i<m_vi_RightVertices[STEP_UP(i_PresentVertex)]; i++)
 				{
 					i_NeighboringVertex = m_vi_Edges[i];
 
-					if(vi_AvailableVertices[i_NeighboringVertex] == _FALSE)
+					if(vi_AvailableVertices[i_NeighboringVertex] == false)
 					{
 						continue;
 					}
@@ -1752,7 +1752,7 @@ namespace ColPack
 							continue;
 						}
 
-						if(vi_AvailableVertices[i_SecondNeighboringVertex + i_LeftVertexCount] == _FALSE)
+						if(vi_AvailableVertices[i_SecondNeighboringVertex + i_LeftVertexCount] == false)
 						{
 							continue;
 						}
@@ -1765,9 +1765,9 @@ namespace ColPack
 
 						vlit_VertexLocation[i_SecondNeighboringVertex + i_LeftVertexCount] = vli_GroupedVertexDegree[vi_VertexDegree[i_SecondNeighboringVertex + i_LeftVertexCount]].begin();
 
-						if(vi_VertexDegree[i_SecondNeighboringVertex + i_LeftVertexCount] == _FALSE)
+						if(vi_VertexDegree[i_SecondNeighboringVertex + i_LeftVertexCount] == false)
 						{
-							vi_AvailableVertices[i_SecondNeighboringVertex + i_LeftVertexCount] = _FALSE;
+							vi_AvailableVertices[i_SecondNeighboringVertex + i_LeftVertexCount] = false;
 						}
 					}
 
@@ -1775,7 +1775,7 @@ namespace ColPack
 
 					vi_VertexDegree[i_NeighboringVertex] = _UNKNOWN;
 
-					vi_AvailableVertices[i_NeighboringVertex] = _FALSE;
+					vi_AvailableVertices[i_NeighboringVertex] = false;
 
 					i_AvailableVertexCount--;
 				}
@@ -1788,7 +1788,7 @@ namespace ColPack
 
 		for(i=0; i<i_LeftVertexCount; i++)
 		{
-			if(m_vi_IncludedLeftVertices[i] == _TRUE)
+			if(m_vi_IncludedLeftVertices[i] == true)
 			{
 				m_vi_CoveredLeftVertices.push_back(i);
 			}
@@ -1796,7 +1796,7 @@ namespace ColPack
 
 		for(i=0; i<i_RightVertexCount; i++)
 		{
-			if(m_vi_IncludedRightVertices[i] == _TRUE)
+			if(m_vi_IncludedRightVertices[i] == true)
 			{
 				m_vi_CoveredRightVertices.push_back(i);
 			}
@@ -1812,7 +1812,7 @@ namespace ColPack
 
 		int i_IndependentSetSize;
 
-		i_CoveredEdgeCount = _FALSE;
+		i_CoveredEdgeCount = false;
 
 		cout<<endl;
 		cout<<"DEBUG 3357 | Star Bicoloring | Minimal Vertex Cover | Left Vertices"<<endl;
@@ -1833,7 +1833,7 @@ namespace ColPack
 
 			i_VertexDegree = m_vi_LeftVertices[STEP_UP(m_vi_CoveredLeftVertices[i])] - m_vi_LeftVertices[m_vi_CoveredLeftVertices[i]];
 
-			k = _FALSE;
+			k = false;
 
 			for(j=m_vi_LeftVertices[m_vi_CoveredLeftVertices[i]]; j<m_vi_LeftVertices[STEP_UP(m_vi_CoveredLeftVertices[i])]; j++)
 			{
@@ -1874,7 +1874,7 @@ namespace ColPack
 
 			i_VertexDegree = m_vi_RightVertices[STEP_UP(m_vi_CoveredRightVertices[i])] - m_vi_RightVertices[m_vi_CoveredRightVertices[i]];
 
-			k = _FALSE;
+			k = false;
 
 			for(j=m_vi_RightVertices[m_vi_CoveredRightVertices[i]]; j<m_vi_RightVertices[STEP_UP(m_vi_CoveredRightVertices[i])]; j++)
 			{
@@ -1906,7 +1906,7 @@ namespace ColPack
 
 #endif
 
-		return(_TRUE);
+		return(true);
 	}
 
 
@@ -1921,7 +1921,7 @@ namespace ColPack
 
 		int i_VertexDegree;
 
-		i_CoveredEdgeCount = _FALSE;
+		i_CoveredEdgeCount = false;
 
 		cout<<endl;
 		cout<<"Star Bicoloring | Left Vertex Cover | "<<m_s_InputFile<<endl;
@@ -1942,7 +1942,7 @@ namespace ColPack
 
 			i_VertexDegree = m_vi_LeftVertices[STEP_UP(m_vi_CoveredLeftVertices[i])] - m_vi_LeftVertices[m_vi_CoveredLeftVertices[i]];
 
-			k = _FALSE;
+			k = false;
 
 			for(j=m_vi_LeftVertices[m_vi_CoveredLeftVertices[i]]; j<m_vi_LeftVertices[STEP_UP(m_vi_CoveredLeftVertices[i])]; j++)
 			{
@@ -1983,7 +1983,7 @@ namespace ColPack
 
 			i_VertexDegree = m_vi_RightVertices[STEP_UP(m_vi_CoveredRightVertices[i])] - m_vi_RightVertices[m_vi_CoveredRightVertices[i]];
 
-			k = _FALSE;
+			k = false;
 
 			for(j=m_vi_RightVertices[m_vi_CoveredRightVertices[i]]; j<m_vi_RightVertices[STEP_UP(m_vi_CoveredRightVertices[i])]; j++)
 			{
